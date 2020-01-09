@@ -8,6 +8,14 @@ require('dotenv/config');
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (req, res) => {
+	res.send('app home route working');
+});
+
+app.get('/music-inventory-api', (req, res) => {
+	res.send('music-inventory-api route working');
+});
+
 mongoose.connect(
 	'process.env.DB_CONNECTION',
 	{
