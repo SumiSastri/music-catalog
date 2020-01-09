@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const InventoryItemSchema = new mongoose.Schema({
+const MusicItemSchema = new mongoose.Schema({
 	entryDate: {
 		type: Date,
 		default: Date.now
@@ -28,4 +28,4 @@ const InventoryItemSchema = new mongoose.Schema({
 	}
 });
 
-module.exports = mongoose.model('InventoryItem', InventoryItemSchema);
+module.exports = mongoose.model('MusicItem', MusicItemSchema);

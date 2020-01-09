@@ -5,8 +5,12 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv/config');
 
+const musicInventoryRoute = require('./routes/inventoryRoute.js');
+
 app.use(cors());
 app.use(express.json());
+
+app.use('/imusic-inventory-api', musicInventoryRoute);
 
 app.get('/', (req, res) => {
 	res.send('app home route working');
