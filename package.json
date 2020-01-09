@@ -4,7 +4,9 @@
 	"description": "music-inventory-list",
 	"main": "server.js",
 	"scripts": {
-		"start-server": "nodemon server/server.js"
+		"client-install": "npm install --prefix client",
+		"start-server": "nodemon server/server.js",
+		"start-client": "npm start --prefix client"
 	},
 	"author": "srs",
 	"license": "MIT",
@@ -15,9 +17,18 @@
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
 		"mongoose": "^5.8.6",
+		"node": "^13.5.0",
 		"path": "^0.12.7"
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.2"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/SumiSastri/music-catalog.git"
+	},
+	"bugs": {
+		"url": "https://github.com/SumiSastri/music-catalog/issues"
+	},
+	"homepage": "https://github.com/SumiSastri/music-catalog#readme"
 }
