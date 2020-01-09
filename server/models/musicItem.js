@@ -17,7 +17,7 @@ const MusicItemSchema = new mongoose.Schema({
 		type: String,
 		required: false
 	},
-	value: {
+	valueInUSD: {
 		type: Number,
 		required: false,
 		default: 0
@@ -29,3 +29,4 @@ const MusicItemSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('MusicItem', MusicItemSchema);
+// module.exports = MusicItem = mongoose.model('musicItem', MusicItemSchema);
