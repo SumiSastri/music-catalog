@@ -7,9 +7,9 @@ const MusicItem = require('../models/musicItem.js');
 // READ-DATA FROM DB-GET
 
 // shift from server - import file into server
-// router.get('/', (req, res) => {
-// 	res.send('music-inventory-api route working');
-// });
+router.get('/', (req, res) => {
+	res.send('music-inventory-api route working');
+});
 
 // router.get('/', (req, res) => {
 // 	MusicItem.find().sort({ date: -1 }).then((items) => res.json(items));
@@ -41,11 +41,11 @@ router.put('/:id', (req, res, next) => {
 	});
 });
 
-// // DELETE-DATA FROM DB BY ID-DELETE
-// router.delete('/:id', (req, res, next) => {
-// 	MusicItem.findByIdAndRemove({ _id: req.params.id })
-// 		.then(() => res.status(200).json({ success: id - correct }))
-// 		.catch(() => res.status(404).json({ success: check - id }));
-// });
+// DELETE-DATA FROM DB BY ID-DELETE
+router.delete('/:id', (req, res, next) => {
+	MusicItem.findByIdAndRemove({ _id: req.params.id }, { useFindAndModify: false }).then(function(item) {
+		res.send(item);
+	});
+});
 
 module.exports = router;
