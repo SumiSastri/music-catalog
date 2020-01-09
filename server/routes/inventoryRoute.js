@@ -32,13 +32,14 @@ router.post('/', (req, res) => {
 });
 
 // // UPDATE-DATA IN DB BY FINDING ID-PUT
-// router.put('/:id', (req, res, next) => {
-// 	MusicItem.findByIdAndUpdate({ _id: req.params.id }, req.body, {
-// 		new: true
-// 	}).then(function(item) {
-// 		res.send(item);
-// 	});
-// });
+router.put('/:id', (req, res, next) => {
+	MusicItem.findByIdAndUpdate({ _id: req.params.id }, req.body, {
+		new: true,
+		useFindAndModify: false
+	}).then(function(item) {
+		res.send(item);
+	});
+});
 
 // // DELETE-DATA FROM DB BY ID-DELETE
 // router.delete('/:id', (req, res, next) => {
