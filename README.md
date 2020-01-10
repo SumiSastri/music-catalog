@@ -21,7 +21,7 @@ In the src files create frontend (client-side) and backend (server-side) folders
 ## FRONTEND FOLDER STRUCTURE
 - create a front-end folder
 - npx create-react-app client
-- this creates the client side node modules, git-igore package-lock-json src and public files/folders
+- this creates the client side node modules, git-ignore package-lock-json src and public files/folders
 - in the client-side package-json files add your proxy local host under the eject scripts
 - in the server-side package-json files add scripts to run the client and server side
 
@@ -32,6 +32,7 @@ In the src files create frontend (client-side) and backend (server-side) folders
 		"start-client": "npm start --prefix client"
 ```        
 - npm install bootstrap react strap uuid react-transition-group
+- create your folder for components and split into presentational and stateful
 
 ## VERSION CONTROL
 Set up github repo and link local version
@@ -161,3 +162,8 @@ app.use(
 	})
 );
 ```
+### Branch 4 nav-bar (set-up first front end components)
+- clear down React app css and logos
+- set up your hello world root in app.js
+- import bootstrap into app.js
+- nav-bar is a stateful component because it it holds an open and closed state for the hamburger menu
