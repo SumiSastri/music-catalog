@@ -29,7 +29,13 @@ class MusicCatalog extends Component {
 				</Button>
 
 				<ListGroup>
-					<TransitionGroup class-name="music-catalog">Musicians</TransitionGroup>
+					<TransitionGroup class-name="music-catalog">
+						{items.map(({ id, name }) => (
+							<CSSTransition key={id} timeout={500} classNames="fade">
+								<ListGroupItem>{name}</ListGroupItem>
+							</CSSTransition>
+						))}
+					</TransitionGroup>
 				</ListGroup>
 			</Container>
 		);
