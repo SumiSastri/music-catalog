@@ -40,14 +40,13 @@ class MusicCatalog extends Component {
 										color="danger"
 										size="md"
 										onClick={() => {
-											this.State((state) => ({
+											this.setState((state) => ({
 												items: state.items.filter((item) => item.id !== id)
 											}));
 										}}
 									>
 										Delete Record
 									</Button>
-									<hr />
 									{name}
 								</ListGroupItem>
 							</CSSTransition>
