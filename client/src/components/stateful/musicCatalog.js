@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import uuid from 'uuid';
+// import createButton from 'client/src/components/presentational/buttons/createButton';
 
 class MusicCatalog extends Component {
 	state = {
