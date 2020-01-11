@@ -27,6 +27,7 @@ class MusicCatalog extends Component {
 				>
 					Add Record
 				</Button>
+				<ListGroup>This is the group of musicians I like</ListGroup>
 			</Container>
 		);
 	}
