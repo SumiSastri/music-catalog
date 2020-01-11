@@ -31,7 +31,7 @@ Set up github repo and link local version
 - Check out of master and create branches [git checkout -b branch-name]
 - Check out of branch to master and merge branch to master
 
-### Branch 1 server-set-up (Express server)
+### Master (Express server set-up)
 Go to package json and set up nodemon to and start-server script "start-server": "nodemon <server relative path>"
 Code server and npm run start-server check connection
 ```
@@ -53,7 +53,7 @@ app.listen(3000, () => console.log(`app server connected on port ${port}`));
 - merge branch to master [git merger server-set-up]
 -  push to origin master and set up new branch
 
-### Branch 2 mongodb-set-up (cloud-based mongoDB)
+### Branch 1 mongodb-set-up (cloud-based mongoDB)
 - Login to mongoDB/ Create a db cluster [inventory-app]
 - Connect
 - whitelist IP address
@@ -103,7 +103,7 @@ username:password - remove <> which are placeholders
 	}
 );
 ```
-### Branch 3 crud-routes (set-up routes and check with Postman)
+### Branch 2 crud-routes (set-up routes and check with Postman)
 - Plan your data schema and set it up with a constructor - new mongoose.Schema export the module schema for the server-side controllers or routes you will set up for the CRUD actions (create-read-update-delete).
 - First create the routes in server.js and test them
 
@@ -149,7 +149,7 @@ app.use(
 	})
 );
 ```
-### Branch 4 nav-bar (set-up first front end components)
+### Branch 3 nav-bar (set-up first front end components)
 - Create a front-end folder (client)
 - npx create-react-app client
 - this creates the client side node modules, git-ignore package-lock-json src and public files/folders
@@ -171,7 +171,11 @@ app.use(
 - nav-bar is a stateful component because it it holds an open and closed state for the hamburger menu
 - code the nav-bar with toggle in state
 
-### Branch 5 music-catalog (stateful component with the music list for catalog)
+### Branch 4 music-catalog (stateful component with the music list for catalog)
 - set up the component and check that it is rendering in the root app.js
+- code the component with state to take the list from the api
+
+### Branch 5 buttons (presentational button components)
+- set up the folder and create 4 button components for create, delete, edit and default (submit)
 - code the component with state to take the list from the api
 
