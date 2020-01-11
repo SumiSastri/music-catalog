@@ -13,26 +13,43 @@ class MusicCatalog extends Component {
 		return (
 			<Container>
 				<br />
-				<Button
-					color="primary"
-					style={{ marginBotton: '2rem' }}
-					onClick={() => {
-						const name = prompt('Enter Item');
-						if (name) {
-							this.setState((state) => ({
-								items: [ ...state.items, { id: uuid(), name } ]
-							}));
-						}
-					}}
-				>
-					Add Record
-				</Button>
-
+				<div>
+					<Button
+						color="primary"
+						style={{ marginBotton: '2rem' }}
+						onClick={() => {
+							const name = prompt('Enter Item');
+							if (name) {
+								this.setState((state) => ({
+									items: [ ...state.items, { id: uuid(), name } ]
+								}));
+							}
+						}}
+					>
+						Add Record
+					</Button>
+				</div>
+				<br />
 				<ListGroup>
 					<TransitionGroup class-name="music-catalog">
 						{items.map(({ id, name }) => (
 							<CSSTransition key={id} timeout={500} classNames="fade">
-								<ListGroupItem>{name}</ListGroupItem>
+								<ListGroupItem>
+									<Button
+										className="remove-button"
+										color="danger"
+										size="md"
+										onClick={() => {
+											this.State((state) => ({
+												items: state.items.filter((item) => item.id !== id)
+											}));
+										}}
+									>
+										Delete Record
+									</Button>
+									<hr />
+									{name}
+								</ListGroupItem>
 							</CSSTransition>
 						))}
 					</TransitionGroup>
