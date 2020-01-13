@@ -179,3 +179,8 @@ app.use(
 - set up the folder and create 4 button components for create, delete, edit and default (submit)
 - code the component with state to take the list from the api
 
+### Branch 6 redux (CARS)
+ - Component
+ - Actions
+ - Reducers
+ - Store
