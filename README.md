@@ -189,3 +189,6 @@ app.use(
  - Set up root-reducer and item reducer
  - Set up actions
  - Call the action function from the component that requires an action
+ - Import connect object from react-redux
+ - Set up connect - which maps state object to props 
+ - Export default the connect object with the component that is requesting the action

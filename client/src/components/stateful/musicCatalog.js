@@ -4,6 +4,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import uuid from 'uuid';
 import { connect } from 'react-redux';
 import { getItems } from 'client/src/actions/types';
+import PropTypes from 'prop-types';
 
 // import createButton from 'client/src/components/presentational/buttons/createButton';
 
@@ -67,4 +68,13 @@ class MusicCatalog extends Component {
 	}
 }
 
-export default MusicCatalog;
+MusicCatalog.propTypes = {
+	getItems: PropTypes.func.isRequired,
+	item: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => ({
+	item: state.item
+});
+
+export default connect(mapStateToProps, { getItems })(MusicCatalog);
