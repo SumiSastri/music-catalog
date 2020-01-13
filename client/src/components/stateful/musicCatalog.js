@@ -18,8 +18,14 @@ class MusicCatalog extends Component {
 	// 	]
 	// };
 
+	componentDidMount() {
+		this.props.getItems();
+	}
+
 	render() {
-		const { items } = this.state;
+		// const { items } = this.state;
+		// this.props.item.items;
+		const { items } = this.props.item;
 		return (
 			<Container>
 				<br />
