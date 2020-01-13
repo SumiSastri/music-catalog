@@ -183,4 +183,6 @@ app.use(
  - Component
  - Actions
  - Reducers
- - Store
+ - Store - create store first
+
+ - Go to App.js and import Provider component
