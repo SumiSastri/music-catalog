@@ -1,6 +1,6 @@
 import { combineReducers } from ' redux';
-import itemReducer from 'client/src/reducers/itemReducer.js';
+import itemReducer from 'client/src/reducers/itemReducer';
 
-export default combineREducers({
+export default combineReducers({
 	item: itemReducer
 });
