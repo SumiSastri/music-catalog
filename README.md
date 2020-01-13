@@ -181,9 +181,9 @@ app.use(
 
 ### Branch 6 redux (CARS)
  - Component
- - Actions
- - Reducers
+ - Actions - set up action types as string constants and import into reducers, set up actions object
+ - Reducers - set up root and item reducer 
  - Store - create store first
 
  - Go to App.js and import Provider component
- - Set up root-reducer
+ - Set up root-reducer and item reducer
