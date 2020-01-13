@@ -6,7 +6,11 @@ import uuid from 'uuid';
 
 class MusicCatalog extends Component {
 	state = {
-		items: [ { id: uuid(), name: 'Maitre Gimms' }, { id: uuid(), name: 'Psy' }, { id: uuid(), name: 'DJ Khalid' } ]
+		items: [
+			{ id: uuid(), name: 'Maitre Gims' },
+			{ id: uuid(), name: 'Yousoupha' },
+			{ id: uuid(), name: 'DJ Khalid' }
+		]
 	};
 
 	render() {
