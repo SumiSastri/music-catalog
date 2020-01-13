@@ -186,3 +186,4 @@ app.use(
  - Store - create store first
 
  - Go to App.js and import Provider component
+ - Set up root-reducer
