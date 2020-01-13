@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv/config');
@@ -40,4 +40,4 @@ mongoose.connect(
 );
 mongoose.Promise = global.Promise;
 
-app.listen(3000, () => console.log(`app server connected on port ${port}`));
+app.listen(5000, () => console.log(`app server connected on port ${port}`));
