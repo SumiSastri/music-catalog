@@ -180,10 +180,12 @@ app.use(
 - code the component with state to take the list from the api
 
 ### Branch 6 redux (CARS)
- - Component
+ - Component - call the action from the component that needs state changed
  - Actions - set up action types as string constants and import into reducers, set up actions object
  - Reducers - set up root and item reducer 
  - Store - create store first
 
  - Go to App.js and import Provider component
  - Set up root-reducer and item reducer
+ - Set up actions
+ - Call the action function from the component that requires an action

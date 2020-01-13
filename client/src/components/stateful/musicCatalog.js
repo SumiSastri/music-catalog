@@ -2,16 +2,20 @@ import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import uuid from 'uuid';
+import { connect } from 'react-redux';
+import { getItems } from 'client/src/actions/types';
+
 // import createButton from 'client/src/components/presentational/buttons/createButton';
 
 class MusicCatalog extends Component {
-	state = {
-		items: [
-			{ id: uuid(), name: 'Maitre Gims' },
-			{ id: uuid(), name: 'Yousoupha' },
-			{ id: uuid(), name: 'DJ Khalid' }
-		]
-	};
+	// STATE WILL NOW COME FROM THE ACTIONS AND REDUCERS
+	// state = {
+	// 	items: [
+	// 		{ id: uuid(), name: 'Maitre Gims' },
+	// 		{ id: uuid(), name: 'Yousoupha' },
+	// 		{ id: uuid(), name: 'DJ Khalid' }
+	// 	]
+	// };
 
 	render() {
 		const { items } = this.state;
