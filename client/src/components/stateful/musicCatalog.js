@@ -3,13 +3,16 @@ import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import uuid from 'uuid';
 import { connect } from 'react-redux';
-import { getItems } from '../../actions/itemActions';
+import { getItems, deleteItem } from '../../actions/itemActions';
 import PropTypes from 'prop-types';
 
 class MusicCatalog extends Component {
 	componentDidMount() {
 		this.props.getItems();
 	}
+	handleDelete = (id) => {
+		this.props.deleteItem();
+	};
 	render() {
 		const { items } = this.props.item;
 		return (
@@ -41,12 +44,13 @@ class MusicCatalog extends Component {
 										className="remove-button"
 										color="danger"
 										size="md"
-										onClick={() => {
-											this.setState((state) => ({
-												// moves out of component to reducer
-												items: state.items.filter((item) => item.id !== id)
-											}));
-										}}
+										onClick={this.handleDelete.bind(this, id)}
+										// refactor to handleDelete function passed
+										// moves out of component to reducer
+										// this.setState((state) => ({
+										// items: state.items.filter((item) => item.id !== id)
+										// }));
+										// }}
 									>
 										Delete Record
 									</Button>
@@ -71,4 +75,4 @@ const mapStateToProps = (state) => ({
 	item: state.item
 });
 
-export default connect(mapStateToProps, { getItems })(MusicCatalog);
+export default connect(mapStateToProps, { getItems, deleteItem })(MusicCatalog);
