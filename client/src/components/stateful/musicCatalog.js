@@ -3,13 +3,13 @@ import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import uuid from 'uuid';
 import { connect } from 'react-redux';
-import { getItems } from 'client/src/actions/types';
+import { getItems } from '../../actions/itemActions';
 import PropTypes from 'prop-types';
 
 // import createButton from 'client/src/components/presentational/buttons/createButton';
 
 class MusicCatalog extends Component {
-	// STATE WILL NOW COME FROM THE ACTIONS AND REDUCERS
+	// STATE WILL NOW COME FROM THE item reducer
 	// state = {
 	// 	items: [
 	// 		{ id: uuid(), name: 'Maitre Gims' },
@@ -74,6 +74,7 @@ class MusicCatalog extends Component {
 	}
 }
 
+// importing this.props.getItems() and this.props.item
 MusicCatalog.propTypes = {
 	getItems: PropTypes.func.isRequired,
 	item: PropTypes.object.isRequired
