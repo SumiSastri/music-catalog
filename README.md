@@ -189,7 +189,7 @@ app.use(
 	- Call the action function from the component that requires an action
 	- Import connect object from react-redux
 	- Set up connect - which maps state object to props 
-	- Export default the connect object with the map to state  & get items function params
+	- Export default the connect object with the map to state  & get items function params to App.js (provider imports the module)
 	- Add lifecycle method - ```componentDidMount``` to connect the actions object
 	- Change ```this.state``` to ```this.props``` 
 
