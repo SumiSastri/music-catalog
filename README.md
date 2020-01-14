@@ -179,12 +179,16 @@ app.use(
 - set up the folder and create 4 button components for create, delete, edit and default (submit)
 - code the component with state to take the list from the api
 
-### Branch 6 redux (SARS)
+### Branch 6 redux (SARCs)
  - Store - create store first (check with redux dev tools that store is set up - import it into app.js with the Provider HOC)
- - Actions - set up action types as string constants and import into reducers, set up actions object
- - Reducers - combine and reduce actions so that the store can dispatch the payload 
+ (Store is set up once)
+
+ - ARCs is repeated with every new action
+ - Actions - set up action types as string constants - set up each individual action required
+ - Reducers - combine and reduce actions so that the payload can be dispatched to store 
 		- set up root reducer that combines all actions from the individual reducers
 		- set up any individual reducers 
+		- set up switch cases for each action to correspond to the payload to be dispatched to the store
  - Subscribe to changes from store with mapStateToProps in the Component that requires state changes
 	- Call the action function from the component that requires an action
 	- Import connect object from react-redux

@@ -43,6 +43,7 @@ class MusicCatalog extends Component {
 										size="md"
 										onClick={() => {
 											this.setState((state) => ({
+												// moves out of component to reducer
 												items: state.items.filter((item) => item.id !== id)
 											}));
 										}}
