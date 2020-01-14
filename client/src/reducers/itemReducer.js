@@ -1,7 +1,7 @@
 import uuid from 'uuid';
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM } from '../actions/types';
 
-// static data from component moved to reducer
+// static data from stateful component moved to reducer
 const initialState = {
 	items: [ { id: uuid(), name: 'Maitre Gims' }, { id: uuid(), name: 'Yousoupha' }, { id: uuid(), name: 'DJ Khalid' } ]
 };

@@ -179,17 +179,16 @@ app.use(
 - set up the folder and create 4 button components for create, delete, edit and default (submit)
 - code the component with state to take the list from the api
 
-### Branch 6 redux (CARS)
- - Component - call the action from the component that needs state changed
+### Branch 6 redux (SARS)
+ - Store - create store first (check with redux dev tools that store is set up - import it into app.js with the Provider HOC)
  - Actions - set up action types as string constants and import into reducers, set up actions object
- - Reducers - set up root and item reducer 
- - Store - create store first
-
- - Go to App.js and import Provider component
- - Set up root-reducer and item reducer
- - Set up actions
- - Call the action function from the component that requires an action
- - Import connect object from react-redux
- - Set up connect - which maps state object to props 
- - Export default the connect object with the map to state  & get items function params
- - Add lifecycle method - ```componentDidMount``` to connect the actions object 
+ - Reducers - combine and reduce actions so that the store can dispatch the payload 
+		- set up root reducer that combines all actions from the individual reducers
+		- set up any individual reducers 
+ - Subscribe to changes from store with mapStateToProps in the Component that requires state changes
+	- Call the action function from the component that requires an action
+	- Import connect object from react-redux
+	- Set up connect - which maps state object to props 
+	- Export default the connect object with the map to state  & get items function params
+	- Add lifecycle method - ```componentDidMount``` to connect the actions object
+	- Change ```this.state``` to ```this.props``` 
