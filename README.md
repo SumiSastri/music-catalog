@@ -192,3 +192,8 @@ app.use(
 	- Export default the connect object with the map to state  & get items function params
 	- Add lifecycle method - ```componentDidMount``` to connect the actions object
 	- Change ```this.state``` to ```this.props``` 
+
+### Branch 7 debugging	
+    - used for debugging
+
+### Branch 8 		

@@ -6,13 +6,10 @@ import { connect } from 'react-redux';
 import { getItems } from '../../actions/itemActions';
 import PropTypes from 'prop-types';
 
-// import createButton from 'client/src/components/presentational/buttons/createButton';
-
 class MusicCatalog extends Component {
 	componentDidMount() {
 		this.props.getItems();
 	}
-
 	render() {
 		const { items } = this.props.item;
 		return (
