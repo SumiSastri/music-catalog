@@ -9,15 +9,6 @@ import PropTypes from 'prop-types';
 // import createButton from 'client/src/components/presentational/buttons/createButton';
 
 class MusicCatalog extends Component {
-	// STATE WILL NOW COME FROM THE item reducer
-	// state = {
-	// 	items: [
-	// 		{ id: uuid(), name: 'Maitre Gims' },
-	// 		{ id: uuid(), name: 'Yousoupha' },
-	// 		{ id: uuid(), name: 'DJ Khalid' }
-	// 	]
-	// };
-
 	componentDidMount() {
 		this.props.getItems();
 	}
