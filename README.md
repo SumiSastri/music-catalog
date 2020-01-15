@@ -236,4 +236,7 @@ app.use(
 - The toggle method with the add item button launches the modal
 - The submit button in the modal triggers the transfer of the payload to the redux store - so we import connect as well
 - To render the modal in the app once it is set up import the file into App.js
+- Check rendering - Clean up and style to personal preferences
+
+
 
