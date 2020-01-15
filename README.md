@@ -228,15 +228,34 @@ app.use(
 	- Check the functionality on the redux-dev tools
 
 ### Branch 9 modal-component
+(presentational Modal)
 
-- Reactstrap has several useful modal templates
-- The modal can be set up as a presentational or stateful component
+- Reactstrap has several useful modal templates import what you need for your modal design
+- The modal can be set up as a presentational one first
 - Set up the modal by importing the jsx tags you want to import for the render method
-- For this tutorial we are using react smart components so the modal is a stateful component
-- The toggle method with the add item button launches the modal
-- The submit button in the modal triggers the transfer of the payload to the redux store - so we import connect as well
-- To render the modal in the app once it is set up import the file into App.js
+- To render the modal in the app once it is set up  the export default of the component and import the file into App.js
 - Check rendering - Clean up and style to personal preferences
 
 
+
+- Change the modal to a stateful one
+- Take the functionality of the add button, the uuid out of the music catalog component
+- Set state with 2 items - toggle as a boolean (false) this is because the modal remains closed until you click the add button that launches it
+- the second item is name which is an empty string 
+
+- (ARCs in action with the stateful modal)
+- Actions -  set up the type in the types file, set up the add item action with the payload of the added item
+     (these will be imported as action payload files and mapped as props in the modal component to be sent to the reducer)
+ - Reducers 
+		- set up the add item reducer in a switch case
+		- this will return the state of the component when the item has changed and handled the input change in the form
+		- It will also return the payload of the action new item and the payload of the updated state
+ - Subscribe the modal component to the add item action payload 
+		- import connect and connect the addItem action payload as an import and as an export
+		- map state to props and define this as a constant
+		- set up the functionality of the modal form content
+		- handle change/ handle submit/ the open state of the toggle function and the close state post submit
+		- add a uuid to the item for the redux store - this will change when we move to getting the data direct from mongodb
+		- make sure that the functionality that was in the music catalog component has been successfully transferred to the modal component
+	- Check the functionality on the redux-dev tools and on the front end with user inputs
 

@@ -59,7 +59,15 @@ class ItemModal extends Component {
 							</FormGroup>
 						</Form>
 					</ModalBody>
-					<ModalFooter />
+					<ModalFooter>
+						{/* <div>
+                        <img
+								alt={films.name}
+								className="ilovehiphop-image"
+								src={require(`../assets/${films.cover}.jpeg`)}
+							/>
+                        </div> */}
+					</ModalFooter>
 				</Modal>
 			</div>
 		);
