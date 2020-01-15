@@ -226,3 +226,14 @@ app.use(
 	- While the lifecycle method - ```componentDidMount``` to connect the read action to the component, delete occurs ```onClick```
 	- This now can be refactored, instead of a function inside the jsx tag, we define the function after the lifecycle method and call it in the jsx tag
 	- Check the functionality on the redux-dev tools
+
+### Branch 9 modal-component
+
+- Reactstrap has several useful modal templates
+- The modal can be set up as a presentational or stateful component
+- Set up the modal by importing the jsx tags you want to import for the render method
+- For this tutorial we are using react smart components so the modal is a stateful component
+- The toggle method with the add item button launches the modal
+- The submit button in the modal triggers the transfer of the payload to the redux store - so we import connect as well
+- To render the modal in the app once it is set up import the file into App.js
+

@@ -16,12 +16,12 @@ class AppNavbar extends Component {
 			<div>
 				<Navbar color="dark" dark expand="sm" className="mb-t">
 					<Container>
-						<NavbarBrand href="/">Music Catalog</NavbarBrand>
+						<NavbarBrand href="/">Olare!Cantare!</NavbarBrand>
 						<NavbarToggler onClick={this.toggle} />
 						<Collapse isOpen={this.state.isOpen} navbar>
 							<Nav className="ml-auto" navbar />
 							<NavItem>
-								<NavLink href="https:spotify.com">Spotify</NavLink>
+								<NavLink href="https:spotify.com">Find me on Spotify</NavLink>
 							</NavItem>
 						</Collapse>
 					</Container>

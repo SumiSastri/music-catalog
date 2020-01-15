@@ -17,7 +17,7 @@ class MusicCatalog extends Component {
 		const { items } = this.props.item;
 		return (
 			<Container>
-				<br />
+				{/* <br />
 				<div>
 					<Button
 						color="primary"
@@ -34,7 +34,7 @@ class MusicCatalog extends Component {
 						Add Record
 					</Button>
 				</div>
-				<br />
+				<br /> */}
 				<ListGroup>
 					<TransitionGroup class-name="music-catalog">
 						{items.map(({ id, name }) => (
@@ -46,7 +46,7 @@ class MusicCatalog extends Component {
 										size="md"
 										onClick={this.handleDelete.bind(this, id)}
 									>
-										Delete Record
+										Delete from playlist
 									</Button>
 									{name}
 								</ListGroupItem>
