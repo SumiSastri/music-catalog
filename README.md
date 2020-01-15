@@ -1,6 +1,6 @@
 Full stack app with the MERN (mongoDb-Express-React-Node) stack
 
-## SCAFFOLDING
+## SCAFFOLDING -server side
 - mkdir inventory-app
 - npm init
  create a back-end folder (server)
@@ -8,8 +8,15 @@ Full stack app with the MERN (mongoDb-Express-React-Node) stack
 - npm install -D nodemon (as a dev dependency - not needed for production version)
 - npm install cors path dotenv concurrently
 
+## SCAFFOLDING -client side
+- mkdir client
+- in the client directory npx create-react-app
+- npm install redux react-redux redux-thunk redux-devtools-extension
+- npm install react-transition-group uuid reactstrap
+- check front end package json for dependencies set up proxy for backend server as client runs on 3000
+
 ## SEPARATION OF CONCERNS
-In the src files create frontend (client-side) and backend (server-side) folders to separate concerns Folder naming convention - camel case
+In the src files create frontend (client) and backend (server) folders to separate concerns Folder naming convention - camel case
 
 ## BACKEND FOLDER STRUCTURE
 - The server.js file is for the Express server
@@ -20,6 +27,7 @@ In the src files create frontend (client-side) and backend (server-side) folders
 
 ## FRONTEND FOLDER STRUCTURE
 - create your folder for components and split into presentational and stateful
+- create redux folders for store, actions and reducers in src folder (not react components)
 
 ## VERSION CONTROL
 Set up github repo and link local version
@@ -29,7 +37,10 @@ Set up github repo and link local version
 - git remote add origin - ssh key
 - git push -u origin master
 - Check out of master and create branches [git checkout -b branch-name]
-- Check out of branch to master and merge branch to master
+- Set up first branch as development if you do not want to merge to master until deploy
+- Set up next branch as debugging so that you can debug your code in this if you want to push to dev
+- Check out of master and work from develop 
+- Pull and push changes  to develop if you move to debugging branch for fixes and if working on multiple branches at the same time
 
 ### Master (Express server set-up)
 Go to package json and set up nodemon to and start-server script "start-server": "nodemon <server relative path>"
@@ -37,7 +48,7 @@ Code server and npm run start-server check connection
 ```
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const cors = require('cors');
 
 require('dotenv/config');
@@ -45,13 +56,13 @@ require('dotenv/config');
 app.use(cors());
 app.use(express.json());
 
-app.listen(3000, () => console.log(`app server connected on port ${port}`));
+app.listen(5000, () => console.log(`app server connected on port ${port}`));
 ```
 - push changes to the branch origin
 - git push --set-upstream origin server-set-up
 - check out of branch [git checkout master]
 - merge branch to master [git merger server-set-up]
--  push to origin master and set up new branch
+- push to origin master and set up new branch
 
 ### Branch 1 mongodb-set-up (cloud-based mongoDB)
 - Login to mongoDB/ Create a db cluster [inventory-app]
@@ -86,7 +97,7 @@ mongoose.Promise = global.Promise;
 - Check that files are not included
 - To stop tracking a file that is currently tracked, use git rm --cached
 set up .env files and ensure they are in gitignore files [ https://help.github.com/en/github/using-git/ignoring-files] / [https://git-scm.com/docs/gitignore]
-username:password - remove <> which are placeholders
+username:password - remove ```<>``` which are placeholders
 
 ```
         require('dotenv/config');
@@ -200,4 +211,18 @@ app.use(
 ### Branch 7 debugging	
     - used for debugging
 
-### Branch 8 		
+### Branch 8 redux-delete-item	(ARCs in action)
+ - ARCs is repeated with every new action
+ - Actions -  set up the type in the types file, set up the delete action with the payload of id in the itemActions file
+ - Reducers 
+		- set up the delete reducer in a switch case
+		- take out the changed state from the stateful component
+		- here we want to filter out and remove the rendering of the deleted item
+		- move this function therefore to the reducer as state is going to be managed by the store not the component
+ - Subscribe the component to the delete reducer change
+	- the ```onClick``` function now changes in the component and does not take a state change from the component
+	- Connect  has already been imported from react-redux, so we add the deleteItem action to the imports t
+	- And to the export of the connect method in the export default that maps state to props  
+	- While the lifecycle method - ```componentDidMount``` to connect the read action to the component, delete occurs ```onClick```
+	- This now can be refactored, instead of a function inside the jsx tag, we define the function after the lifecycle method and call it in the jsx tag
+	- Check the functionality on the redux-dev tools

@@ -11,7 +11,7 @@ class MusicCatalog extends Component {
 		this.props.getItems();
 	}
 	handleDelete = (id) => {
-		this.props.deleteItem();
+		this.props.deleteItem(id);
 	};
 	render() {
 		const { items } = this.props.item;
@@ -45,12 +45,6 @@ class MusicCatalog extends Component {
 										color="danger"
 										size="md"
 										onClick={this.handleDelete.bind(this, id)}
-										// refactor to handleDelete function passed
-										// moves out of component to reducer
-										// this.setState((state) => ({
-										// items: state.items.filter((item) => item.id !== id)
-										// }));
-										// }}
 									>
 										Delete Record
 									</Button>
@@ -65,7 +59,6 @@ class MusicCatalog extends Component {
 	}
 }
 
-// importing this.props.getItems() and this.props.item
 MusicCatalog.propTypes = {
 	getItems: PropTypes.func.isRequired,
 	item: PropTypes.object.isRequired
