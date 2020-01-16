@@ -192,14 +192,26 @@ app.use(
 
 ### Branch 6 redux (SARCs)
  - Store - create store first (check with redux dev tools that store is set up - import it into app.js with the Provider HOC)
- (Store is set up once)
+ - Provider takes one param which is the store object
+ (Store is set up once) console log to make sure it is an object - it is the global store of state
+ - Download the redux dev tools extension in chrome to debug as well as visualise state
 
  - ARCs is repeated with every new action
- - Actions - set up action types as string constants - set up each individual action required
- - Reducers - combine and reduce actions so that the payload can be dispatched to store 
+
+ - Actions describe changes in the component that are required
+ - It is a function that returns an object
+ - the object is strictly typed with a type
+ - types need to be set up as string constants and imported into the actions file
+ 
+ - Reducers - combine and reduce actions so that the payload can be dispatched to store
+ - The root reducer must import each individual reducer so that they can be combined and sent to the store as a param
+ - Reducers are, like actions, functions that return an object - the params are state and the action
+ - It switches the action depending on the name - switches strictly matches the variables so each case must be a pure function  
 		- set up root reducer that combines all actions from the individual reducers
-		- set up any individual reducers 
-		- set up switch cases for each action to correspond to the payload to be dispatched to the store
+		- set up any individual reducers
+		- the individual reducer will take the action or changes to the component and dispatches it to the store
+		- set up switch cases for each action to correspond to the reducer payload to be dispatched to the store
+
  - Subscribe to changes from store with mapStateToProps in the Component that requires state changes
 	- Call the action function from the component that requires an action
 	- Import connect object from react-redux
@@ -207,6 +219,8 @@ app.use(
 	- Export default the connect object with the map to state  & get items function params to App.js (provider imports the module)
 	- Add lifecycle method - ```componentDidMount``` to connect the actions object
 	- Change ```this.state``` to ```this.props``` 
+
+- Dispatch
 
 ### Branch 7 debugging	
     - used for debugging
@@ -235,8 +249,12 @@ app.use(
 - Set up the modal by importing the jsx tags you want to import for the render method
 - To render the modal in the app once it is set up  the export default of the component and import the file into App.js
 - Check rendering - Clean up and style to personal preferences
-
-
+- If you want to continue to use the component as a functional component you can import state by importing ```{useSelector, useDispatch}``` object from react-redux
+- Declare state in a variable 
+```const musicItems = useSelector (state => state.musicItems)``` just above the return method - you can then use it in the jsx as ```{musicItem}```
+- The Dispatch object helps you dispatch the payload to the store as midware you need to store it in a variable and use it
+- ```const dispatch = useDispatch();```
+- With Thunk you do not need to do this
 
 - Change the modal to a stateful one
 - Take the functionality of the add button, the uuid out of the music catalog component

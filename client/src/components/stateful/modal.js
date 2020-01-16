@@ -3,6 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, La
 import { connect } from 'react-redux';
 import uuid from 'uuid';
 import { addItem } from '../../actions/itemActions';
+import { ilovehiphop } from '../../assets/ilovehiphop.jpg';
 
 class ItemModal extends Component {
 	state = {
@@ -38,10 +39,12 @@ class ItemModal extends Component {
 		return (
 			<div>
 				<Button color="primary" style={{ marginBottom: '2rem' }} onClick={this.toggle}>
-					Add to playlist
+					<i className="fas fa-user-plus" />
 				</Button>
 				<Modal isOpen={this.state.modal} toggle={this.toggle}>
-					<ModalHeader toggle={this.toggle}>Add a DJ, rap or hip-hop artiste</ModalHeader>
+					<ModalHeader toggle={this.toggle}>
+						<i className="fas fa-user-plus" />
+					</ModalHeader>
 					<ModalBody>
 						<Form onSubmit={this.handleSubmit}>
 							<FormGroup>
@@ -54,19 +57,16 @@ class ItemModal extends Component {
 									onChange={this.handleChange}
 								/>
 								<Button color="primary" style={{ marginTop: '2rem' }} block>
-									Submit to playlist
+									<i className="fas fa-hand-spock" />
 								</Button>
 							</FormGroup>
 						</Form>
 					</ModalBody>
 					<ModalFooter>
-						{/* <div>
-                        <img
-								alt={films.name}
-								className="ilovehiphop-image"
-								src={require(`../assets/${films.cover}.jpeg`)}
-							/>
-                        </div> */}
+						<div>
+							{/* <img alt="i-love-hip-hop-cartoon" src={ilovehiphop} style={{ height: '10%' }} /> */}
+							<i style={{ marginRight: '2rem' }} className="fas fa-drum" />Dj, rap or hip-hop
+						</div>
 					</ModalFooter>
 				</Modal>
 			</div>

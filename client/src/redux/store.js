@@ -8,5 +8,6 @@ const middleware = [ thunk ];
 
 const store = createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(...middleware)));
 console.log(store);
+store.subscribe(() => console.log(store.getState()));
 
 export default store;

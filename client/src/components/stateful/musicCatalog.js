@@ -46,7 +46,7 @@ class MusicCatalog extends Component {
 										size="md"
 										onClick={this.handleDelete.bind(this, id)}
 									>
-										Delete from playlist
+										<i className="fas fa-user-minus" />
 									</Button>
 									{name}
 								</ListGroupItem>
