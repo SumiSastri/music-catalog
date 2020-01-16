@@ -1,4 +1,5 @@
 Full stack app with the MERN (mongoDb-Express-React-Node) stack
+Using React-Redux as a predictable state-container 
 
 ## SCAFFOLDING -server side
 - mkdir inventory-app
