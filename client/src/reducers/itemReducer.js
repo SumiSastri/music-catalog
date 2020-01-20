@@ -11,6 +11,7 @@ const initialState = {
 // with the new action (touched) - with the actions payload from the api call (using axios as the http runner)
 // get- react/ delete - filter and delete/ add - new payload items/ loading from false to true
 // all these reducers are combined in the root reducer and sent back to store for the components to subscribe to them
+//  change id of uuid to _id
 
 export default function(state = initialState, action) {
 	switch (action.type) {
@@ -23,7 +24,7 @@ export default function(state = initialState, action) {
 		case DELETE_ITEM:
 			return {
 				...state,
-				items: state.items.filter((item) => item.id !== action.payload)
+				items: state.items.filter((item) => item._id !== action.payload)
 			};
 		case ADD_ITEM:
 			return {

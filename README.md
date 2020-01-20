@@ -293,4 +293,6 @@ app.use(
  - set up the reduce case to switch state from false to true when state is returned from store
  
  - Dispatch
+  - to each of the actions in the items action, add a dispatch function to dispatch the action payload to the store
+  - update all ids in the stateful components to _id as we have removed uuid and will be using the mongoDb _id
 

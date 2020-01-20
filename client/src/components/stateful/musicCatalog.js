@@ -8,7 +8,9 @@ import PropTypes from 'prop-types';
 
 // Component subscribes to changes from the store by connecting to store
 // imports the actions required for the component to change and render changes
-//  uses the mapStateToProps method to connect these actions to the store
+// uses the mapStateToProps method to connect these actions to the store
+// replace uuid ids with mongoDb _id
+// harmonize back-end and front-end object name-value pairs (itemName to name)
 
 class MusicCatalog extends Component {
 	componentDidMount() {
@@ -23,14 +25,14 @@ class MusicCatalog extends Component {
 			<Container>
 				<ListGroup>
 					<TransitionGroup class-name="music-catalog">
-						{items.map(({ id, name }) => (
-							<CSSTransition key={id} timeout={500} classNames="fade">
+						{items.map(({ _id, name }) => (
+							<CSSTransition key={_id} timeout={500} classNames="fade">
 								<ListGroupItem>
 									<Button
 										className="remove-button"
 										color="danger"
 										size="md"
-										onClick={this.handleDelete.bind(this, id)}
+										onClick={this.handleDelete.bind(this, _id)}
 									>
 										<i className="fas fa-user-minus" />
 									</Button>

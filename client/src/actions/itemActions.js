@@ -13,11 +13,13 @@ export const getItems = () => (dispatch) => {
 };
 
 // delete by id from store
-export const deleteItem = (id) => {
-	return {
-		type: DELETE_ITEM,
-		payload: id
-	};
+export const deleteItem = (id) => (dispatch) => {
+	axios.delete(`/music-inventory-api/${id}`).then((res) =>
+		dispatch({
+			type: DELETE_ITEM,
+			payload: id
+		})
+	);
 };
 
 // write data to store with the payload of the item
