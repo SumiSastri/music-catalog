@@ -22,3 +22,10 @@ export const addItem = (item) => {
 		payload: item
 	};
 };
+
+// sends state of items loading to store
+export const setItemsLoading = () => {
+	return {
+		type: ITEMS_LOADING
+	};
+};

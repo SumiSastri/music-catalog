@@ -1,10 +1,17 @@
 import uuid from 'uuid';
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM } from '../actions/types';
+import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from '../actions/types';
 
-// static data from stateful component moved to reducer
+// static data removed and loading added
 const initialState = {
-	items: [ { id: uuid(), name: 'Maitre Gims' }, { id: uuid(), name: 'Yousoupha' }, { id: uuid(), name: 'DJ Khalid' } ]
+	items: [],
+	loading: false
 };
+
+// reducers get the actions from the store
+// first returns original state (pristine)
+// with the new action (touched) - with the actions payload
+// get- react/ delete - filter and delete/ add - new payload items/ loading from false to true
+// all these reducers are combined in the root reducer and sent back to store for the components to subscribe to them
 
 export default function(state = initialState, action) {
 	switch (action.type) {
@@ -22,6 +29,12 @@ export default function(state = initialState, action) {
 				...state,
 				items: [ action.payload, ...state.items ]
 			};
+		case ITEMS_LOADING:
+			return {
+				...state,
+				loading: true
+			};
+
 		default:
 			return state;
 	}

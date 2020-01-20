@@ -278,3 +278,14 @@ app.use(
 		- make sure that the functionality that was in the music catalog component has been successfully transferred to the modal component
 	- Check the functionality on the redux-dev tools and on the front end with user inputs
 
+### Branch 10 client-server-connectivity
+- ARCs
+- Actions
+ - set up a loading action type
+ - set up an ```itemsLoading``` function in the itemAction file
+- Reducers 
+ - import the type from the action types file
+ - remove the uuid static data from state and set state to an empty array
+ - add loading to state (set as boolean - false)
+ - set up the reduce case to switch state from false to true when state is returned from store
+

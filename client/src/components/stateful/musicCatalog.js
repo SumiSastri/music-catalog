@@ -6,6 +6,10 @@ import { connect } from 'react-redux';
 import { getItems, deleteItem } from '../../actions/itemActions';
 import PropTypes from 'prop-types';
 
+// Component subscribes to changes from the store by connecting to store
+// imports the actions required for the component to change and render changes
+//  uses the mapStateToProps method to connect these actions to the store
+
 class MusicCatalog extends Component {
 	componentDidMount() {
 		this.props.getItems();
@@ -17,24 +21,6 @@ class MusicCatalog extends Component {
 		const { items } = this.props.item;
 		return (
 			<Container>
-				{/* <br />
-				<div>
-					<Button
-						color="primary"
-						style={{ marginBotton: '2rem' }}
-						onClick={() => {
-							const name = prompt('Enter Item');
-							if (name) {
-								this.setState((state) => ({
-									items: [ ...state.items, { id: uuid(), name } ]
-								}));
-							}
-						}}
-					>
-						Add Record
-					</Button>
-				</div>
-				<br /> */}
 				<ListGroup>
 					<TransitionGroup class-name="music-catalog">
 						{items.map(({ id, name }) => (
