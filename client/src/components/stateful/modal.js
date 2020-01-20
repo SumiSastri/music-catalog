@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
-import uuid from 'uuid';
 import { addItem } from '../../actions/itemActions';
-import { ilovehiphop } from '../../assets/ilovehiphop.jpg';
+// import { ilovehiphop } from '../../assets/ilovehiphop.jpg';
 
 class ItemModal extends Component {
 	state = {
