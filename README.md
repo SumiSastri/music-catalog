@@ -279,7 +279,10 @@ app.use(
 	- Check the functionality on the redux-dev tools and on the front end with user inputs
 
 ### Branch 10 client-server-connectivity
-- ARCs
+- Install axios as the HTTP runner in the client folder (you can also use the Fetch API for this section)
+- Uninstall uuid and remove static data from the app
+
+- ARCs to SARCDs (Store-Actions-Reducers-Dispatch)
 - Actions
  - set up a loading action type
  - set up an ```itemsLoading``` function in the itemAction file
@@ -288,4 +291,6 @@ app.use(
  - remove the uuid static data from state and set state to an empty array
  - add loading to state (set as boolean - false)
  - set up the reduce case to switch state from false to true when state is returned from store
+ 
+ - Dispatch
 

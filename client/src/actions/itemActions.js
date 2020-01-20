@@ -1,10 +1,15 @@
+import axios from 'axiso';
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM } from './types';
 
-// read from store
-export const getItems = () => {
-	return {
-		type: GET_ITEMS
-	};
+// read from store with action payload dispatched to store and api call back with promise of get
+export const getItems = () => (dispatch) => {
+	dispatch(setItemsLoading());
+	axios.get('/music-inventory-api').then((res) =>
+		dispatch({
+			type: GET_ITEMS,
+			payload: res.data
+		})
+	);
 };
 
 // delete by id from store
