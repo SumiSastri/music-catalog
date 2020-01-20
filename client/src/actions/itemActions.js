@@ -1,5 +1,5 @@
-import axios from 'axiso';
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM } from './types';
+import axios from 'axios';
+import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from './types';
 
 // read from store with action payload dispatched to store and api call back with promise of get
 export const getItems = () => (dispatch) => {
