@@ -1,5 +1,6 @@
-Full stack app with the MERN (mongoDb-Express-React-Node) stack
-Using React-Redux as a predictable state-container 
+MERN (mongoDb-Express-React-Node) stack
+- This app lifts state from React class components, to the react-redux store
+- While redux may not be the best method to handle state, the learning objective is to understand how state works for SPA's both with react class components and with react-redux as a more predictable container for state.
 
 ## SCAFFOLDING -server side
 - mkdir inventory-app
@@ -14,6 +15,7 @@ Using React-Redux as a predictable state-container
 - in the client directory npx create-react-app
 - npm install redux react-redux redux-thunk redux-devtools-extension
 - npm install react-transition-group uuid reactstrap
+- npm install axios
 - check front end package json for dependencies set up proxy for backend server as client runs on 3000
 
 ## SEPARATION OF CONCERNS
@@ -46,6 +48,7 @@ Set up github repo and link local version
 ### Master (Express server set-up)
 Go to package json and set up nodemon to and start-server script "start-server": "nodemon <server relative path>"
 Code server and npm run start-server check connection
+
 ```
 const express = require('express');
 const app = express();
@@ -72,7 +75,7 @@ app.listen(5000, () => console.log(`app server connected on port ${port}`));
 - create user name
 - auto-generate a password
 - choose a connection method - local db or cloud-based db
-- Get a connection string or URI - ``` mongodb+srv://user-name:@cluster0-ox7di.mongodb.net/test?retryWrites=true&w=majority]```
+- Get a connection string or URI - ``` mongodb+srv://user-name:<password>@cluster0-ox7di.mongodb.net/test?retryWrites=true&w=majority]```
 - set up ORM mongoose to connect Express server to mongoDb cloud
 - Manually test the db is connected
 
@@ -299,25 +302,16 @@ app.use(
   - set up the actions with axios to call the data from the api in the back-end routes
   - clean up naming convention - the name-value pairs in the objects should be exactly the same
   - clean up code remove unwanted console logs and commented out code
+		- When dispatch calls the reducer function, it
+		* notifies component listeners to the “next” change in the state tree
+		* rejects the props with errors and dispatches error messages
+		* maps the “next” change in the state tree to the component
+		* When it dispatches actions and state to the reducer, there are custom functions that are written in Middleware (like Thunk) and passed to the base-dispatch function. 
+		* Custom dispatch function accepts sync or async actions via middleware. Middleware wraps the base dispatch function and can transform, delay, ignore, the payload, and pass the information down the middleware queue of data. Middleware will eventually dispatch a plain object actions using the dispatch method.
+		* The base dispatch function always synchronously sends actions to the stores reducers along with the state tree to calculate the new state, actions are plain objects ready to be consumed by the reducer
 
+The store receives the information from actions & updates the touched state-tree, both the pristine state and the touched state tree are dispatched back to the store. The store receives the map methods and via the dispatch(action) method converts the action payload to the dispatch payload. The dispatch method therefore takes the information from the reducer and dispatches it back to components. 
 
+### Branch 10 styling
 
-
-
-When it calls the reducer function, it
-
-notifies component listeners to the “next” change in the state tree
-rejects the props with errors and dispatches error messages
-maps the “next” change in the state tree to the component
-When it dispatches actions and state to the reducer, there are custom functions that are written in Middleware (like Thunk) and passed to the base-dispatch function. Custom dispatch function accepts sync or async actions via middleware. Middleware wraps the base dispatch function and can transform, delay, ignore, the payload, and pass the information down the middleware queue of data. Middleware will eventually dispatch a plain object actions using the dispatch method.
-
-The base dispatch function always synchronously sends actions to the stores reducers along with the state tree to calculate the new state, actions are plain objects ready to be consumed by the reducer
-
-Once the store receives the information from actions and converts these actions that update state the new state needs to be dispatched back to the components via the dispatch method.
-
-The dispatch method therefore takes the information from the reducer and dispatches it back to components.
-
-The store receives the map methods and via the dispatch(action) method converts the action payload to the dispatch payload
-
-Set up Dispatch changes to the components that have subscribed to the changes store.dispatch(action) function, the ```mapDispatchToProps(dispatch)`` sends user data like admin fields, how toggles change, error handling to the component.
-
+Now that the app is functional, presentational changes can be made and styled as required.
