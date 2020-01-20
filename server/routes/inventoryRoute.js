@@ -12,18 +12,18 @@ const MusicItem = require('../models/musicItem.js');
 // });
 
 router.get('/', (req, res) => {
-	MusicItem.find().sort({ itemName: +1 }).then((items) => res.json(items));
+	MusicItem.find().sort({ name: +1 }).then((items) => res.json(items));
 });
 
 // WRITE-DATA TO DB-CREATE-POST
 router.post('/', (req, res) => {
-	let { itemName, condition, valueInUSD } = req.body;
+	let { name, condition, valueInUSD } = req.body;
 	let musicItemPayload = new MusicItem({
-		itemName,
+		name,
 		condition,
 		valueInUSD
 	});
-	console.log('itemName:', req.body);
+	console.log('name:', req.body);
 	console.log('music-item:', musicItemPayload);
 	musicItemPayload
 		.save()

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from '../actions/types';
 
 // static data removed and loading added

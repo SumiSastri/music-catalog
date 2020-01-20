@@ -5,7 +5,7 @@ const MusicItemSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now
 	},
-	itemName: {
+	name: {
 		type: String,
 		required: true
 	},

@@ -21,7 +21,13 @@ export const deleteItem = (id) => {
 };
 
 // write data to store with the payload of the item
-export const addItem = (item) => {
+export const addItem = (item) => (dispatch) => {
+	axios.post('/music-inventory-api', item).then((res) => {
+		dispatch({
+			type: ADD_ITEM,
+			payload: res.data
+		});
+	});
 	return {
 		type: ADD_ITEM,
 		payload: item
