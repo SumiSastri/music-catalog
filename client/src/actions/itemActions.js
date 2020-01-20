@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from './types';
 
-// read from store with action payload dispatched to store and api call back with promise of get
+// dispatch get action to store & api-endpoint get response back from db to store
 export const getItems = () => (dispatch) => {
 	dispatch(setItemsLoading());
 	axios.get('/music-inventory-api').then((res) =>
@@ -12,7 +12,7 @@ export const getItems = () => (dispatch) => {
 	);
 };
 
-// delete by id from store
+// dispatch delete action to store & api-endpoint get response back from db to store
 export const deleteItem = (id) => (dispatch) => {
 	axios.delete(`/music-inventory-api/${id}`).then((res) =>
 		dispatch({
@@ -22,7 +22,7 @@ export const deleteItem = (id) => (dispatch) => {
 	);
 };
 
-// write data to store with the payload of the item
+// dispatch add action to store & api-endpoint get response back from db to store
 export const addItem = (item) => (dispatch) => {
 	axios.post('/music-inventory-api', item).then((res) => {
 		dispatch({
@@ -30,10 +30,6 @@ export const addItem = (item) => (dispatch) => {
 			payload: res.data
 		});
 	});
-	return {
-		type: ADD_ITEM,
-		payload: item
-	};
 };
 
 // sends state of items loading to store

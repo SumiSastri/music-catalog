@@ -1,21 +1,18 @@
+// libraries
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-
+// files
 const MusicItem = require('../models/musicItem.js');
 
-// READ-DATA FROM DB READ-GET
+// ROUTES OR CONTROLLERS BACKEND
 
-// shift from server - import file into server
-// router.get('/', (req, res) => {
-// 	res.send('music-inventory-api route working');
-// });
-
+// READ-Data from Db/ use find method/ GET/ @route'/music-inventory-api'
 router.get('/', (req, res) => {
 	MusicItem.find().sort({ name: +1 }).then((items) => res.json(items));
 });
 
-// WRITE-DATA TO DB-CREATE-POST
+// WRITE-Data to Db/ intantiate a constructor with payload-POST/ @route'/music-inventory-api'
 router.post('/', (req, res) => {
 	let { name, condition, valueInUSD } = req.body;
 	let musicItemPayload = new MusicItem({
@@ -31,7 +28,7 @@ router.post('/', (req, res) => {
 		.catch((err) => res.status(422).json({ message: err }));
 });
 
-// UPDATE-DATA BY FINDING ID-UPDATE-PUT
+// UPDATE-Db-data/ findByIdAndUpdate method-PUT @route '/music-inventory-api/:id'
 router.put('/:id', (req, res, next) => {
 	MusicItem.findByIdAndUpdate({ _id: req.params.id }, req.body, {
 		new: true,
@@ -41,7 +38,7 @@ router.put('/:id', (req, res, next) => {
 	});
 });
 
-// DELETE-DATA BY FINDING ID DELETE-DELETE
+// DELETE-Db-data/ findByIdAndRemove method-DELETE /music-inventory-api/:id
 router.delete('/:id', (req, res, next) => {
 	MusicItem.findByIdAndRemove({ _id: req.params.id }, { useFindAndModify: false }).then(function(item) {
 		res.send(item);

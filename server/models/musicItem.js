@@ -29,4 +29,4 @@ const MusicItemSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('MusicItem', MusicItemSchema);
-// module.exports = MusicItem = mongoose.model('musicItem', MusicItemSchema);
+// OR module.exports = MusicItem = mongoose.model('musicItem', MusicItemSchema);
