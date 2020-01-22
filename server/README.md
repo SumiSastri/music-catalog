@@ -269,8 +269,3 @@ db.nameOfCollection.find().sort({key:-1}).pretty() [sort in descending order eg.
 db.nameOfCollection.find().sort({key:1}).pretty() [sort in ascending order]
 db.nameOfCollection.update() 
 db.nameOfCollection.remove()
-
-
-
-
-
