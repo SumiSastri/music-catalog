@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 });
 
 mongoose.connect(
-	'mongodb+srv://inventory-app:w1wY8zcqn5J5npMd@cluster0-ox7di.mongodb.net/test?retryWrites=true&w=majority',
+	'',
 	{
 		useNewUrlParser: true,
 		useCreateIndex: true,
