@@ -5,8 +5,10 @@
 	"main": "server.js",
 	"scripts": {
 		"client-install": "npm install --prefix client",
+		"start": "node server/server.js",
 		"start-server": "nodemon server/server.js",
-		"start-client": "npm start --prefix client"
+		"start-client": "npm start --prefix client",
+		"start-dev": "concurrently \"npm run start-server\" \"npm run start-client\""
 	},
 	"author": "srs",
 	"license": "MIT",
