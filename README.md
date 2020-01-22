@@ -1,4 +1,7 @@
-MERN (mongoDb-Express-React-Node) stack
+Olar!Cantare! in the MERN (mongoDb-Express-React-Node) stack with React-Redux
+
+![ A music catalog app](url) OR file path (/images/logo.png)
+
 - This app lifts state from React class components, to the react-redux store
 - While redux may not be the best method to handle state, the learning objective is to understand how state works for SPA's both with react class components and with react-redux as a more predictable container for state.
 
