@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addItem } from '../../actions/itemActions';
-// import { ilovehiphop } from '../../assets/ilovehiphop.jpg';
 
 class ItemModal extends Component {
 	state = {
@@ -36,9 +35,13 @@ class ItemModal extends Component {
 	render() {
 		return (
 			<div>
-				<Button color="primary" style={{ marginBottom: '2rem' }} onClick={this.toggle}>
-					<i className="fas fa-user-plus" />
-				</Button>
+				<Label for="add-button">
+					<Button color="primary" style={{ marginBottom: '2rem' }} onClick={this.toggle}>
+						<i className="fas fa-user-plus" />
+						<br />Create your hip-hop catalog
+					</Button>
+				</Label>
+
 				<Modal isOpen={this.state.modal} toggle={this.toggle}>
 					<ModalHeader toggle={this.toggle}>
 						<i className="fas fa-user-plus" />
@@ -62,7 +65,6 @@ class ItemModal extends Component {
 					</ModalBody>
 					<ModalFooter>
 						<div>
-							{/* <img alt="i-love-hip-hop-cartoon" src={ilovehiphop} style={{ height: '10%' }} /> */}
 							<i style={{ marginRight: '2rem' }} className="fas fa-drum" />Dj, rap or hip-hop
 						</div>
 					</ModalFooter>
