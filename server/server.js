@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
 });
 
 mongoose.connect(
-	db,
+	'process.env.DB_CONNECTION',
 	{
 		useNewUrlParser: true,
 		useCreateIndex: true,
@@ -50,7 +50,5 @@ mongoose.connect(
 	}
 );
 mongoose.Promise = global.Promise;
-
-// mongoose.connect(db).then(() => console.log('db connected'));
 
 app.listen(5000, () => console.log(`app server connected on port ${port}`));
