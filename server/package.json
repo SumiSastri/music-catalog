@@ -1,0 +1,17 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "- MongoDB has models/ collections and schemas - Models - represents the collections in the db (user model, product model, etc.) - Collection - a collection of data/ documents/ fields (represents a single model all the products in the product model) - Schemas - define the structure of the objects in the collection (the structure of a single product object)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express-rate-limit": "^5.2.3",
+    "helmet": "^4.2.0"
+  }
+}

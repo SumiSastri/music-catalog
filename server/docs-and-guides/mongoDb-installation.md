@@ -1,15 +1,20 @@
 
 ### What is MongoDb 
 
-MongoDb is a NoSQL Db
-Install MongoDB in your terminal globally
-Pre-install check - to see if you already have it installed
+mongoDb is a NoSQL database, you need to set up an account online, save your username and password for future access. This gives you access to the database as well as Mongo-University where you can learn how to use mongoDb more effectively.
 
-type mongo --version in terminal for version output if you have it installed [MongoDB shell version v4.2.1]
+
+### Pre-install checks (Mac)
+
+If you need to check if you already have mongoDb installed or you want to know the version of mongoDb you have, 
+- go to your terminal and type $mongo --version 
+- output eg: [MongoDB shell version v4.2.1]
+
+If you do not already have mongoDb installed on your mac, you can install it with HomeBrew.
 
 ## Install mongoDB with Homebrew
 
-MongoDb is a non-relational (noSQL) database. Install it with Homebrew with a Mac.
+In terminal type
 
 ``` sh
 brew install mongodb
@@ -23,6 +28,7 @@ $ brew tap mongodb/brew
 Documentation for troubleshooting[https://github.com/mongodb/homebrew-brew]
 
 The program is saved by default in the file path /usr/local/var/mongodb
+
 Run the following command to ensure you have a place for mongo to store the data for your databases:
 
 this worked with mojave -  with catalina - options are step 2 if step 1 does not work
@@ -45,7 +51,7 @@ Catalina stack overflow guidance [https://stackoverflow.com/questions/47975929/s
 <br>
 
 
-### Good Resources
+### Further reading
 
 https://docs.mongodb.com/manual/core/data-model-operations/
 
