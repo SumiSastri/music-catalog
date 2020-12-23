@@ -5,7 +5,6 @@ La Boite is a Music app using React & React-Redux
 - Redux lifts state from React class components and moves it as a single state object to the react-redux store
 - While redux may not be the best method to handle state, the learning objective is to understand how state works for SPA's both with react class components and with react-redux as a more predictable container for state.
 
-
 ![Music Catalog App Demo](client/src/assets/music-app-demo.gif)
 
 ## Available scripts
@@ -23,6 +22,7 @@ npm run start-dev - client server:port 3000/ backend-server:port 5000
 
 **Express Server** 
 npm install -D  nodemon express cors dotenv path body-parser concurrently(server dependencies)
+
 **MongoDB**
 npm install -g  mongoose mongodb (database dependencies)
 
@@ -69,3 +69,5 @@ Set up github repo and link local version
 - Set up next branch as debugging so that you can debug your code in this if you want to push to dev
 - Check out of master and work from develop 
 - Pull and push changes  to develop if you move to debugging branch for fixes and if working on multiple branches at the same time
+
+Adapted from Brad Traversy's tutorial Learn The MERN stack on You Tube [https://www.youtube.com/watch?v=5yTazHkDR4o&list=PLillGF-RfqbbiTGgA77tGO426V3hRF9iE&index=2&ab_channel=TraversyMedia]
