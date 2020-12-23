@@ -23,6 +23,9 @@ Olare!Cantare! in the MERN (mongoDb-Express-React-Node) stack with React-Redux
 - npm install axios
 - check front end package json for dependencies set up proxy for backend server as client runs on 3000
 
+## Available scripts
+npm run start-dev - client server:port 3000/ backend-server:port 5000
+
 ## SEPARATION OF CONCERNS
 In the src files create frontend (client) and backend (server) folders to separate concerns Folder naming convention - camel case
 
@@ -34,8 +37,12 @@ In the src files create frontend (client) and backend (server) folders to separa
 - Configuration (config)
 
 ## FRONTEND FOLDER STRUCTURE
-- create your folder for components and split into presentational and stateful
-- create redux folders for store, actions and reducers in src folder (not react components)
+- folder structure -CARS (components & containers/actions/reducers/store)
+- Components - common (reusable presentational components)
+- Containers - stateful
+- Actions & ActionTypes
+- Reducers & Root Reducer
+- Store
 
 ## VERSION CONTROL
 Set up github repo and link local version

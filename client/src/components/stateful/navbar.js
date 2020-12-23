@@ -50,7 +50,7 @@ class AppNavbar extends Component {
 						</Collapse>
 					</Container>
 					<NavbarBrand className="nav-image-container">
-						<img style={navImageStyle} alt={'nav-image'} src={navImage} />
+						<img style={navImageStyle} alt={'nav-pix'} src={navImage} />
 					</NavbarBrand>
 				</Navbar>
 			</div>
