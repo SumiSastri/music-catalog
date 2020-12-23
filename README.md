@@ -12,6 +12,13 @@ La Boite is a Music app using React & React-Redux
 - The package manager is npm - to clone ```npm init -y``` to install dependencies
 npm run start-dev - client server:port 3000/ backend-server:port 5000
 
+Fix any outdated packages
+- ```npm audit`` Fix manually or use auto
+- ```npm update``` Fix with npm update packageName@version a better way to do this is npm install packageName@version
+- ```npm uninstall``` @packageName for any packages you do not need as there could be many deprecated dependencies in the package so only use packages that your app really need.
+
+This repo has been updated Dec 2020.
+
 ## SCAFFOLDING -server side (Node, Express, Mongoose)
 - mkdir inventory-app
 - npm init -y 
@@ -21,7 +28,8 @@ npm run start-dev - client server:port 3000/ backend-server:port 5000
 - npm install -g (globally as needed even in production version)
 
 **Express Server** 
-npm install -D  nodemon express cors dotenv path body-parser concurrently(server dependencies)
+npm install -D  express nodemon concurrently(server dependencies)
+npm install -D cors dotenv path body-parser helmet(server-side security)
 
 **MongoDB**
 npm install -g  mongoose mongodb (database dependencies)
