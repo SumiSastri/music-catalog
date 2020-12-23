@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 require('dotenv/config');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 
 const musicInventoryRoute = require('./routes/inventoryRoute.js');
 
@@ -14,6 +15,11 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
+const rateLimter = new rateLimit({
+	windowsMs: 15 * 60 * 1000,
+	max: 100,
+	delayMs: 0
+});
 app.use('/music-inventory-api', musicInventoryRoute);
 
 app.use(

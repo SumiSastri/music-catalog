@@ -3,7 +3,9 @@
 Helmet is a package that automatically sets 12 HTTP security headers to your application with a few simple lines.
 Documentation: [helmetjs.github.io]
 
-The basic set-up gives you by default
+Install - ```npm install helmet```
+
+Require helmet in the server and assign it to a variable, then use the ```app.use()``` express middleware method to activate the methods available from the helmet library. The basic set-up gives you by default:-
 
 ```
 app.use(helmet.contentSecurityPolicy());
