@@ -1,3 +1,58 @@
+
+
+## FRONTEND FOLDER STRUCTURE
+
+- in root 
+- assets (images, logos, audio, video)
+- client-side-data - contains mock-data and the redux-store
+- docs-and-guides folder detail each section build with how-to-guides and architectural details
+- content pages - all the segmented modules for the app front-end
+- common-components-and-containers have the reusable functional & stateful modules for every section
+- sections - each section is a self-contained app 
+
+**Redux CARS and section structure**
+
+eg: Music-section:-
+__Components-and-containers__
+
+- The start of the redux flow is with components and containers that display the ui and subscribe to ui changes from the end-user. 
+- Each component is designed depending on the ui-required by the design-teams.
+- These changes connect with the ```connect()``` method to the store
+- The changes then are mapped with the ```mapStateToProps()``` 
+
+The folder structure therefore follows the actions the user wants to take 
+- add
+- delete
+- editOrUpdate
+- showCard (display one item)
+- showList (display a list of items on a page)
+
+__Actions__
+
+Actions define the actions that the end user wants to take in the components or containers displayed - add  (and save) items, update (and save) items, delete (permanently) items. These actions need to be registered, authenticated or validated and then sent to the backend databases via api HTTP requests.
+
+There are only 2 files for the folder:
+
+- action-type string constants to strictly type, serialise and match the constants to the action methods
+- actions that consume the back-end apis - these actions are dispatched to the reducers
+
+__Reducers & Root Reducer__
+
+Actions are dispatched to the reducer, there may be several reducers in a section depending on the ui-design.
+
+Using the switch conditional statement, the reducer method takes 2 params, the actions via the string constants that define them and the initial state from the store. The reducer then first returns original state (pristine) with the spread operator, and then executes the actions defined in the string constants.  Each action - add, edit or update, delete, get items to display, loading items - is dealt with in a separate switch statement so that the code can exit performing only the action required at the time.
+
+All these these reducers are combined in the root reducer and sent back to store. Once the new action has been dispatched to the store, state is now no longer pristine but 'touched' by the actions payload. The store subscribes to these changes with the ```getState()``` method, sent to it by the root reducer that combines all the changes and chunks and batches updates to the store.
+
+There are only 2 files for the folder:
+
+- the reducer for the actions in this section 
+- the root reducer sent to store
+
+__Store__
+
+There can be only one store, as this is where the data is held in its pristine state, the store is in the client-side data folder.
+
 ### Branch 3 nav-bar (set-up first front end components)
 - Create a front-end folder (client)
 - npx create-react-app client

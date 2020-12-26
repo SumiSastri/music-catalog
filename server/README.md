@@ -1,4 +1,11 @@
-
+## BACKEND FOLDER STRUCTURE
+- All files in the server folder
+- The ```server.js``` file is the app entry point for the Express server( this can alternatively be called ```index.js``` or ```app.js```)
+- Database (db)
+- Data Schemas & Data Design Constructors (models)
+- Controllers for CRUD routes (api-route-controllers)
+- dot-files (configuration - includes ```.env```, ```.eslintrc```, etc.)
+- docs-and-guides - documentation and how to guides for this section
 
 ### Db architecture
 - MongoDB has models/ collections and schemas
