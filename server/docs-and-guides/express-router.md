@@ -1,4 +1,6 @@
 ### Branch 2 crud-routes (set-up routes and check with Postman)
+
+https://www.tutorialkart.com/nodejs/express-js-tutorial/ (Tutorial Cart)
 - Plan your data schema and set it up with a constructor - new mongoose.Schema export the module schema for the server-side controllers or routes you will set up for the CRUD actions (create-read-update-delete).
 - First create the routes in server.js and test them
 
@@ -44,3 +46,10 @@ app.use(
 	})
 );
 ```
+
+
+https://www.terlici.com/2014/09/29/express-router.html(Blog)
+
+My github link on Express Router[https://github.com/SumiSastri/node.js-and-server-side-javascript/tree/master/nodeJs-and-express]
+
+My github link on how routing works[https://github.com/SumiSastri/node.js-and-server-side-javascript/blob/master/nodeJs-and-express/express/express-app/server/routes/routesDemo.js]

@@ -1,25 +1,39 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "- MongoDB has models/ collections and schemas - Models - represents the collections in the db (user model, product model, etc.) - Collection - a collection of data/ documents/ fields (represents a single model all the products in the product model) - Schemas - define the structure of the objects in the collection (the structure of a single product object)",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "concurrently": "^5.3.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express-rate-limit": "^5.2.3",
-    "helmet": "^4.2.0",
-    "mongodb": "^3.6.3",
-    "mongoose": "^5.11.8",
-    "nodemon": "^2.0.6",
-    "path": "^0.12.7"
-  }
+	"name": "music-catalog",
+	"version": "1.0.0",
+	"description": "music-inventory-list",
+	"main": "server.js",
+	"scripts": {
+		"client-install": "npm install --prefix client",
+		"start": "node server/server.js",
+		"start-server": "nodemon server/server.js",
+		"start-client": "npm start --prefix client",
+		"start-dev": "concurrently \"npm run start-server\" \"npm run start-client\""
+	},
+	"author": "srs",
+	"license": "MIT",
+	"dependencies": {
+		"body-parser": "^1.19.0",
+		"concurrently": "^5.3.0",
+		"cors": "^2.8.5",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"express-rate-limit": "^5.2.3",
+		"helmet": "^4.2.0",
+		"mongoose": "^5.11.8",
+		"node": "^13.14.0",
+		"path": "^0.12.7"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.6"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/SumiSastri/music-catalog.git"
+	},
+	"bugs": {
+		"url": "https://github.com/SumiSastri/music-catalog/issues"
+	},
+	"homepage": "https://github.com/SumiSastri/music-catalog#readme",
+	"keywords": []
 }

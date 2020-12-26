@@ -1,4 +1,4 @@
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from '../actions/types';
+import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from '../actions/music-section-action-type-constants';
 
 // static data removed and loading added
 const initialState = {
@@ -6,13 +6,7 @@ const initialState = {
 	loading: false
 };
 
-// reducers get the actions from the store
-// first returns original state (pristine)
-// with the new action (touched) - with the actions payload from the api call (using axios as the http runner in the actions component)
-// get- react/ delete - filter and delete/ add - new payload items/ loading from false to true
-// all these reducers are combined in the root reducer and sent back to store for the components to subscribe to them
 //  change id of uuid to _id
-
 export default function(state = initialState, action) {
 	switch (action.type) {
 		case GET_ITEMS:

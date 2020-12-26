@@ -1,10 +1,11 @@
-Documentation [https://www.npmjs.com/package/concurrently]
+### Concurrently library to watch client-server dev changes live
 
 What is it?
 Instead of running server and client side commands in separate terminals concurrently is a node package that allows you to watch both server and client side at the same time making full-stack coding easier.
 
 It allows you to run multiple npm commands at the same time with a short set-up in your package json. Dockerisation is another way to set-up front-end and back-end workflows.
 
+Documentation [https://www.npmjs.com/package/concurrently]
 
 To use install globally
 ```npm install -g concurrently```

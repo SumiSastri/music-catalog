@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Container } from 'reactstrap';
-import logo from '../../assets/logo.png';
-import navImage from '../../assets/ilovehiphop.jpg';
+import logo from '../../../assets/logo.png';
+import navImage from '../../../assets/ilovehiphop.jpg';
 
 class AppNavbar extends Component {
 	state = {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from './types';
+import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from '../actions/music-section-action-type-constants';
 
 // dispatch get action to store & api-endpoint get response back from db to store
 export const getItems = () => (dispatch) => {
