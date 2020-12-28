@@ -1,5 +1,5 @@
-// string constants can be serialised
-export const GET_ITEMS = 'GET_ITEMS';
-export const ADD_ITEM = 'ADD_ITEM';
-export const DELETE_ITEM = 'DELETE_ITEM';
-export const ITEMS_LOADING = 'ITEMS_LOADING';
+export const GET_MUSIC_ITEMS_FROM_API = 'GET_MUSIC_ITEMS_FROM_API';
+export const CREATE_ADD_MUSIC_ITEM = 'CREATE_ADD_MUSIC_ITEM';
+export const UPDATE_EDIT_MUSIC_ITEM = 'UPDATE_EDIT_MUSIC_ITEM';
+export const DELETE_MUSIC_ITEM = 'DELETE_MUSIC_ITEM';
+export const LOAD_MUSIC_ITEMS_TOPAGE = 'LOAD_MUSIC_ITEMS_TOPAGE';

@@ -4,22 +4,30 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getItems, deleteItem } from '../actions/music-section-actions';
+import { getMusicItems, deleteMusicItem } from '../actions/music-section-actions';
 
 class MusicCatalog extends Component {
 	componentDidMount() {
-		this.props.getItems();
+		// the action creator is a prop of musicCatalog - the prop is a method that is imported
+		// this abstracts the function
+		this.props.getMusicItems();
 	}
 	handleDelete = (id) => {
-		this.props.deleteItem(id);
+		this.props.deleteMusicItem(id);
 	};
 	render() {
-		const { items } = this.props.item;
+		// this.props.musicItems.musicItemsArray
+		// the musicItems is the entire state object where is this coming from?
+		// the musicItemsArray is the reducer local state array of data
+
+		const { musicItemsArray } = this.props.musicItems;
+		console.log(`render musicCatalog:`, musicItemsArray);
+
 		return (
 			<Container>
 				<ListGroup>
 					<TransitionGroup class-name="music-catalog">
-						{items.map(({ _id, name }) => (
+						{musicItemsArray.map(({ _id, name }) => (
 							<CSSTransition key={_id} timeout={500} classNames="fade">
 								<ListGroupItem>
 									<Button
@@ -43,12 +51,17 @@ class MusicCatalog extends Component {
 }
 
 MusicCatalog.propTypes = {
-	getItems: PropTypes.func.isRequired,
-	item: PropTypes.object.isRequired
+	// this is from the action creator (this.props.getMusicItems) stored as a prop
+	getMusicItems: PropTypes.func.isRequired,
+	// this is the store state stored as a prop - store sends this to the component
+	// component forwards the state tree as a prop to reducer
+	musicItems: PropTypes.object.isRequired
 };
 
+//why is this returning a null value?
 const mapStateToProps = (state) => ({
-	item: state.item
+	musicItems: state.musicItems
 });
+console.log(`mapStateToProps - MusicCatalog:`, state);
 
-export default connect(mapStateToProps, { getItems, deleteItem })(MusicCatalog);
+export default connect(mapStateToProps, { getMusicItems, deleteMusicItem })(MusicCatalog);

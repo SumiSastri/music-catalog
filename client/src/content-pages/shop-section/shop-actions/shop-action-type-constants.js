@@ -1,0 +1,2 @@
+export const INCREMENTER = 'INCREMENTER';
+export const DECREMENTER = 'DECREMENTER';

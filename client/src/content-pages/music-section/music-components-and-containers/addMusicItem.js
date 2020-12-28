@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap';
+// connects the react-redux libraries together
 import { connect } from 'react-redux';
 
-import { addItem } from '../actions/music-section-actions';
+// the action, action creator imported.
+// The action creator dispatches the response-from the user as an HTTP post call to the backend database
+import { addMusicItem } from '../actions/music-section-actions';
 
 class ItemModal extends Component {
 	state = {
@@ -22,12 +25,13 @@ class ItemModal extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 
-		const newItem = {
+		const newMusicItem = {
 			name: this.state.name
 		};
 
-		// add item via actions for data to get transfered to store
-		this.props.addItem(newItem);
+		// the action creator (addMusicItem) is called in the component
+		// the newMusicItem that changes the component state is called as a param of the action creator
+		this.props.addMusicItem(newMusicItem);
 
 		// close modal
 		this.toggle();
@@ -75,7 +79,10 @@ class ItemModal extends Component {
 	}
 }
 
+// maps this current component-container state - same as reducer state
+
 const mapStateToProps = (state) => ({
-	item: state.item
+	musicItems: state.musicItems
 });
-export default connect(mapStateToProps, { addItem })(ItemModal);
+// this information now will be posted to the back-end via this action creator for this component
+export default connect(mapStateToProps, { addMusicItem })(ItemModal);

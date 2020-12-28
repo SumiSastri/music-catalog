@@ -52,8 +52,6 @@ In ```App.js``` file to include bootstrap add ```import 'bootstrap/dist/css/boot
 ## Naming conventions
 In the src files create frontend (client) and backend (server) folders to separate concerns Folder naming convention - camelCase for files and snake-case-for-folders
 
-
-
 ## VERSION CONTROL
 Set up github repo and link local version
 
