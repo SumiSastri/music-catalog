@@ -8,9 +8,8 @@ import {
 	LOAD_MUSIC_ITEMS_TOPAGE
 } from '../actions/music-section-action-type-constants';
 
-// getMusicItems is the action-creator that takes the dispatch function as its arg
-// axios or fetch - first arg is the api HTTP call, the second is what happens to the payload
-// dispatch - first arg is the action type, the second is the api-payload
+// get and display info from API thunk allows the action creator to have side-effects
+// you can fetch api's and receives the dispatch method as an arg
 export const getMusicItems = (musicItems) => (dispatch) => {
 	dispatch(setMusicItemsToLoading(musicItems));
 	axios.get('/music-inventory-api').then((res) =>
@@ -22,6 +21,8 @@ export const getMusicItems = (musicItems) => (dispatch) => {
 };
 
 // sends state of items loading to store
+// this function called in the get & display call
+// usually conditionally rendered in the component-container
 export const setMusicItemsToLoading = () => {
 	return {
 		type: LOAD_MUSIC_ITEMS_TOPAGE

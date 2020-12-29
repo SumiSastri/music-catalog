@@ -1,4 +1,4 @@
-The purpose of this documentation is to outline what the reducer does and it's importance in the ui-data(state) management process.
+The purpose of this documentation is to outline what the reducer does and it's importance in the ui-data(state) management process. This is a theoretical overview - for the how to set up a reducer and a root reducer, follow the guide in the ```reducer-setup.md
 
 __What is a reducer__
 

@@ -6,15 +6,16 @@ import {
 	LOAD_MUSIC_ITEMS_TOPAGE
 } from '../actions/music-section-action-type-constants';
 
-const initialState = {
-	// initialState is the musicItems state object - so this is musicItems.musicItemsArray[]
-	// this is an array of objects musicItemsArray and local reducer state
-	musicItemsArray: [],
-	loading: false
-};
-
 //  if you have set up fe with mock data or the uuid-library remove
-export default function(state = initialState, action) {
+
+const musicItemsReducer = (
+	state = {
+		// initialState is the musicItems state object - so this is musicItems.musicItemsArray[]
+		musicItemsArray: [],
+		loading: false
+	},
+	action
+) => {
 	switch (action.type) {
 		case GET_MUSIC_ITEMS_FROM_API:
 			return {
@@ -35,7 +36,7 @@ export default function(state = initialState, action) {
 		case UPDATE_EDIT_MUSIC_ITEM:
 			return {
 				...state,
-				musicItemsArray: state.musicItemsArray.filter((musicItem) => musicItem._id == action.payload)
+				musicItemsArray: state.musicItemsArray.filter((musicItem) => musicItem._id === action.payload)
 			};
 
 		case DELETE_MUSIC_ITEM:
@@ -47,4 +48,5 @@ export default function(state = initialState, action) {
 		default:
 			return state;
 	}
-}
+};
+export default musicItemsReducer;

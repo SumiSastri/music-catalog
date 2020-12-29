@@ -43,7 +43,7 @@ class ItemModal extends Component {
 				<Label for="add-button">
 					<Button color="primary" style={{ marginBottom: '2rem' }} onClick={this.toggle}>
 						<i className="fas fa-user-plus" />
-						<br />Create your hip-hop catalog
+						<br />Your personal hip-hop playlist
 					</Button>
 				</Label>
 

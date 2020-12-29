@@ -1,15 +1,21 @@
 import axios from 'axios';
 
-import { GET_TODOS, CREATE_TODOS, UPDATE_TODO, DELETE_TODO, LOAD_TODOS } from './to-do-list-action-type-constants';
+import { GET_TODOS, CREATE_TODOS, UPDATE_TODO, DELETE_TODO, LOAD_TODOS } from './toDos-constants';
 
 export const getToDos = () => (dispatch) => {
-	dispatch(setItemsLoading());
-	axios.get('https://jsonplaceholder.typicode.com/todos').then((res) =>
-		dispatch({
-			type: GET_TODOS,
-			payload: res.data
+	// dispatch(setItemsLoading());
+	dispatch(getToDosFromAPI());
+	axios
+		.get('https://jsonplaceholder.typicode.com/todos')
+		.then((response) => {
+			// just get the id less expensive than getting all the api-data
+			const toDoItems = response.data.slice(0, 5).map((toDoItem) => toDoItem.id);
+			dispatch(successGetToDoIds(toDoItems));
+			console.log(toDoItems);
 		})
-	);
+		.catch((error) => {
+			dispatch(failedToGetToDoIds(`Error getting response data check url`, error.message));
+		});
 };
 
 // sends state of items loading to store

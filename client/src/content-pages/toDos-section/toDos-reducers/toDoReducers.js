@@ -1,4 +1,3 @@
-import { createStore } from 'redux';
 import constants from './constants';
 console.log('show constants', constants);
 

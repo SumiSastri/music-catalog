@@ -3,7 +3,26 @@ The purpose of this documentation follows on from the overveiew of the store doc
 For technical documentation refer to  [https://redux.js.org/api/createstore]]
 
 __Store__
-1. Set-up a basic store
+Vanilla store set up
+1. Import store from the library/ instantiate store
+
+```
+import { createStore} from 'redux';
+const store = createStore()
+```
+
+2. Reducer tightly coupled with the store (the store gate-keeper only access to store)
+
+Only a rootReducer used in the store ```const store = createStore(rootReducer)```
+
+3. Create actions/ reducers outside the store (see reducer section for how to set up reducers and actions section for how to set up actions)
+
+
+
+
+
+
+1. Set-up a basic store with middleware
 Import methods available from the redux library and the middleware
 
 ```

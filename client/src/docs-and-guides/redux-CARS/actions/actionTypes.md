@@ -1,11 +1,12 @@
 The purpose of this document is to provide a brief overview of what action-type-constants are and why they are used over normal string-literals/ primitive string-types.
 
 **What are string constants?**
+
 String constants are strictly typed variables. They are written in SNAKE_CASE and always capitalised. String constants can be serialised and as they are strictly typed, each constant has to be unique. They are eaisly identifiable in a code base and result in less run-time/ compile-time errors.
 
 **What are action-types?**
 
-The variable that an action utility function is assigned to is in a string-constant that is of a type string-constant. 
+Action-types are the string constant that hold the information of the action. 
 
 eg: of use
 ```
@@ -16,7 +17,7 @@ export const DELETE_MUSIC_ITEM = 'DELETE_MUSIC_ITEM';
 export const MUSIC_ITEMS_LOADING = 'MUSIC_ITEMS_LOADING';
 ```
 
-These are then imported by the action utility functions and the reducers and then passed to the store to be updated with the new action payload described by the action utility function.
+These are then imported by the action utility functions and the reducers and then passed to the store to be updated with the new action payload described by the action utility functions (action-creators).
 
 While these are the basic types - you can add string constants to the types depending on how you want to display the data you have fetched from the back-end and what you want the user to do with data sent from the front-end to the back-end.
 
