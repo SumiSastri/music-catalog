@@ -1,15 +1,17 @@
 import React from 'react';
 import BlogCard from './BlogCard';
 
-// parent of BlogCard, child of BlogIndex
-// state from blog index passed to BlogIndex as props
-// mapped through and populate props of each BlogCard
-
+// Parent jsx attribute passed props in BlogList
+// Child BlogCard state passed down one more time via BlogCard attributes
 const BlogList = ({ blogs }) => {
+	// if (true) {
+	// 	throw new Error('An Error Has Occured Check your Code!');
+	// }
+	// UNCOMMENT CODE FOR PRODUCTION
 	return (
-		<div className="womens-garments-page">
+		<div>
 			{blogs.map((blog, i) => {
-				return <BlogCard key={i} id={blogs[i].id} body={blogs[i].body} title={blogs[i].title} />;
+				return <BlogCard key={i} id={blogs[i].id} title={blogs[i].title} body={blogs[i].body} />;
 			})}
 		</div>
 	);

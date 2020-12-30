@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-const FormTextInput = (props) => {
+const ToDoFormTextInput = (props) => {
 	return (
 		<Form>
 			<FormGroup>
@@ -13,4 +13,4 @@ const FormTextInput = (props) => {
 	);
 };
 
-export default FormTextInput;
+export default ToDoFormTextInput;
