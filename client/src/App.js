@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Container } from 'reactstrap';
 // Provider shares state across all components
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 
 import AppNavbar from '../src/content-pages/common-components-and-containers/navs/navbar';
 import ItemModal from '../src/content-pages/music-section/music-components-and-containers//addMusicItem';

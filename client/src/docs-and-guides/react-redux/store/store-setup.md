@@ -17,10 +17,9 @@ Only a rootReducer used in the store ```const store = createStore(rootReducer)``
 
 3. Create actions/ reducers outside the store (see reducer section for how to set up reducers and actions section for how to set up actions)
 
+4. Add the ```store.subscribe()``` method and call the action in this function, for example, ```store.subscribe(incrementCounter())```
 
-
-
-
+You need to run this each time you want to call the function as the subscribe method invokes the function only once. For the understanding of how redux works under the hood it is useful to run this vanilla set-up however, it is more practical to set the store up with middleware. Thunk is only one such tool.
 
 1. Set-up a basic store with middleware
 Import methods available from the redux library and the middleware
@@ -78,3 +77,5 @@ store.subscribe(() => console.log(store.getState()));
 
 export default store;
 ```
+
+NOTE: Unlike flux where you can have several stores for each section, with React-Redux there can only be one store for the whole app.

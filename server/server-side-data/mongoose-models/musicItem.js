@@ -9,6 +9,10 @@ const MusicItemSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
+	albumName: {
+		type: String,
+		required: false
+	},
 	image: {
 		type: String,
 		required: false

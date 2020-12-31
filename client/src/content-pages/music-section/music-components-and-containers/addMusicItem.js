@@ -10,7 +10,8 @@ import { addMusicItem } from '../actions/music-section-actions';
 class ItemModal extends Component {
 	state = {
 		modal: false,
-		name: ''
+		name: '',
+		albumName: ''
 	};
 	toggle = () => {
 		this.setState({
@@ -26,7 +27,8 @@ class ItemModal extends Component {
 		event.preventDefault();
 
 		const newMusicItem = {
-			name: this.state.name
+			name: this.state.name,
+			albumName: this.state.albumName
 		};
 
 		// the action creator (addMusicItem) is called in the component
@@ -54,16 +56,25 @@ class ItemModal extends Component {
 					<ModalBody>
 						<Form onSubmit={this.handleSubmit}>
 							<FormGroup>
-								<Label for="item">Artiste</Label>
+								<Label for="item">My personal play list</Label>
+								<p>{this.state.name}</p>
 								<Input
 									name="name"
 									type="text"
-									id="item"
-									placeholder="Add to your playlist"
+									id="musicianName"
+									placeholder="Add musician or band to your playlist"
+									onChange={this.handleChange}
+								/>
+								<p>{this.state.albumName}</p>
+								<Input
+									name="albumName"
+									type="text"
+									id="albumName"
+									placeholder="Add single or album title to your playlist"
 									onChange={this.handleChange}
 								/>
 								<Button color="primary" style={{ marginTop: '2rem' }} block>
-									<i className="fas fa-hand-spock" />
+									<i className="fas fa-hand-spock" /> Save
 								</Button>
 							</FormGroup>
 						</Form>

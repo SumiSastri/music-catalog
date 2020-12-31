@@ -58,10 +58,12 @@ MusicCatalog.propTypes = {
 	musicItems: PropTypes.object.isRequired
 };
 
-//why is this returning a null value?
-const mapStateToProps = (state) => ({
-	musicItems: state.musicItems
-});
+//why must have a return statement
+const mapStateToProps = (state) => {
+	return {
+		musicItems: state.musicItems
+	};
+};
 console.log(`mapStateToProps - MusicCatalog:`, state);
 
 export default connect(mapStateToProps, { getMusicItems, deleteMusicItem })(MusicCatalog);

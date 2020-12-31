@@ -14,7 +14,7 @@ __How to set up multiple reducers__
 
 ```
 const reducerOne = (state, actions) {
-    <!-- FUNCTION BODY -- DO SOMETHING -->
+    <!-- FUNCTION BODY -- DO SOMETHING TO UPDATE STATE -->
 }
 export default reducerOne;
 
@@ -44,7 +44,7 @@ export default toDos;
 
 ```
 const reducerTwo = (state, actions) {
-    <!-- FUNCTION BODY -- DO SOMETHING -->
+    <!-- FUNCTION BODY -- DO SOMETHING TO CHANGE STATE OF THE SECOND COMPONENT -->
 }
 export default reducerTwo;
 

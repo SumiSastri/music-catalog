@@ -9,16 +9,15 @@ const BlogCard = ({ body, title }) => {
 		<div>
 			<Container className="themed-container" fluid={true}>
 				<Row>
-					<Col sm="12" md={{ size: 6, offset: 3 }}>
+					<Col sm="6">
 						<h4>{title}</h4>
 					</Col>
 				</Row>
 				<Row>
 					<Col sm={{ size: 'auto', offset: 1 }}>
-						<img top width="20%" src={iluvhiphop} alt="hip-hop-blog" />
+						<img width="30%" src={iluvhiphop} alt="hip-hop-blog" />
 					</Col>
-					<Col sm={{ size: 'auto', offset: 1 }}>
-						{' '}
+					<Col sm="6">
 						<p>{body}</p>
 					</Col>
 				</Row>
