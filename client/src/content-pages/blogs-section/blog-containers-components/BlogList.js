@@ -7,7 +7,7 @@ import BlogCard from './BlogCard';
 const BlogList = ({ blogs }) => {
 	const displayBlogList = blogs.map((blog, i) => {
 		return (
-			<div key={i} className="p-3 bg-primary my-2 rounded bg-docs-transparent-grid">
+			<div key={blogs[i].id} className="p-3 bg-primary my-2 rounded bg-docs-transparent-grid">
 				<BlogCard id={blogs[i].id} title={blogs[i].title} body={blogs[i].body} />
 			</div>
 		);
