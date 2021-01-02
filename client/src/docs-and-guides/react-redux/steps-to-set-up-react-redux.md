@@ -9,13 +9,36 @@ The complexity and frequency of changes in the component-container state is mana
 
 The most important part of FE-design is the actual ui-ux design and the wireframing of the look-and-feel of the components before coding commences.
 
-User journeys should be mapped and brand-books created so that the FE developer only needs to think about how to implement design changes that have already been signed off by product-brand-marketing-customer teams and senior management.
+User journeys should be mapped and brand-books created to your personal requirements.
 
-`Dumb components` should be created without any functionality and purely for presentational purposes.
+The ui-ux for this ToDos section is outlined here [https://docs.google.com/drawings/d/1FlbKJrreGEvBpsK_tfcj8h1gSbcuHR884zsaeVx04PQ/edit?usp=sharing]
 
-If local state is already held in the app - via the functions related to updating state with the ```setState()``` method or with hooks and api-calls are made via the lifecycle methods and HTTP runners like Axios, or the fetch method. These need to be dismantled and 'state-lifted` out of the component.
 
-To do this actions, action-types and action-creators need to be set-up to replace these methods in the component.
+In your app then set up the folder structure based on this design road-map.
+
+__Folder Structure With Presentational And Class Components in the demo-ToDos__
+1. Separate out the stateful vs. presentational components.
+2. Design the presentational components and render them
+3. Design your main stateful component and render it correctly (demoHomePageStage1.js)
+4. Refactor and pass state down to the components that require state for presentational purposes
+     - List component to render out a complete list (demoListPageStage1.js & demoHomePageStage2.js)
+     - Refactor list page pass props to card to display one of the items in the list (demoListPageStage2.js & demoRedesignedCard.js). This card is unique to the id it holds therefore it can be updated or deleted. The Card is imported into the List page and the list page refactored.
+     - A further refactor with the design of a loading page (demoLoadingPage.js) or tasks completed page can be moved out of the List page (demoListPageStage3.js)
+5. Consider what functions you want to write to interact with this section - create a new to-do? edit and update an existing toDo? deleted a toDo? Show or hide some content? Add a counter?
+
+List the functions in the home page without executing them - these functions if you do not have legacy react pages with stateful components can be written in the actions section. Skip directly to the actions section.
+
+```
+	createToDos = () => {};
+	updateToDos = () => {};
+	deleteToDos = () => {};
+```     
+
+If you have legacy react-pages that need to be refactored follow the steps in this next section.
+
+__Refactor React Stateful Components and Lift State__
+
+
 
 __Actions__ 
 1. Set up action types based on these changes you anticipate

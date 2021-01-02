@@ -68,3 +68,4 @@ React compo
 - Basics:(https://react-redux.js.org/introduction/basic-tutorial) 
 - On the store: (https://react-redux.js.org/using-react-redux/accessing-store) 
 - Redux: Crash-course https://www.youtube.com/watch?v=wjTAhHSKuPg Traversy Media https://www.youtube.com/watch?v=93p3LxR9xfM&t=1003s
+- React and Redux - Net Nija PlayList: [https://www.youtube.com/watch?v=OxIDLw0M-m0&list=PL4cUxeGkcC9ij8CfkAY2RAGb-tmkNwQHG&ab_channel=TheNetNinja]

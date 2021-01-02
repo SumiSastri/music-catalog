@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_TODOS, CREATE_TODOS, UPDATE_TODO, DELETE_TODO, LOAD_TODOS } from './toDos-constants';
+import { GET_TODOS, CREATE_TODOS, UPDATE_TODO, DELETE_TODO, LOAD_TODOS } from './ToDoConstants';
 
 export const getToDos = () => (dispatch) => {
 	// dispatch(setItemsLoading());
