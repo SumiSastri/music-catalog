@@ -1,9 +1,11 @@
 import React from 'react';
 import { Button, Container } from 'reactstrap';
 
+// Card Stage 2: Redesigned to add update this card or delete to the design
 // deleteToDoMethod passed from Home as a prop to List
 // List passes this prop to Card in the card imported
-// Consumed and fired as an onClick handler here - demo's prop drilling
+// The function is defined in home and called as an onClick handler here - demo's prop drilling
+
 const ToDosCard = ({ id, title, completed, deleteToDoItem }) => {
 	return (
 		<div key={id}>

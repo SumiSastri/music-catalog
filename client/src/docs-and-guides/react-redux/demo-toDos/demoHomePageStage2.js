@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Container, Button } from 'reactstrap';
 
+// Stage 2: Modularise this stateful component
+// Create and import a list component - pass props to child
 import ToDosList from './ToDosList';
 
 export class ToDosHome extends Component {

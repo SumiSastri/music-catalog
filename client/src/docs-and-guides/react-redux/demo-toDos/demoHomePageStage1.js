@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Container, Button } from 'reactstrap';
 
+// Stage 1:  - fetch items with an api-call and render them in a list
 export class ToDosHome extends Component {
 	constructor(props) {
 		super(props);

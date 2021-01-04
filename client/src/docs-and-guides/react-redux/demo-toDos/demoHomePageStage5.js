@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Container } from 'reactstrap';
 
-// import files that are children and add props in the render method
 import ToDosList from './ToDosList';
 import CreateToDo from './toDo-forms-and-modals/CreateToDo';
 
+// Stage 5 Changes: Now that the simple stateful form works - add function
+// Method 2: You need to import the submit payload as a param of the add utility function
+// State of the add function needs to be updated accepting the submit payload
+// See the steps outlined here - and connect with the form page stage 2
 export class ToDosHome extends Component {
 	constructor(props) {
 		super(props);
@@ -33,13 +36,20 @@ export class ToDosHome extends Component {
 			.catch((err) => this.setState({ errors: err.response.data.errors }));
 	};
 
-	//  utility function - param is namespace for the submit payload
+	// Step1 : add utility function to add the new toDo
+	// Step2: go to render method and pass to the stateful child as a prop
+	// Step 4: Returning from the stateful child, add a param which is a local variable in the function
+	// This local variable in the param is the namespace to hold state that has been passed as a prop to this function
+	// log and check payload has been received from stateful child
 	addToDoItem = (newToDoItem) => {
-		// do not remove - uncomment and check payload correctly received
-		// console.log(`submit payload received:`, newToDoItem);
-
-		// assign the param name space to a new variable to display as a new element in the array
+		console.log(`submit payload received:`, newToDoItem);
+		// if you want to add a random id instead of uuid library - newToDoItem.id = Math.random()
+		// Step 5: set state to the submit payload received - create a copy of the array
+		//  Add the submit payload to the copy of the array with the spread operator
+		//  The new array now has all the elements of the old array and adds the submit payload as the additional element
 		let displayNewToDoItem = [ ...this.state.toDosArray, newToDoItem ];
+		// Step 6: update state with the copy of the array and element added
+		// the display of the new element now is tagged on to the copy of the array made in the setState() method
 		this.setState({ toDosArray: displayNewToDoItem });
 	};
 

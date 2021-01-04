@@ -1,6 +1,8 @@
 import React from 'react';
 import { Spinner, Button } from 'reactstrap';
 
+// Stage 1 creates the loading page and sets up the button to accept a click event
+//  the click event will redirect the page back to the add item page
 function ToDosCompleted() {
 	return (
 		<div className="p-3 bg-warning my-2 rounded bg-docs-transparent-grid">

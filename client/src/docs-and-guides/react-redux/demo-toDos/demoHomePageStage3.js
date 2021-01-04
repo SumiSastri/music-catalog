@@ -4,6 +4,11 @@ import { Container } from 'reactstrap';
 
 import ToDosList from './ToDosList';
 
+// Stage 3: Changing of the state-tree/ component tree structures
+// The list component now imports the card component
+// The Card is a child of list
+// List is a child of Home - delete the item via its id from the List component
+// The method delete from parent now can be passed as props to child/ grandchild
 export class ToDosHome extends Component {
 	constructor(props) {
 		super(props);

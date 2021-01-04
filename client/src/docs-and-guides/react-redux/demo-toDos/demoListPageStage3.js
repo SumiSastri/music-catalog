@@ -4,7 +4,9 @@ import { Container } from 'reactstrap';
 import ToDosCard from './ToDosCard';
 import ToDosCompleted from './ToDosCompleted';
 
-// modularise further by removing the else block and creating/ designing a separate component that can be imported
+// Stage 3: modularise further by removing the else block
+// Create/ design a separate component that can be imported
+
 const ToDosList = ({ toDosArray }) => {
 	const displayToDos = toDosArray.length ? (
 		toDosArray.map((eachToDo, i) => {
