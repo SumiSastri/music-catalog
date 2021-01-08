@@ -40,10 +40,10 @@ app.get('/', (req, res) => {
 	res.send('app home route working');
 });
 
-// const dBurl = process.env.DB_CONNECTION;
+const dB = process.env.DB_CONNECTION;
 
 mongoose.connect(
-	'process.env.DB_CONNECTION',
+	'dB',
 	{
 		useNewUrlParser: true,
 		useCreateIndex: true,

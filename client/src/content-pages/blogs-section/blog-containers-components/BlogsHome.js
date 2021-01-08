@@ -8,12 +8,13 @@ import { Spinner, Container } from 'reactstrap';
 import ErrorBoundary from '../../common-components-and-containers/error-boundary/ErrorBoundary';
 import BlogList from './BlogList';
 
-export class BlogHome extends Component {
+export class BlogsHome extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			blogs: []
+			blogs: [],
+			blogPost: null
 		};
 	}
 	// state is baked into the render method in the react library
@@ -21,6 +22,7 @@ export class BlogHome extends Component {
 	// binding state to the component is implicit with arrow functions
 	// or as in this section bound with the ```this``` key word
 	componentDidMount() {
+		console.log(this.props);
 		this.getPosts();
 	}
 
@@ -28,13 +30,21 @@ export class BlogHome extends Component {
 		axios
 			.get(`http://jsonplaceholder.typicode.com/posts`)
 			.then((response) => {
-				console.log(response);
+				console.log(`logs get response:`, response);
 				this.setState({ blogs: response.data.slice(0, 4) });
 				// this.setState({});
 			})
 			// check loading - uncomment the code and comment out the set-state above
 			.catch((err) => this.setState({ errors: err.response.data.errors }));
 	}
+
+	displayBlogPost = ({ id, title, body }) => {
+		// console.log(id); do not remove - checks id captured for debugging
+		const displayPostById = this.state.blogs.filter((eachBlog) => {
+			return eachBlog.id === id && eachBlog.title === title && eachBlog.body === body;
+		});
+		this.setState({ blogs: displayPostById });
+	};
 
 	render() {
 		// state is deconstructed in the render method not in the lifecycle or utility functions
@@ -52,7 +62,7 @@ export class BlogHome extends Component {
 			<div>
 				<Container>
 					<ErrorBoundary>
-						<BlogList blogs={blogs} />
+						<BlogList blogs={blogs} displayBlogPost={this.displayBlogPost} />
 					</ErrorBoundary>
 				</Container>
 			</div>
@@ -68,4 +78,4 @@ export class BlogHome extends Component {
 
 // REFACTOR TO REDUX
 // export default connect(mapStateToProps)(BlogHome);
-export default BlogHome;
+export default BlogsHome;

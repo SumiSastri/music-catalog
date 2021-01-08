@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import musicItemsRootReducer from '../music-section/reducers/musicItemsRootReducer';
+import musicItemRootReducer from '../music-section/reducers/musicItemRootReducer';
 import shopRootReducer from '../shop-section/shop-reducers/shopRootReducer';
 
 export default combineReducers({
-	musicItems: musicItemsRootReducer,
+	musicItem: musicItemRootReducer,
 	counterOne: shopRootReducer
 });

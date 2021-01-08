@@ -22,9 +22,10 @@ router.get('/', (req, res) => {
 // the request body is in JSON the payload saved, converted to json if a 200 response rcvd if not errors caught
 
 router.post('/', (req, res, next) => {
-	let { name, condition, valueInUSD } = req.body;
+	let { name, albumName, condition, valueInUSD } = req.body;
 	let musicItemPayload = new MusicItem({
 		name,
+		albumName,
 		condition,
 		valueInUSD
 	});

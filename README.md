@@ -1,13 +1,5 @@
 ## La Boite is a Music app using React & React-Redux
 
-![Music Catalog App](client/src/assets/music-app-home.png)
-
-- Redux lifts state from React class components and moves it as a single state object to the react-redux store
-- While redux may not be the best method to handle state, the learning objective is to understand how state works for SPA's both with react class components and with react-redux as a more predictable container for state.
-
-![Music Catalog App Demo](client/src/assets/music-app-demo.gif)
-
-Adapted from Brad Traversy's tutorial Learn The MERN stack on You Tube [https://www.youtube.com/watch?v=5yTazHkDR4o&list=PLillGF-RfqbbiTGgA77tGO426V3hRF9iE&index=2&ab_channel=TraversyMedia
 
 ## Available scripts
 
@@ -36,6 +28,45 @@ npm install -D cors dotenv path body-parser helmet express-rate-limiter(server-s
 **MongoDB**
 npm install -D  mongoose mongodb (database dependencies)
 
+**Package JSON server side**
+```
+  "scripts": {
+    "client-install": "npm install --prefix client",
+    "start": "node server/server.js",
+    "start-server": "nodemon server/server.js",
+    "start-client": "npm start --prefix client",
+    "start-dev": "concurrently \"npm run start-server\" \"npm run start-client\""
+  },
+ ```  
+ .gitignore - needs to be added server side
+ 
+ ```
+ # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+```
+ 
 ## SCAFFOLDING -client side (CRA-React-Redux)
 
 - in the client directory ```npx create-react-app .```
@@ -49,19 +80,38 @@ npm install -D  mongoose mongodb (database dependencies)
 - npm install axios
 In ```App.js``` file to include bootstrap add ```import 'bootstrap/dist/css/bootstrap.min.css';```
 
+__Package JSON client__
+
+```
+"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject"
+	},
+	"proxy": "http://localhost:5000",
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+```
+
 ## Naming conventions
 In the src files create frontend (client) and backend (server) folders to separate concerns Folder naming convention - camelCase for files and snake-case-for-folders
 
-## VERSION CONTROL
-Set up github repo and link local version
+## Documentation
 
-- git add .
-- git commit -m'initial commit'
-- git remote add origin - ssh key
-- git push -u origin master
-- Check out of master and create branches [git checkout -b branch-name]
-- Set up first branch as development if you do not want to merge to master until deploy
-- Set up next branch as debugging so that you can debug your code in this if you want to push to dev
-- Check out of master and work from develop 
-- Pull and push changes  to develop if you move to debugging branch for fixes and if working on multiple branches at the same time
+There is a folder docs-and-guides which I have added to come back to and refer to how to refactor any react app to redux. There is a demo in this folder where I have followed the steps to refactor react to redux from several sources and the official documentation of both libraries.
+
+Note:
+
+As data has been set up server-side
+
+Access to db
+1. Create your own db - seed list provided
+2. Login and connect
+3. If you are on a VPN your IP address will change find your IP and whitelist it again
+4. If you have lost your password go to the Atlas tab on the left nav is Database access
+5. Click on edit the data-base and autogenerate a new password
+6. Click update - now save the new password and use this in the .env file
+
 

@@ -4,7 +4,7 @@ import { Container } from 'reactstrap';
 
 // import files that are children and add props in the render method
 import ToDosList from './ToDosList';
-import CreateToDo from './toDo-forms-and-modals/CreateToDo';
+import CreateToDoForm from './toDo-forms-and-modals/CreateToDoForm';
 
 export class ToDosHome extends Component {
 	constructor(props) {
@@ -60,8 +60,14 @@ export class ToDosHome extends Component {
 			<div>
 				<Container>
 					<div className="p-3 bg-primary my-2 rounded bg-docs-transparent-grid">
-						{/* Step 2: pass the add function to the stateful child as props */}
-						<CreateToDo addToDoItem={this.addToDoItem} onChange={handleChange} onSubmit={handleSubmit} />
+						{/* Step 2: pass the add function to the stateful child as props 
+						Toggle this and move this form out of home to header toggle
+						*/}
+						<CreateToDoForm
+							addToDoItem={this.addToDoItem}
+							onChange={handleChange}
+							onSubmit={handleSubmit}
+						/>
 					</div>
 
 					<ToDosList
