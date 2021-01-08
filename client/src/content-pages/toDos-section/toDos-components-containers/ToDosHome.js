@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Container } from 'reactstrap';
+import { Container, Button } from 'reactstrap';
 
 // import files that are children and add props in the render method
 import ToDosList from './ToDosList';
@@ -12,7 +12,8 @@ export class ToDosHome extends Component {
 		// when state updates it is passed into the list component - new items will be added to list
 		// the list component will be re-rendered with the new item
 		this.state = {
-			toDosArray: []
+			toDosArray: [],
+			isFormDisplayed: false
 		};
 	}
 	initialState = this.state;
@@ -43,6 +44,10 @@ export class ToDosHome extends Component {
 		this.setState({ toDosArray: displayNewToDoItem });
 	};
 
+	handleFormDisplay = () => {
+		this.setState({ isFormDisplayed: true });
+	};
+
 	// required by card passed via list
 	deleteToDoItem = (id) => {
 		// console.log(id); do not remove - checks id captured for debugging
@@ -53,7 +58,7 @@ export class ToDosHome extends Component {
 	};
 
 	render() {
-		const { toDosArray } = this.state;
+		const { toDosArray, isFormDisplayed } = this.state;
 		const { handleChange, handleSubmit } = this.props;
 
 		return (
@@ -63,11 +68,19 @@ export class ToDosHome extends Component {
 						{/* Step 2: pass the add function to the stateful child as props 
 						Toggle this and move this form out of home to header toggle
 						*/}
-						<CreateToDoForm
-							addToDoItem={this.addToDoItem}
-							onChange={handleChange}
-							onSubmit={handleSubmit}
-						/>
+
+						<Container style={{ padding: '.5rem' }}>
+							<h1>My Hip-Hop Organiser</h1>
+							{!isFormDisplayed ? (
+								<Button onClick={this.handleFormDisplay}>Add Stuff</Button>
+							) : (
+								<CreateToDoForm
+									addToDoItem={this.addToDoItem}
+									handleChange={handleChange}
+									handleSubmit={handleSubmit}
+								/>
+							)}
+						</Container>
 					</div>
 
 					<ToDosList

@@ -4,7 +4,7 @@ import uuid from 'uuid';
 
 import { FormInputField } from '../../../common-components-and-containers/forms/FormInputField';
 
-class CreateToDo extends Component {
+class CreateToDoForm extends Component {
 	state = {
 		id: uuid(),
 		title: '',
@@ -60,4 +60,4 @@ class CreateToDo extends Component {
 	}
 }
 
-export default CreateToDo;
+export default CreateToDoForm;
