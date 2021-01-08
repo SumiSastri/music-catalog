@@ -42,6 +42,7 @@ router.post('/', (req, res) => {
 	let { name, condition, valueInUSD } = req.body;
 	let musicItemPayload = new MusicItem({
 		name,
+		albumName,
 		condition,
 		valueInUSD
 	});
