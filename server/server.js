@@ -1,10 +1,7 @@
-// intantiating the express object and its methods
 const express = require('express');
-// middleware to call the methods of the express library should be right on the top
 const app = express();
-// setting the environment for the port
 const port = process.env.PORT || 5000;
-// site security intantiating the libraries
+// site security
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv/config');
@@ -12,8 +9,9 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
-// connects the CRUD route controllers to the server
+// API-controllers
 const musicInventoryRoute = require('./api-route-controllers/musicInventoryRoute.js');
+const blogApiRoute = require('./api-route-controllers/blogApiRoute.js');
 
 // middleware to call the methods of the library on the server
 app.use(helmet());
@@ -26,8 +24,9 @@ const rateLimter = new rateLimit({
 	delayMs: 0
 });
 
-// routing of the api via a single endpoint - which is in the musicInventoryRoute file
+// routes
 app.use('/music-inventory-api', musicInventoryRoute);
+app.use('/blog-api', blogApiRoute);
 
 // parsing JSON from HTTP request headers
 app.use(
@@ -40,8 +39,7 @@ app.get('/', (req, res) => {
 	res.send('app home route working');
 });
 
-const dB = process.env.DB_CONNECTION;
-
+// connect with mongoose to mongoDb Cloud
 mongoose.connect(
 	'dB',
 	{

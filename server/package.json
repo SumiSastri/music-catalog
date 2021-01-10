@@ -8,7 +8,9 @@
 		"start": "node server/server.js",
 		"start-server": "nodemon server/server.js",
 		"start-client": "npm start --prefix client",
-		"start-dev": "concurrently \"npm run start-server\" \"npm run start-client\""
+		"start-dev": "concurrently \"npm run start-server\" \"npm run start-client\"",
+		"debug": "DEBUG=express:* nodemon ./server.js --exec babel-node -e js",
+		"test": "DEBUG=* nodemon ./index.js --exec babel-node -e js"
 	},
 	"author": "srs",
 	"license": "MIT",
@@ -25,6 +27,9 @@
 		"path": "^0.12.7"
 	},
 	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-preset-env": "^1.7.0",
+		"babel-preset-stage-0": "^6.24.1",
 		"nodemon": "^2.0.6"
 	},
 	"repository": {

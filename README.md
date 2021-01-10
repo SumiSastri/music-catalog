@@ -28,6 +28,9 @@ npm install -D cors dotenv path body-parser helmet express-rate-limiter(server-s
 **MongoDB**
 npm install -D  mongoose mongodb (database dependencies)
 
+**Babel**
+npm install --save-dev babel-cli babel-preset-env babel-preset-stage-0
+
 **Package JSON server side**
 ```
   "scripts": {
