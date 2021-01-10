@@ -8,7 +8,9 @@ const MusicPlayListHome = (props) => {
 	return (
 		<div className="p-3 bg-primary my-2 rounded bg-docs-transparent-grid">
 			<Container>
-				<div>{/* <MusicPlayList /> */}</div>
+				{/* <div>
+					<MusicPlayList />
+				</div> */}
 				<AddMusicItemModal />
 			</Container>
 		</div>

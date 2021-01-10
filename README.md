@@ -113,5 +113,3 @@ Access to db
 4. If you have lost your password go to the Atlas tab on the left nav is Database access
 5. Click on edit the data-base and autogenerate a new password
 6. Click update - now save the new password and use this in the .env file
-
-

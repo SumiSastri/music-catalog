@@ -12,7 +12,6 @@ import ToDoIndexPage from '../src/content-pages/toDos-section/toDos-components-c
 import ToDosHome from '../src/content-pages/toDos-section/toDos-components-containers/ToDosHome';
 import BlogsIndexPage from '../src/content-pages/blogs-section/blog-containers-components/BlogsIndexPage';
 import BlogsHome from './content-pages/blogs-section/blog-containers-components/BlogsHome';
-import BlogCard from './content-pages/blogs-section/blog-containers-components/BlogCard';
 import ShopIndexPage from '../src/content-pages/shop-section/shop-components-containers/ShopIndexPage';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -37,7 +36,7 @@ class App extends Component {
 								<ShopIndexPage />
 								<BlogsIndexPage />
 								<Route path="/hip-hop-blogs" component={BlogsHome} />
-								<Route path="/:blogs_id" component={BlogCard} />
+
 								<ToDoIndexPage />
 								<Route path="/hip-hop-organiser" component={ToDosHome} />
 							</div>

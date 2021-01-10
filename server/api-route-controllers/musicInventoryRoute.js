@@ -12,7 +12,6 @@ const MusicItem = require('../server-side-data/mongoose-models/musicItem.js');
 // @methods mongoose schema constructor with the .find()/ .sort(), etc. chained
 
 router.get('/', (req, res) => {
-	// MusicItem.find().sort({ name: +1 }).then((items) => res.json(items));
 	MusicItem.find().sort({ name: +1 }).then((items) => res.json(items)).catch((error) => res.send(error));
 });
 
@@ -35,7 +34,6 @@ router.post('/', (req, res) => {
 		.save()
 		.then((savedItem) => res.status(200).json(savedItem))
 		.catch((err) => res.status(422).json({ message: err }));
-	// res.end();
 });
 
 router.post('/', (req, res) => {
@@ -83,7 +81,6 @@ router.delete('/:id', (req, res, next) => {
 			res.send(itemFound);
 		})
 		.catch((err) => res.status(422).json({ message: err }));
-	// res.end();
 });
 
 module.exports = router;

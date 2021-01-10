@@ -13,8 +13,7 @@ export class BlogsHome extends Component {
 		super(props);
 
 		this.state = {
-			blogs: [],
-			blogPost: null
+			blogs: []
 		};
 	}
 	// state is baked into the render method in the react library
@@ -26,7 +25,7 @@ export class BlogsHome extends Component {
 		this.getPosts();
 	}
 
-	getPosts() {
+	getPosts = () => {
 		axios
 			.get(`http://jsonplaceholder.typicode.com/posts`)
 			.then((response) => {
@@ -36,14 +35,6 @@ export class BlogsHome extends Component {
 			})
 			// check loading - uncomment the code and comment out the set-state above
 			.catch((err) => this.setState({ errors: err.response.data.errors }));
-	}
-
-	displayBlogPost = ({ id, title, body }) => {
-		// console.log(id); do not remove - checks id captured for debugging
-		const displayPostById = this.state.blogs.filter((eachBlog) => {
-			return eachBlog.id === id && eachBlog.title === title && eachBlog.body === body;
-		});
-		this.setState({ blogs: displayPostById });
 	};
 
 	render() {
@@ -62,7 +53,7 @@ export class BlogsHome extends Component {
 			<div>
 				<Container>
 					<ErrorBoundary>
-						<BlogList blogs={blogs} displayBlogPost={this.displayBlogPost} />
+						<BlogList blogs={blogs} />
 					</ErrorBoundary>
 				</Container>
 			</div>

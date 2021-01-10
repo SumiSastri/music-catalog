@@ -17,8 +17,9 @@ class MusicPlayList extends Component {
 	render() {
 		// expect(state).toEqual({musicItem:{musicItem:{musicItems:[{id:
 		const { musicItems } = this.props;
+		// state tree coming back as null why?
 		console.log(musicItems);
-		const musicPlayList = musicItems.length ? (
+		const playList = musicItems.length ? (
 			musicItems.map(({ _id, name }) => {
 				return (
 					<Container>
@@ -49,7 +50,7 @@ class MusicPlayList extends Component {
 			<div className="center">No songs in your playlist</div>
 		);
 
-		return <div>{musicPlayList}</div>;
+		return <div>{playList}</div>;
 	}
 }
 
