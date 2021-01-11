@@ -7,6 +7,10 @@
 - dot-files (configuration - includes ```.env```, ```.eslintrc```, etc.)
 - docs-and-guides - documentation and how to guides for this section
 
+Server side set-up [https://www.youtube.com/watch?v=5yTazHkDR4o&ab_channel=TraversyMedia]
+
+
+
 ### Db architecture
 - MongoDB has models/ collections and schemas
 - Models - represents the collections in the db (user model, product model, etc.)
