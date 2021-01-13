@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Spinner, Container } from 'reactstrap';
+import { Link } from 'react-router-dom';
 // REFACTOR TO REDUX
 // import { connect } from 'react-redux';
 
@@ -11,7 +12,7 @@ import BlogList from './BlogList';
 export class BlogsHome extends Component {
 	constructor(props) {
 		super(props);
-
+		console.log(`logs blogshome props`, this.props);
 		this.state = {
 			blogs: []
 		};
@@ -45,13 +46,24 @@ export class BlogsHome extends Component {
 		// const { blogs } = this.props;
 		// console.log(this.props);
 		return !blogs.length ? (
-			<div className="p-3 bg-warning my-2 rounded bg-docs-transparent-grid">
-				<Spinner color="danger" style={{ width: '3rem', height: '3rem' }} type="grow" />
-				<p>Unable to find blogs, please try again later</p>
+			<div>
+				<Container>
+					<Spinner color="danger" style={{ width: '3rem', height: '3rem' }} type="grow" />
+					<p>Unable to find blogs, please try again later</p>
+				</Container>
 			</div>
 		) : (
 			<div>
-				<Container>
+				<Container
+					className="p-3 bg-primary my-2 rounded bg-docs-transparent-grid"
+					style={{ padding: '.5rem' }}
+				>
+					<h1>My Hip-Hop Blogs</h1>
+					<Link to="/">
+						<h4 color="secondary">Back to Home</h4>
+					</Link>
+				</Container>
+				<Container style={{ padding: '.5rem' }}>
 					<ErrorBoundary>
 						<BlogList blogs={blogs} />
 					</ErrorBoundary>
