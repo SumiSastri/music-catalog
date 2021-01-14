@@ -6,10 +6,9 @@ import BlogHeader from './BlogHeader';
 export class BlogsIndexPage extends Component {
 	constructor(props) {
 		super(props);
+		console.log(` blog index props`, this.props);
 		this.state = {};
 	}
-
-	handleClick() {}
 
 	render() {
 		return (
