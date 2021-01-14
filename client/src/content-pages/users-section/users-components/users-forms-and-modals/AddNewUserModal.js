@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, NavLink } from 'reactstrap';
-
-// connects the react-redux libraries together
-// import { connect } from 'react-redux';
+import uuid from 'uuid';
 
 class AddNewUserModal extends Component {
 	state = {
+		userUUID: uuid(),
 		userName: null,
 		email: null,
 		password: null,
 		isModalOpen: false,
 		errors: null
 	};
-
+	initalState = this.state;
 	// modal now toggled to open from closed
 	handleModalToggle = () => {
 		this.setState({
@@ -25,6 +24,10 @@ class AddNewUserModal extends Component {
 		this.setState({ [event.target.name]: event.target.value });
 	};
 
+	clearFormInputs = () => {
+		this.setState(this.initialState);
+	};
+
 	handleSubmit = (event) => {
 		event.preventDefault();
 		// user payload
@@ -33,16 +36,19 @@ class AddNewUserModal extends Component {
 			email: this.state.email,
 			password: this.state.password
 		};
-		axios.post('/api-users', newRegisteredUser).then(() => this.props.history.push('/')).catch((err) => {
-			console.log('err is ', err);
-			this.setState({ errors: err.response.data.errors });
-		});
-		// close modal
-		this.handleModalToggle();
+		axios
+			.post('/api-users', newRegisteredUser)
+			.then(() => this.props.history.push('/'))
+			.catch((err) => {
+				console.log('err is ', err);
+				this.setState({ errors: err.response.data.errors });
+			})
+			.then(() => this.clearFormInputs())
+			.then(() => this.handleModalToggle());
 	};
 
 	render() {
-		const { userName, email, password } = this.state;
+		const { userUUID } = this.state;
 
 		return (
 			<div>
@@ -62,8 +68,7 @@ class AddNewUserModal extends Component {
 
 					<ModalBody>
 						<Form onSubmit={this.handleSubmit}>
-							<FormGroup>
-								<h5>{userName}</h5>
+							<FormGroup name="userId" id={userUUID}>
 								<Input
 									name="userName"
 									type="text"
@@ -72,7 +77,6 @@ class AddNewUserModal extends Component {
 									onChange={this.handleChange}
 								/>
 								<Label for="userName">handle/user name</Label>
-								<h5>{email}</h5>
 								<Input
 									name="email"
 									type="email"
@@ -81,7 +85,7 @@ class AddNewUserModal extends Component {
 									onChange={this.handleChange}
 								/>
 								<Label for="Email">Email</Label>
-								<h5>{password}</h5>
+								{/* <h5>{password}</h5> checks password submitted correctly*/}
 								<Input
 									name="password"
 									type="password"
@@ -90,12 +94,18 @@ class AddNewUserModal extends Component {
 									onChange={this.handleChange}
 								/>
 								<Label for="Password">Password</Label>
-								<Button color="primary" style={{ marginTop: '2rem' }} block>
+								<Button
+									onSubmit={this.handleSubmit}
+									color="primary"
+									style={{ marginTop: '2rem' }}
+									block
+								>
 									<i className="fas fa-hand-spock" /> Save
 								</Button>
 							</FormGroup>
 						</Form>
 					</ModalBody>
+					{/* header moved to handle modal close slightly differently */}
 					<ModalHeader toggle={this.handleModalToggle}>
 						<div style={{ marginLeft: '5rem' }} className="float-right">
 							<i className="fas fa-drum" style={{ marginRight: '3rem' }} />No thanks
@@ -106,7 +116,5 @@ class AddNewUserModal extends Component {
 		);
 	}
 }
-
-// use mapStateToProps here then use the connect method to connect react to redux
 
 export default AddNewUserModal;
