@@ -10,6 +10,7 @@ import ErrorBoundary from '../../common-components-and-containers/error-boundary
 class MusicPlayList extends Component {
 	componentDidMount() {
 		this.props.getMusicItems();
+		console.log(this.props);
 	}
 	handleDelete = (id) => {
 		this.props.deleteMusicItem(id);

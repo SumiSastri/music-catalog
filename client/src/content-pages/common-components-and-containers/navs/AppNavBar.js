@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Container } from 'reactstrap';
 import logo from '../../../assets/logo.png';
 import navImage from '../../../assets/ilovehiphop.jpg';
+import AddNewUserModal from '../../users-section/users-components/users-forms-and-modals/AddNewUserModal';
 
 class AppNavBar extends Component {
 	state = {
@@ -20,8 +21,8 @@ class AppNavBar extends Component {
 	// no constructor needed
 	render() {
 		const logoStyle = {
-			height: '75px',
-			width: '75px',
+			height: '100px',
+			width: 'auto',
 			position: 'top-right'
 		};
 		const navImageStyle = {
@@ -36,13 +37,11 @@ class AppNavBar extends Component {
 		const navItemTextStyle = {
 			fontSize: '15px',
 			textAlign: 'center',
-			color: 'navy',
-			backgroundColor: 'lightBlue'
+			color: 'white'
 		};
 
 		const navItemBoxStyle = {
-			height: '20px',
-			width: 'auto'
+			width: '20px'
 		};
 		// expand sm makes it responsive on small screens
 		// container/ brand/ toggler/ collapse - this is the order
@@ -68,7 +67,9 @@ class AppNavBar extends Component {
 									<img style={navImageStyle} alt={'nav-pix'} src={navImage} />
 								</NavbarBrand>
 								<NavItem style={navItemBoxStyle}>
-									<NavLink style={navItemTextStyle}>Register / Log-in</NavLink>
+									<NavLink style={navItemTextStyle}>Register</NavLink>
+									<AddNewUserModal />
+									<NavLink style={navItemTextStyle}>Login</NavLink>
 								</NavItem>
 							</Nav>
 						</Collapse>
