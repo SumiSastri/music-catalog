@@ -4,10 +4,6 @@ import { Link, withRouter } from 'react-router-dom';
 
 import iluvhiphop from '../../../assets/ilovehiphop.jpg';
 
-// extracts as props the state items required from blogIndex
-// passed from blogList
-// prop-drilling or tunneling example - router is a separate library
-// props from this library only are one level-deep and need to be passed down like state
 const BlogCard = ({ id, body, title, routerHistory }) => {
 	return (
 		<div id={id} className="p-3 bg-primary my-2 rounded bg-docs-transparent-grid">

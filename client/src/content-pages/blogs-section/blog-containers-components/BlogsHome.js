@@ -12,17 +12,13 @@ import BlogList from './BlogList';
 export class BlogsHome extends Component {
 	constructor(props) {
 		super(props);
-		console.log(` constructor-props`, this.props);
+		// console.log(` blog props`, this.props);
 		this.state = {
 			blogs: []
 		};
 	}
 	initialState = this.state;
 
-	// state is baked into the render method in the react library
-	// in the life-cycle methods state is not bound to the component
-	// binding state to the component is implicit with arrow functions
-	// or as in this section bound with the ```this``` key word
 	componentDidMount() {
 		// console.log('logs routerprops on component mounting', this.props);
 		// props include the router props but these come from home so only one level deep
@@ -42,14 +38,13 @@ export class BlogsHome extends Component {
 	};
 
 	render() {
-		// state is deconstructed in the render method not in the lifecycle or utility functions
 		// REFACTOR TO REDUX
 		// const { blogs } = this.props;
 		const { blogs } = this.state;
 		const routerHistory = this.props.history;
 		// console.log(this.props.history);
-		console.log('routerHistory', routerHistory);
-		// console.log('2 renders', blogs and router history);
+		// console.log('routerHistory', routerHistory);
+
 		return !blogs.length ? (
 			<div>
 				<Container>
