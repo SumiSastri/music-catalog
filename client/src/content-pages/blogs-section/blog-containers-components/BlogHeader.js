@@ -7,7 +7,7 @@ const BlogHeader = (props) => {
 	return (
 		<Toast>
 			<ToastHeader icon="primary">Hip-Hop Blogs</ToastHeader>
-			<ToastBody>Get the latest news and concert updates</ToastBody>
+			<ToastBody color="success">Get the latest news and concert updates</ToastBody>
 			<Link to="/hip-hop-blogs">
 				<Button color="warning">Go to Blog Page</Button>
 			</Link>

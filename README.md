@@ -52,6 +52,9 @@ npm install --save-dev babel-cli babel-preset-env babel-preset-stage-0
 - in the client directory ```npx create-react-app .```
 - you can also create the app in the root directory and name the app client ```npx create-react-app client```
 
+**React-Router**
+- npm install -D react-router-dom
+
 **Redux**
 - npm install redux react-redux redux-thunk redux-devtools-extension
 

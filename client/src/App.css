@@ -22,7 +22,8 @@ body {
 	font-family: 'Indie Flower', cursive;
 	margin: 0 px;
 }
-h4 {
+h4,
+p {
 	font-family: 'Indie Flower', cursive;
 	color: white;
 }

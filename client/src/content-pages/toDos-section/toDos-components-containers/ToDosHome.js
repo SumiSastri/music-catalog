@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Container, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 // import files that are children and add props in the render method
 import ToDosList from './ToDosList';
@@ -9,6 +10,7 @@ import CreateToDoForm from './toDo-forms-and-modals/CreateToDoForm';
 export class ToDosHome extends Component {
 	constructor(props) {
 		super(props);
+		console.log(`logs todoshome props`, this.props);
 		// when state updates it is passed into the list component - new items will be added to list
 		// the list component will be re-rendered with the new item
 		this.state = {
@@ -71,6 +73,9 @@ export class ToDosHome extends Component {
 
 						<Container style={{ padding: '.5rem' }}>
 							<h1>My Hip-Hop Organiser</h1>
+							<Link to="/">
+								<h4 color="secondary">Back to Home</h4>
+							</Link>
 							{!isFormDisplayed ? (
 								<Button onClick={this.handleFormDisplay}>Add Stuff</Button>
 							) : (
