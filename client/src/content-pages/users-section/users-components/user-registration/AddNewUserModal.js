@@ -52,9 +52,9 @@ class AddNewUserModal extends Component {
 
 		return (
 			<div>
-				<Label for="add-button">
-					<NavLink color="primary" style={{ marginBottom: '2rem' }} onClick={this.handleModalToggle}>
-						<span>Register</span>
+				<Label for="add-user">
+					<NavLink style={{ marginLeft: '4rem', marginBottom: '2rem' }} onClick={this.handleModalToggle}>
+						<h5>Register</h5>
 					</NavLink>
 				</Label>
 				{/* from closed state the toggle opens modal and the modal header */}

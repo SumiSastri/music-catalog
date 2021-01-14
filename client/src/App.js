@@ -31,14 +31,15 @@ class App extends Component {
 										<Route exact path="/" component={AppNavBar} />
 									</div>
 								</Container>
-								<MusicPlayListHome />
-								<Route path="/hip-hop-playlist" component={MusicPlayListHome} />
+
 								<ShopIndexPage />
 								<BlogsIndexPage />
 								<Route path="/hip-hop-blogs" component={BlogsHome} />
 								<Route path="/hip-hop-blogs/:blog_id" component={BlogCard} />
 								<ToDoIndexPage />
 								<Route path="/hip-hop-organiser" component={ToDosHome} />
+								<MusicPlayListHome />
+								<Route path="/hip-hop-playlist" component={MusicPlayListHome} />
 							</div>
 						</Provider>
 					</Fragment>
