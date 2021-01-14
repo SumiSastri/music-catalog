@@ -11,6 +11,7 @@ export class BlogsIndexPage extends Component {
 	}
 
 	render() {
+		console.log(`blogs router history`, this.props.history);
 		return (
 			<Container>
 				<div className="p-3 bg-primary my-2 rounded bg-docs-transparent-grid">

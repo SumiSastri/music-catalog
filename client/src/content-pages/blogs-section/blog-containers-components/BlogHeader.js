@@ -1,18 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import { Toast, ToastBody, ToastHeader, Button } from 'reactstrap';
 
 const BlogHeader = (props) => {
+	console.log(`blogsheader props`, props);
 	return (
 		<Toast>
 			<ToastHeader icon="primary">Hip-Hop Blogs</ToastHeader>
 			<ToastBody color="success">Get the latest news and concert updates</ToastBody>
-			<Link to="/hip-hop-blogs">
-				<Button color="warning">Go to Blog Page</Button>
-			</Link>
+			<Button onClick={() => props.history.push('/hip-hop-blogs')} color="warning">
+				Go to Blog Page
+			</Button>
 		</Toast>
 	);
 };
 
-export default BlogHeader;
+export default withRouter(BlogHeader);

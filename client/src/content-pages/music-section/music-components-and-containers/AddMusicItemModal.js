@@ -48,9 +48,10 @@ class AddMusicItemModal extends Component {
 		return (
 			<div>
 				<Label for="add-button">
-					<Button color="primary" style={{ marginBottom: '2rem' }} onClick={this.toggle}>
+					<Button color="info" style={{ marginBottom: '2rem' }} onClick={this.toggle}>
 						<i className="fas fa-user-plus" />
-						<br />Your personal hip-hop playlist
+						<hr />
+						<h4>Add to my PlayList</h4>
 					</Button>
 				</Label>
 

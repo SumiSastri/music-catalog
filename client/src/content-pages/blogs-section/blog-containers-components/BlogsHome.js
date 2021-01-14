@@ -12,7 +12,7 @@ import BlogList from './BlogList';
 export class BlogsHome extends Component {
 	constructor(props) {
 		super(props);
-		// console.log(` blog props`, this.props);
+		console.log(` blog props`, this.props);
 		this.state = {
 			blogs: []
 		};
@@ -20,7 +20,7 @@ export class BlogsHome extends Component {
 	initialState = this.state;
 
 	componentDidMount() {
-		// console.log('logs routerprops on component mounting', this.props);
+		console.log('logs routerprops on component mounting', this.props);
 		// props include the router props but these come from home so only one level deep
 		this.getPosts();
 	}
@@ -29,7 +29,7 @@ export class BlogsHome extends Component {
 		axios
 			.get(`http://jsonplaceholder.typicode.com/posts`)
 			.then((response) => {
-				// console.log(`logs api call - get response:`, response);
+				console.log(`logs api call - get response:`, response);
 				this.setState({ blogs: response.data.slice(0, 4) });
 				// this.setState({});
 			})
@@ -42,7 +42,7 @@ export class BlogsHome extends Component {
 		// const { blogs } = this.props;
 		const { blogs } = this.state;
 		const routerHistory = this.props.history;
-		// console.log(this.props.history);
+		console.log(this.props.history);
 		// console.log('routerHistory', routerHistory);
 
 		return !blogs.length ? (

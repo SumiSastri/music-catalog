@@ -8,6 +8,7 @@ import store from '../src/client-side-data/redux-store/store';
 
 import AppNavBar from './content-pages/common-components-and-containers/navs/AppNavBar';
 import MusicPlayListHome from '../src/content-pages/music-section/music-components-and-containers/MusicPlayListHome';
+import MusicPlayListIndexPage from '../src/content-pages/music-section/music-components-and-containers/MusicPlayListIndexPage';
 import ToDoIndexPage from '../src/content-pages/toDos-section/toDos-components-containers/ToDoIndexPage';
 import ToDosHome from '../src/content-pages/toDos-section/toDos-components-containers/ToDosHome';
 import BlogsIndexPage from '../src/content-pages/blogs-section/blog-containers-components/BlogsIndexPage';
@@ -31,15 +32,14 @@ class App extends Component {
 										<Route exact path="/" component={AppNavBar} />
 									</div>
 								</Container>
-
-								<ShopIndexPage />
 								<BlogsIndexPage />
 								<Route path="/hip-hop-blogs" component={BlogsHome} />
 								<Route path="/hip-hop-blogs/:blog_id" component={BlogCard} />
 								<ToDoIndexPage />
 								<Route path="/hip-hop-organiser" component={ToDosHome} />
-								<MusicPlayListHome />
+								<MusicPlayListIndexPage />
 								<Route path="/hip-hop-playlist" component={MusicPlayListHome} />
+								<ShopIndexPage />
 							</div>
 						</Provider>
 					</Fragment>

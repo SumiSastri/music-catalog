@@ -7,7 +7,7 @@ import iluvhiphop from '../../../assets/ilovehiphop.jpg';
 const BlogCard = ({ id, body, title, routerHistory }) => {
 	return (
 		<div id={id} className="p-3 bg-primary my-2 rounded bg-docs-transparent-grid">
-			<Link to="/hip-hop-blogs/:blog_id">
+			<Link to="/hip-hop-blogs/">
 				<Container className="themed-container" fluid={true}>
 					<Row>
 						<Col sm="6">
