@@ -12,17 +12,20 @@ import BlogList from './BlogList';
 export class BlogsHome extends Component {
 	constructor(props) {
 		super(props);
-		console.log(`logs blogshome props`, this.props);
+		console.log(` constructor-props`, this.props);
 		this.state = {
 			blogs: []
 		};
 	}
+	initialState = this.state;
+
 	// state is baked into the render method in the react library
 	// in the life-cycle methods state is not bound to the component
 	// binding state to the component is implicit with arrow functions
 	// or as in this section bound with the ```this``` key word
 	componentDidMount() {
-		console.log(this.props);
+		// console.log('logs routerprops on component mounting', this.props);
+		// props include the router props but these come from home so only one level deep
 		this.getPosts();
 	}
 
@@ -30,7 +33,7 @@ export class BlogsHome extends Component {
 		axios
 			.get(`http://jsonplaceholder.typicode.com/posts`)
 			.then((response) => {
-				console.log(`logs get response:`, response);
+				// console.log(`logs api call - get response:`, response);
 				this.setState({ blogs: response.data.slice(0, 4) });
 				// this.setState({});
 			})
@@ -40,11 +43,13 @@ export class BlogsHome extends Component {
 
 	render() {
 		// state is deconstructed in the render method not in the lifecycle or utility functions
-		const { blogs } = this.state;
-		console.log(blogs);
 		// REFACTOR TO REDUX
 		// const { blogs } = this.props;
-		// console.log(this.props);
+		const { blogs } = this.state;
+		const routerHistory = this.props.history;
+		// console.log(this.props.history);
+		console.log('routerHistory', routerHistory);
+		// console.log('2 renders', blogs and router history);
 		return !blogs.length ? (
 			<div>
 				<Container>
@@ -65,7 +70,7 @@ export class BlogsHome extends Component {
 				</Container>
 				<Container style={{ padding: '.5rem' }}>
 					<ErrorBoundary>
-						<BlogList blogs={blogs} />
+						<BlogList blogs={blogs} routerHistory={routerHistory} />
 					</ErrorBoundary>
 				</Container>
 			</div>

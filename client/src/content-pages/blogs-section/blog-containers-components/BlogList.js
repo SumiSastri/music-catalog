@@ -1,17 +1,17 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import BlogCard from './BlogCard';
 
 // Parent jsx attribute passed props in BlogList
 // Child BlogCard state passed down one more time via BlogCard attribute
-
-const BlogList = ({ blogs, blogId }) => {
-	// passes the state tree down as props
+// router is a separate library history is a prop of this library
+// prop-tunneling from parent home to list to card where it is consumed
+const BlogList = ({ blogs, routerHistory }) => {
 	const displayBlogList = blogs.map((blog, i) => {
 		return (
 			<div key={blogs[i].id} className="p-3 bg-primary my-2 rounded bg-docs-transparent-grid">
-				<BlogCard id={blogs[i].id} title={blogs[i].title} body={blogs[i].body} blogId={blogId} />
+				<BlogCard id={blogs[i].id} title={blogs[i].title} body={blogs[i].body} />
 			</div>
 		);
 	});

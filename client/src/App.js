@@ -29,17 +29,14 @@ class App extends Component {
 								<Container>
 									<div className="p-3 bg-primary my-2 rounded bg-docs-transparent-grid">
 										<Route exact path="/" component={AppNavBar} />
-										{/* <AppNavBar /> */}
 									</div>
 								</Container>
 								<MusicPlayListHome />
 								<Route path="/hip-hop-playlist" component={MusicPlayListHome} />
 								<ShopIndexPage />
-
 								<BlogsIndexPage />
 								<Route path="/hip-hop-blogs" component={BlogsHome} />
 								<Route path="/hip-hop-blogs/:blog_id" component={BlogCard} />
-
 								<ToDoIndexPage />
 								<Route path="/hip-hop-organiser" component={ToDosHome} />
 							</div>
