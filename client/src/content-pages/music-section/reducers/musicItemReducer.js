@@ -28,7 +28,7 @@ export default function(state = initialState, action) {
 			return {
 				...state,
 				musicItems: action.payload,
-				loading: false
+				loading: true
 			};
 		case DELETE_MUSIC_ITEM:
 			return {

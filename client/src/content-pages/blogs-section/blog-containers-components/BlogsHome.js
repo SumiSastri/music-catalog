@@ -7,12 +7,12 @@ import ErrorBoundary from '../../common-components-and-containers/error-boundary
 import BlogList from './BlogList';
 
 // STEP 5 - connect the action creators to the component and the reducer
-import { getPosts } from '../blog-actions/BlogActionCreators';
+import { getBlogPosts } from '../blog-actions/BlogActionCreators';
 
 export class BlogsHome extends Component {
 	componentDidMount() {
-		this.props.getPosts();
-		console.log(`logs componentDidMount props`, getPosts);
+		this.props.getBlogPosts();
+		console.log(`logs componentDidMount props`, getBlogPosts);
 		// STEP 6 DEBUG THIS POINT OF FAILURE
 	}
 	render() {
@@ -23,7 +23,15 @@ export class BlogsHome extends Component {
 
 		return !blogPosts.length ? (
 			<div>
-				<Container>
+				<Container
+					className="p-3 bg-primary my-2 rounded bg-docs-transparent-grid"
+					style={{ padding: '.5rem' }}
+				>
+					<h1>My Hip-Hop Blogs</h1>
+					<Link to="/">
+						<h4 color="secondary">Back to Home</h4>
+					</Link>
+
 					<Spinner color="danger" style={{ width: '3rem', height: '3rem' }} type="grow" />
 					<p>Unable to find blogs, please try again later</p>
 				</Container>
@@ -67,6 +75,6 @@ const mapStateToProps = (state) => {
 // moved to action-creators - this has to follow the mapStatetoProps
 // const mapDispatchToProps = (dispatch) => { // dispatch an action payload}
 
-export default connect(mapStateToProps, { getPosts })(BlogsHome);
+export default connect(mapStateToProps, { getBlogPosts })(BlogsHome);
 // export default connect(BlogHome);
 // export default BlogsHome;

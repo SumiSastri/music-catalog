@@ -2,7 +2,7 @@ import axios from 'axios';
 import { GET_BLOG_POSTS, DELETE_BLOG_POST, LOAD_BLOG_POSTS } from './BlogActionTypes';
 
 // REFACTOR TO REDUX curry the function to the dispatch method from redux
-export const getPosts = () => (dispatch) => {
+export const getBlogPosts = () => (dispatch) => {
 	dispatch(setBlogPostsLoading());
 	axios.get(`http://jsonplaceholder.typicode.com/posts`).then((response) =>
 		dispatch({

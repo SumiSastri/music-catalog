@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-// import MusicPlayList from './MusicPlayList';
+import MusicPlayList from './MusicPlayList';
 import AddMusicItemModal from './AddMusicItemModal';
 
 const MusicPlayListHome = (props) => {
@@ -13,9 +13,9 @@ const MusicPlayListHome = (props) => {
 				<Link to="/">
 					<h4 color="secondary">Back to Home</h4>
 				</Link>
-				{/* <div>
+				<div>
 					<MusicPlayList />
-				</div> */}
+				</div>
 				<br />
 			</Container>
 			<Container style={{ padding: '.5rem' }}>

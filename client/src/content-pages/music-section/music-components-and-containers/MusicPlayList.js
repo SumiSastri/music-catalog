@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
+import { Container, ListGroup, ListGroupItem, Button, Spinner } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -48,17 +48,21 @@ class MusicPlayList extends Component {
 				);
 			})
 		) : (
-			<div className="center">No songs in your playlist</div>
+			<Container>
+				<Spinner color="danger" style={{ width: '3rem', height: '3rem' }} type="grow" />
+				<p>No Songs in da House - try again later</p>
+			</Container>
+			// <div className="center">No songs in your playlist</div>
 		);
 
 		return <div>{playList}</div>;
 	}
 }
 // get the function that makes the api call and get state of the component which is an object
-// MusicPlayList.propTypes = {
-// 	getMusicItems: PropTypes.func.isRequired,
-// 	musicItems: PropTypes.object.isRequired
-// };
+MusicPlayList.propTypes = {
+	getMusicItems: PropTypes.func.isRequired,
+	musicItems: PropTypes.object.isRequired
+};
 
 const mapStateToProps = (state) => ({
 	musicItems: state.musicItems
