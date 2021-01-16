@@ -1,29 +1,28 @@
 import React, { Component } from 'react';
 import { Spinner, Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
-// REFACTOR TO REDUX Step 1.
 import { connect } from 'react-redux';
 
-// Error Boundary required to consume both BlogList and BlogCard
 import ErrorBoundary from '../../common-components-and-containers/error-boundary/ErrorBoundary';
 import BlogList from './BlogList';
+// STEP 5 - connect the action creators to the component and the reducer
 import { getPosts } from '../blog-actions/BlogActionCreators';
 
-// STEP 3: remove state from component lift it to reducer
 export class BlogsHome extends Component {
-	// REFACTOR REDUX step 3 remove component did mount as this function now is dependent on the state set in reducer
 	// componentDidMount() {
 	// 	getPosts();
 	// }
-	// REFACTOR TO REDUX step 2: create action types and creators remove functionality from component
+
 	render() {
-		// REFACTOR TO REDUX Step 3: state item required by this component now imported as props
+		// STEP 5: import state from the reducer now as a prop
+		// the name has changed to identify it as different from the state tree
 		const { blogPosts } = this.props;
 		// const { blogs } = this.state;
 		const routerHistory = this.props.history;
 		console.log(this.props.history);
+		console.log(this.props);
 		// console.log('routerHistory', routerHistory);
-		// REFACTOR TO REDUX Step 3: array name changed in reducer - change here
+		// step 5: array name changed in reducer - change here
 		return !blogPosts.length ? (
 			<div>
 				<Container>
@@ -44,7 +43,7 @@ export class BlogsHome extends Component {
 				</Container>
 				<Container style={{ padding: '.5rem' }}>
 					<ErrorBoundary>
-						{/* state name changed REDUX REFACTOR 3 Lifting state into reducer */}
+						{/* state name changed STEP 5 Lifting state into reducer */}
 						<BlogList blogPosts={blogPosts} routerHistory={routerHistory} />
 					</ErrorBoundary>
 				</Container>
@@ -53,13 +52,15 @@ export class BlogsHome extends Component {
 	}
 }
 
-// REFACTOR TO REDUX
-// const mapStateToProps = (state) => {
-// 	return {
-// 		blogs: state.blogs
-// 	};
-// };
+// STEP 5  - now map state to props
+// the state tree is blogs the state we are changing in this component is the blogPosts array
+const mapStateToProps = (state) => {
+	return {
+		// replaces set-state
+		blogPosts: state.blogPosts
+	};
+};
 
-// REFACTOR TO REDUX Step 1.
-export default connect(BlogHome);
+export default connect(mapStateToProps, { getPosts })(BlogHome);
+// export default connect(BlogHome);
 // export default BlogsHome;

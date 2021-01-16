@@ -2,12 +2,12 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import BlogCard from './BlogCard';
-
-const BlogList = ({ blogs, routerHistory }) => {
-	const displayBlogList = blogs.map((blog, i) => {
+// STEP 5: Check where state is used - as the name has changed - change it down the prop tree
+const BlogList = ({ blogPosts, routerHistory }) => {
+	const displayBlogList = blogPosts.map((eachBlogPost, i) => {
 		return (
-			<div key={blogs[i].id} className="p-3 bg-primary my-2 rounded bg-docs-transparent-grid">
-				<BlogCard id={blogs[i].id} title={blogs[i].title} body={blogs[i].body} />
+			<div key={blogPosts[i].id} className="p-3 bg-primary my-2 rounded bg-docs-transparent-grid">
+				<BlogCard id={blogPosts[i].id} title={blogPosts[i].title} body={blogPosts[i].body} />
 			</div>
 		);
 	});

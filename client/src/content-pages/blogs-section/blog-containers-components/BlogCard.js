@@ -28,4 +28,5 @@ const BlogCard = ({ id, body, title, routerHistory }) => {
 		</div>
 	);
 };
+
 export default withRouter(BlogCard);

@@ -10,7 +10,9 @@ const initialState = {
 
 const blogReducers = (state = initialState, action) => {
     switch (action.type) {
-        // this is the musicItems array not the state tree which is musicItem spread as state with musicItems and loading
+        // this is blogPosts array not blogs which is the state tree passed to root reducers
+        // the actions now calling the data from api in the actions creators and imported 
+        // - payload is the response payload of api-call
         case GET_BLOG_POSTS:
             return {
                 ...state,
@@ -30,6 +32,3 @@ const blogReducers = (state = initialState, action) => {
 // 		};
 // 	}
 // 	initialState = this.state;
-
-
-
