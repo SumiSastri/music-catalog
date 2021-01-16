@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Spinner, Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
-// REFACTOR TO REDUX
+// REFACTOR TO REDUX Step 1.
 import { connect } from 'react-redux';
 
 // Error Boundary required to consume both BlogList and BlogCard
 import ErrorBoundary from '../../common-components-and-containers/error-boundary/ErrorBoundary';
 import BlogList from './BlogList';
 
+// STEP 3: remove state from component lift it to reducer
 export class BlogsHome extends Component {
 	constructor(props) {
 		super(props);
@@ -24,6 +25,7 @@ export class BlogsHome extends Component {
 		// props include the router props but these come from home so only one level deep
 		this.getPosts();
 	}
+	// REFACTOR TO REDUX step 2: create action types and creators remove functionality from component
 
 	render() {
 		// REFACTOR TO REDUX
@@ -67,6 +69,6 @@ export class BlogsHome extends Component {
 // 	};
 // };
 
-// REFACTOR TO REDUX
-export default connect(mapStateToProps)(BlogHome);
+// REFACTOR TO REDUX Step 1.
+export default connect(BlogHome);
 // export default BlogsHome;
