@@ -3,6 +3,6 @@ import musicItemRootReducer from '../music-section/reducers/musicItemRootReducer
 import blogRootReducer from '../blogs-section/blog-reducers/blogRootReducer';
 
 export default combineReducers({
-	musicItem: musicItemRootReducer,
-	blogs: blogRootReducer
+	musicItems: musicItemRootReducer,
+	blogPosts: blogRootReducer
 });

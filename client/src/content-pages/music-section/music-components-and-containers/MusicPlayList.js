@@ -17,8 +17,8 @@ class MusicPlayList extends Component {
 	};
 	render() {
 		// expect(state).toEqual({musicItem:{musicItem:{musicItems:[{id:
+		// state.state.props
 		const { musicItems } = this.props;
-		// state tree coming back as null why?
 		console.log(musicItems);
 		const playList = musicItems.length ? (
 			musicItems.map(({ _id, name }) => {
@@ -54,14 +54,14 @@ class MusicPlayList extends Component {
 		return <div>{playList}</div>;
 	}
 }
-
-MusicPlayList.propTypes = {
-	getMusicItems: PropTypes.func.isRequired,
-	musicItem: PropTypes.object.isRequired
-};
+// get the function that makes the api call and get state of the component which is an object
+// MusicPlayList.propTypes = {
+// 	getMusicItems: PropTypes.func.isRequired,
+// 	musicItems: PropTypes.object.isRequired
+// };
 
 const mapStateToProps = (state) => ({
-	musicItem: state.musicItem
+	musicItems: state.musicItems
 });
 
 export default connect(mapStateToProps, { getMusicItems, deleteMusicItem })(MusicPlayList);

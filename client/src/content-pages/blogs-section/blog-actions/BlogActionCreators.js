@@ -5,12 +5,18 @@ import { GET_BLOG_POSTS, DELETE_BLOG_POST, LOAD_BLOG_POSTS } from './BlogActionT
 
 // REFACTOR TO REDUX curry the function to the dispatch method from redux
 export const getPosts = () => (dispatch) => {
+	dispatch(setBlogPostsLoading());
 	axios.get(`http://jsonplaceholder.typicode.com/posts`).then((response) =>
 		dispatch({
 			type: GET_BLOG_POSTS,
 			payload: response.data.slice(0, 4)
 		})
 	);
+};
+export const setBlogPostsLoading = () => {
+	return {
+		type: LOAD_BLOG_POSTS
+	};
 };
 // REFACTOR TO REDUX - take the function out of the component and replace as above
 // getPosts = () => {

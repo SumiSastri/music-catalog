@@ -1,6 +1,6 @@
 import uuid from 'uuid';
 
-const mockBlogItems = [
+const mockBlogPosts = [
 	{
 		id: uuid(),
 		title: 'French Hip-Hop',
@@ -20,4 +20,4 @@ const mockBlogItems = [
 			'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur voluptate laborum perferendis, enim repellendus ipsam sunt autem at odit dolorum, voluptatum suscipit iste harum cum magni itaque animi laudantium fugiat'
 	}
 ];
-export default mockMusicItems;
+export default mockBlogPosts;
