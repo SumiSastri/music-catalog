@@ -1,11 +1,25 @@
 // REDUX REFACTOR : step 3 lift state out of component and set it in reducer
+// note the state tree is called blogs{ with the state of blogPosts:[]}
+import {
+	GET_BLOG_POSTS,
+} from '../blog-actions/BlogActionCreators';
+
 const initialState = {
-	blogs: []
+	blogPosts: []
 };
 
 const blogReducers = (state = initialState, action) => {
-	return state;
+    switch (action.type) {
+        // this is the musicItems array not the state tree which is musicItem spread as state with musicItems and loading
+        case GET_BLOG_POSTS:
+            return {
+                ...state,
+                blogPosts: action.payload,
+            };
+            default:
+                return state;
 };
+
 
 // export class BlogsHome extends Component {
 // 	constructor(props) {
@@ -16,3 +30,6 @@ const blogReducers = (state = initialState, action) => {
 // 		};
 // 	}
 // 	initialState = this.state;
+
+
+
