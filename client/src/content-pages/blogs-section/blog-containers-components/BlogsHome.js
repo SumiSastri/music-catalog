@@ -16,15 +16,11 @@ export class BlogsHome extends Component {
 		// STEP 6 DEBUG THIS POINT OF FAILURE
 	}
 	render() {
-		// STEP 5: import state from the reducer now as a prop
-		// the name has changed to identify it as different from the state tree
 		const { blogPosts } = this.props;
-		// const { blogs } = this.state;
 		const routerHistory = this.props.history;
 		console.log(`logs blogs router history`, this.props.history);
 		console.log(`logs props of imported blogPosts from reducer`, this.props);
-		// console.log('routerHistory', routerHistory);
-		// step 5: array name changed in reducer - change here
+
 		return !blogPosts.length ? (
 			<div>
 				<Container>
@@ -45,7 +41,6 @@ export class BlogsHome extends Component {
 				</Container>
 				<Container style={{ padding: '.5rem' }}>
 					<ErrorBoundary>
-						{/* state name changed STEP 5 Lifting state into reducer */}
 						<BlogList blogPosts={blogPosts} routerHistory={routerHistory} />
 					</ErrorBoundary>
 				</Container>

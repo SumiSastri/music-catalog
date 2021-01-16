@@ -1,6 +1,4 @@
-// REDUX REFACTOR
 import axios from 'axios';
-// import constants and define functions in action-creators
 import { GET_BLOG_POSTS, DELETE_BLOG_POST, LOAD_BLOG_POSTS } from './BlogActionTypes';
 
 // REFACTOR TO REDUX curry the function to the dispatch method from redux
