@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Spinner, Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
 // REFACTOR TO REDUX
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 // Error Boundary required to consume both BlogList and BlogCard
 import ErrorBoundary from '../../common-components-and-containers/error-boundary/ErrorBoundary';
@@ -80,5 +80,5 @@ export class BlogsHome extends Component {
 // };
 
 // REFACTOR TO REDUX
-// export default connect(mapStateToProps)(BlogHome);
-export default BlogsHome;
+export default connect(mapStateToProps)(BlogHome);
+// export default BlogsHome;
