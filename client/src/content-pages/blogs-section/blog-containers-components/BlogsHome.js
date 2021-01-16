@@ -25,18 +25,6 @@ export class BlogsHome extends Component {
 		this.getPosts();
 	}
 
-	getPosts = () => {
-		axios
-			.get(`http://jsonplaceholder.typicode.com/posts`)
-			.then((response) => {
-				console.log(`logs api call - get response:`, response);
-				this.setState({ blogs: response.data.slice(0, 4) });
-				// this.setState({});
-			})
-			// check loading - uncomment the code and comment out the set-state above
-			.catch((err) => this.setState({ errors: err.response.data.errors }));
-	};
-
 	render() {
 		// REFACTOR TO REDUX
 		// const { blogs } = this.props;
