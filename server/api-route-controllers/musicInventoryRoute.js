@@ -2,12 +2,13 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+
 // mongoose models need to be imported
 const MusicItem = require('../server-side-data/mongoose-models/musicItem.js');
 
-// @GET/route '/music-inventory-api' PUBLIC NOT AUTHENTICATED ROUTE (DISPLAYDATA-GET)
-// @desc fetch & read info from dB
-// @methods mongoose schema constructor with the .find()/ .sort(), etc. chained
+// @GET/route 	'/music-inventory-api' PUBLIC
+// @desc 	    FETCH & READ
+// @methods 	mongoose schema constructor with the .find()/ .sort(), etc. chained
 
 router.get('/', (req, res) => {
 	MusicItem.find()
@@ -17,9 +18,9 @@ router.get('/', (req, res) => {
 });
 //
 
-// @POST/route '/music-inventory-api' PUBLIC NOT AUTHENTICATED ROUTE (CREATE-POST)
-// @desc get user update from FE and write data to db
-// @methods mongoose schema constructor assigned to the payload/or post params/ or API request body
+// @POST/route 	'/music-inventory-api' PUBLIC
+// @desc 		CREATE
+// @methods 	mongoose schema constructor assigned to the payload/or post params/ or API request body
 // the request body is in JSON the payload saved, converted to json if a 200 response rcvd if not errors caught
 
 router.post('/', (req, res) => {
