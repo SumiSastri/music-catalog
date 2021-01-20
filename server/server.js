@@ -5,7 +5,7 @@ const port = process.env.PORT || 5000;
 // site security
 const cors = require('cors');
 const mongoose = require('mongoose');
-require('dotenv/config');
+const config = require('config');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
@@ -38,10 +38,11 @@ app.get('/', (req, res) => {
 	res.send('app home route working');
 });
 
-const db = 'process.env.DB_CONNECTION';
+const db = config.get('mongoURI');
+// const db = 'process.env.mongoURI';
 
 mongoose.connect(
-	'mongodb+srv://music-app-user:wU2SkhkKmYLzKmFd@cluster0.slip5.mongodb.net/test',
+	db,
 	{
 		useNewUrlParser: true,
 		useCreateIndex: true,
