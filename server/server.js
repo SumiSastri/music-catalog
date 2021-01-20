@@ -10,7 +10,9 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
+// import routes from controllers
 const musicInventoryRoute = require('../server/api-route-controllers/musicInventoryRoute');
+const usersRoute = require('../server/api-route-controllers/usersRoute');
 
 // middleware
 app.use(helmet());
@@ -22,7 +24,9 @@ const rateLimter = new rateLimit({
 	max: 100,
 	delayMs: 0
 });
+
 app.use('/music-inventory-api', musicInventoryRoute);
+app.use('/users-api', usersRoute);
 
 app.use(
 	bodyParser.urlencoded({
@@ -34,7 +38,7 @@ app.get('/', (req, res) => {
 	res.send('app home route working');
 });
 
-// const db = 'process.env.DB_CONNECTION';
+const db = 'process.env.DB_CONNECTION';
 
 mongoose.connect(
 	'db',
