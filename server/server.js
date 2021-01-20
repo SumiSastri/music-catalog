@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
 const db = 'process.env.DB_CONNECTION';
 
 mongoose.connect(
-	'db',
+	'mongodb+srv://music-app-user:wU2SkhkKmYLzKmFd@cluster0.slip5.mongodb.net/test',
 	{
 		useNewUrlParser: true,
 		useCreateIndex: true,

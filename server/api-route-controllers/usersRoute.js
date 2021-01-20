@@ -8,7 +8,7 @@ const User = require('../server-side-data/mongoose-models/userSchema.js');
 
 // @GET/route       '/users-api' PUBLIC
 // @desc            fetch & read info from dB
-// @methods         semd test res[pmse]
+// @methods         send test response - check in Postman
 
 router.get('/', (req, res) => {
 	res.send('user route working');
@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
 
 // @POST/route      /users-api'
 // @desc            VALIDATE ENCRYPT & CREATE
+// @methods         findOne() Mongoose/ BCRYPTJS genSalt()/ hash()
 
 router.post('/', (req, res) => {
 	let { username, email, password, image, userType, actionRequired } = req.body;
@@ -29,10 +30,10 @@ router.post('/', (req, res) => {
 	// VALIDATE UNIQUE USER
 	User.findOne({ email }).then((existingUser) => {
 		if (existingUser) {
-			return res.status(400).json({ msg: 'Please select another user name, this one is taken' });
+			return res.status(400).json({ msg: 'This email address is taken, please check your details' });
 		}
 
-		let newUserPayload = new User({
+		const newUserPayload = new User({
 			username,
 			email,
 			password,
@@ -45,11 +46,10 @@ router.post('/', (req, res) => {
 			bcrypt.hash(newUserPayload.password, salt, (err, hash) => {
 				if (err) throw err;
 				newUserPayload.password = hash;
-
 				// SAVE PAYLOAD WITH HASHED PASSWORD
 				newUserPayload.save().then((savedUser) =>
 					// ensure no password here
-					res.status(200).json({
+					res.json({
 						savedUser: {
 							id: savedUser.id,
 							username: savedUser.username,
@@ -62,9 +62,6 @@ router.post('/', (req, res) => {
 			});
 		});
 	});
-	// log to check again
-	console.log('userName:', req.body);
-	console.log('password:', newUserPayload);
 });
 
 // @PUT/route       '/users-api/:id'
