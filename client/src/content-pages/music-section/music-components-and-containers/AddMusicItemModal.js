@@ -37,7 +37,8 @@ class AddMusicItemModal extends Component {
 
 		// the action creator (addMusicItem) is called in the component
 		// the newMusicItem that changes the component state is called as a param of the action creator
-		// therefore it is a prop of the action creator?
+		// state now is in the reducer where state is set - state is imported back as a prop
+		// it is then mapped back as state.props (musicItems: state.musicItems)
 		this.props.addMusicItem(newMusicItem);
 
 		// close modal
@@ -99,7 +100,7 @@ class AddMusicItemModal extends Component {
 // maps this current component-container state - same as reducer state
 
 const mapStateToProps = (state) => ({
-	musicItems: state.musicItem
+	musicItems: state.musicItems
 });
 // this information now will be posted to the back-end via this action creator for this component
 export default connect(mapStateToProps, { addMusicItem })(AddMusicItemModal);

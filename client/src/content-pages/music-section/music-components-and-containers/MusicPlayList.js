@@ -18,10 +18,10 @@ class MusicPlayList extends Component {
 	render() {
 		// expect(state).toEqual({musicItem:{musicItem:{musicItems:[{id:
 		// state.state.props
-		const { musicItems } = this.props;
-		console.log(musicItems);
+		const { musicItems } = this.props.musicItems;
+		console.log('music-items-api-check', musicItems);
 		const playList = musicItems.length ? (
-			musicItems.map(({ _id, name }) => {
+			musicItems.map(({ _id, name, albumName }) => {
 				return (
 					<Container>
 						<ErrorBoundary>
@@ -38,7 +38,7 @@ class MusicPlayList extends Component {
 											>
 												<i className="fas fa-user-minus" />
 											</Button>
-											{name}
+											{name} <br /> {albumName}
 										</ListGroupItem>
 									</CSSTransition>
 								</TransitionGroup>
@@ -52,7 +52,6 @@ class MusicPlayList extends Component {
 				<Spinner color="danger" style={{ width: '3rem', height: '3rem' }} type="grow" />
 				<p>No Songs in da House - try again later</p>
 			</Container>
-			// <div className="center">No songs in your playlist</div>
 		);
 
 		return <div>{playList}</div>;

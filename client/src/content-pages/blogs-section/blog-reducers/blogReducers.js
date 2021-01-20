@@ -31,6 +31,7 @@ const initialState = {
 	loading: false
 };
 
+// reducer function is working on first render 4 in state in second 10
 export default function(state = initialState, action) {
 	switch (action.type) {
 		case GET_BLOG_POSTS:

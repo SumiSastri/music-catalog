@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Toast, ToastBody, ToastHeader, Button } from 'reactstrap';
 
 const BlogHeader = (props) => {
-	console.log(`blogsheader props`, props);
+	// console.log(`blogsheader props`, props);
 	return (
 		<Toast>
 			<ToastHeader icon="primary">Hip-Hop Blogs</ToastHeader>

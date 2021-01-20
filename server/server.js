@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
+
 // site security
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -9,11 +10,9 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
-// API-controllers
-const musicInventoryRoute = require('./api-route-controllers/musicInventoryRoute.js');
-const blogApiRoute = require('./api-route-controllers/blogApiRoute.js');
+const musicInventoryRoute = require('../server/api-route-controllers/musicInventoryRoute');
 
-// middleware to call the methods of the library on the server
+// middleware
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
@@ -23,12 +22,8 @@ const rateLimter = new rateLimit({
 	max: 100,
 	delayMs: 0
 });
-
-// routes
 app.use('/music-inventory-api', musicInventoryRoute);
-app.use('/blog-api', blogApiRoute);
 
-// parsing JSON from HTTP request headers
 app.use(
 	bodyParser.urlencoded({
 		extended: true
@@ -39,9 +34,10 @@ app.get('/', (req, res) => {
 	res.send('app home route working');
 });
 
-// connect with mongoose to mongoDb Cloud
+// const db = 'process.env.DB_CONNECTION';
+
 mongoose.connect(
-	'dB',
+	'db',
 	{
 		useNewUrlParser: true,
 		useCreateIndex: true,
@@ -51,7 +47,7 @@ mongoose.connect(
 		if (!error) {
 			console.log('mongo-db connection working');
 		} else {
-			console.log('log-in to your mongo-account & check connection is enabled');
+			console.log('check mongo-db connection');
 		}
 	}
 );

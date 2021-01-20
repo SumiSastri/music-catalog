@@ -4,5 +4,5 @@ import musicItemReducer from './musicItemReducer';
 
 export default combineReducers({
 	// this is the state tree an object not the array (musicItems) which is one of the key-values of the state-tree
-	musicItem: musicItemReducer
+	musicItems: musicItemReducer
 });

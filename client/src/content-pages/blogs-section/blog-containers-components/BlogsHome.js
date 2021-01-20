@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Spinner, Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import ErrorBoundary from '../../common-components-and-containers/error-boundary/ErrorBoundary';
 import BlogList from './BlogList';
@@ -12,15 +13,15 @@ import { getBlogPosts } from '../blog-actions/BlogActionCreators';
 export class BlogsHome extends Component {
 	componentDidMount() {
 		this.props.getBlogPosts();
-		console.log(`logs componentDidMount props`, getBlogPosts);
+		console.log(`logs componentDidMount props`, this.props);
 		// STEP 6 DEBUG THIS POINT OF FAILURE
 	}
 	render() {
+		// TWO DIFFERENT PROPS - ONE FROM REACT-REDUX STATE OBJECT AND ONE FROM REACT-ROUTER HISTORY OBJECT
 		const { blogPosts } = this.props;
-		const routerHistory = this.props.history;
-		console.log(`logs blogs router history`, this.props.history);
+		const { routerHistory } = this.props.history;
+		// console.log(`logs blogs router history`, this.props.history);
 		console.log(`logs props of imported blogPosts from reducer`, this.props);
-
 		return !blogPosts.length ? (
 			<div>
 				<Container
@@ -56,6 +57,11 @@ export class BlogsHome extends Component {
 		);
 	}
 }
+
+BlogsHome.propTypes = {
+	getBlogPosts: PropTypes.func.isRequired,
+	blogPosts: PropTypes.object.isRequired
+};
 
 // STEP 5  - now map state to props
 // we are mapping state.state.props
