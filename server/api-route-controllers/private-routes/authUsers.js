@@ -1,15 +1,14 @@
-// libraries
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-
-// REFACTOR FOR PRIVATE ROUTES - authorise user match all fields with those in db
 const config = require('config');
 const jwt = require('jsonwebtoken');
 
-// files
-const User = require('../private-routes/authUsers');
+// files - get schema
+const User = require('../../server-side-data/mongoose-models/userSchema');
+
+// REFACTOR FOR PRIVATE ROUTES
 
 // @POST/route      /login/users-api'
 // @desc            login: CHECK USER DATA MATCHES THEN AUTHORISE
@@ -17,19 +16,22 @@ const User = require('../private-routes/authUsers');
 //                  BCRYPTJS: genSalt()/ hash() - compare()
 
 router.post('/', (req, res) => {
+	// let savedUser = User.find();
 	let { email, password } = req.body;
-	if (!password || !email) {
-		return res.status(400).json({ msg: 'Login needs both your email and password' });
-	}
 
-	// Check user match from user saved in db (savedUser object)
+	//  make sure both email and password entered
+	if (!password || !email) {
+		return res.status(400).json({ msg: 'Login needs both your email and password]' });
+	}
+	// make sure user is in the db - check via unique email
 	User.findOne({ email }).then((savedUser) => {
 		if (!savedUser) {
-			return res.status(400).json({ msg: 'Login details do not match' });
+			return res.status(400).json({ msg: 'Check login details and try again' });
 		}
-		// check password match
+
+		// check password match (:32)
 		bcrypt.compare(password, savedUser.password).then((passwordMatch) => {
-			if (!passwordMatch) return res.status(400).json({ msg: 'Login not valid please try again' });
+			if (!passwordMatch) return res.status(400).json({ msg: 'Login details not correct, try again' });
 
 			// check jwt token match
 			jwt.sign({ id: savedUser.id }, config.get('jwtSecret'), { expiresIn: 36000 }, (err, bearerToken) => {
