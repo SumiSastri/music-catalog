@@ -5,27 +5,13 @@ const bcrypt = require('bcryptjs');
 const config = require('config');
 const jwt = require('jsonwebtoken');
 
-// files - get schema
+// FILES
+// schema
 const User = require('../../server-side-data/mongoose-models/userSchema');
-// import authorisation middle ware
+// auth middle ware
 const auth = require('../../auth-middleware/auth');
 
-// REFACTOR FOR PRIVATE ROUTES
-// @GET/route       '/users-api' PUBLIC
-// @desc            authorised admin can fetch savedUsers in dB
-// @methods         EXPRESS-ROUTER router.get()
-
-router.get('/', async (req, res) => {
-	try {
-		const savedUsers = await User.find();
-		if (!savedUsers) throw Error('No users exist');
-		res.json(savedUsers);
-	} catch (e) {
-		res.status(400).json({ msg: e.message });
-	}
-});
-
-// @POST/route      /login/users-api'
+// REFACTOR - AUTH ADDED @POST/route      /login/users-api'
 // @desc            login: CHECK USER DATA MATCHES THEN AUTHORISE
 // @methods         MONGOOSE: findOne()
 //                  BCRYPTJS: genSalt()/ hash() - compare()
@@ -64,13 +50,28 @@ router.post('/', (req, res) => {
 	});
 });
 
-// @PUT/route       '/login/users-api'/:id'
+// AUTH ADDED @GET (:40) get all users
 // @desc             authorised/authenticated users can update details
-router.put('/:id', (req, res, next) => {});
+router.get('/user-api', auth, (req, res) => {
+	User.findById(req.savedUser.id).select('-savedUser.password').then((savedUser) => res.json(savedUser));
+});
 
-// @DELETE/route    '/login/users-api':id'
-// @desc             authorised/authenticated users can delete details
+// AUTH ADDED @PUT      '/login/users-api'/:id'
+// @desc             authorised/authenticated users can update details
 
+router.put('/:id', auth, (req, res, next) => {
+	User.findByIdAndUpdate({ _id: req.params.id }, req.body, {
+		new: true,
+		useFindAndModify: false
+	})
+		.then(function(userFound) {
+			res.send(userFound);
+		})
+		.catch((err) => res.status(404).json({ message: err }));
+	// res.end();
+});
+
+// AUTH ADDED @DELETE/route    '/login/users-api':id'
 router.delete('/:id', auth, (req, res, next) => {
 	User.findByIdAndRemove({ _id: req.params.id }, { useFindAndModify: false })
 		.then(function(userFound) {

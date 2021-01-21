@@ -1,6 +1,7 @@
 const config = require('config');
 const jwt = require('jsonwebtoken');
 
+// use this 'x-auth-token' in Postman with JWT token to get user
 function auth(req, res, next) {
 	const bearerToken = req.header('x-auth-token');
 

@@ -7,25 +7,6 @@ const config = require('config');
 const jwt = require('jsonwebtoken');
 
 const User = require('../server-side-data/mongoose-models/userSchema');
-// @GET/route       '/users-api' PUBLIC
-// @desc            fetch savedUsers in dB
-// @methods         EXPRESS-ROUTER router.get()
-
-// TEST ROUTE WORKING - configuration
-// router.get('/', (req, res) => {
-// 	res.send('user route working');
-// });
-
-// TEST get users - can move to auth route
-router.get('/', async (req, res) => {
-	try {
-		const savedUsers = await User.find();
-		if (!savedUsers) throw Error('No users exist');
-		res.json(savedUsers);
-	} catch (e) {
-		res.status(400).json({ msg: e.message });
-	}
-});
 
 // @POST/route      /users-api'
 // @desc            register - VALIDATE ENCRYPT & CREATE
@@ -84,27 +65,50 @@ router.post('/', (req, res) => {
 	});
 });
 
-// Test route before moving to auth route
-router.delete('/:id', (req, res, next) => {
-	User.findByIdAndRemove({ _id: req.params.id }, { useFindAndModify: false })
-		.then(function(userFound) {
-			res.send(userFound);
-		})
-		.catch((err) => res.status(422).json({ message: err }));
-});
-// Testupdate before moving to auth route
-
-router.put('/:id', (req, res, next) => {
-	User.findByIdAndUpdate({ _id: req.params.id }, req.body, {
-		new: true,
-		useFindAndModify: false
-	})
-		.then(function(userFound) {
-			res.send(userFound);
-		})
-		.catch((err) => res.status(404).json({ message: err }));
-	// res.end();
-});
-
 module.exports = router;
-// in es6 export default router
+
+// TESTs
+// @GET/route       '/users-api' PUBLIC
+// @desc            fetch savedUsers in dB
+// @methods         EXPRESS-ROUTER router.get()
+
+// TEST - configuration
+// router.get('/', (req, res) => {
+// 	res.send('user route working');
+// });
+
+// // TEST - get all users
+// router.get('/', async (req, res) => {
+// 	try {
+// 		const savedUsers = await User.find();
+// 		if (!savedUsers) throw Error('No users exist');
+// 		res.json(savedUsers);
+// 	} catch (e) {
+// 		res.status(400).json({ msg: e.message });
+// 	}
+// });
+
+// TEST @PUT/route       '/login/users-api'/:id'
+// @desc             authorised/authenticated users can update details
+
+// router.put('/:id', (req, res, next) => {
+// 	User.findByIdAndUpdate({ _id: req.params.id }, req.body, {
+// 		new: true,
+// 		useFindAndModify: false
+// 	})
+// 		.then(function(userFound) {
+// 			res.send(userFound);
+// 		})
+// 		.catch((err) => res.status(404).json({ message: err }));
+// });
+
+// TEST @DELETE/route    '/login/users-api':id'
+// @desc             authorised/authenticated users can delete details
+
+// router.delete('/:id', (req, res, next) => {
+// 	User.findByIdAndRemove({ _id: req.params.id }, { useFindAndModify: false })
+// 		.then(function(userFound) {
+// 			res.send(userFound);
+// 		})
+// 		.catch((err) => res.status(422).json({ message: err }));
+// });
