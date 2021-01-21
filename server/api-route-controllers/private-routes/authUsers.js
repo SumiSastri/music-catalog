@@ -1,92 +1,58 @@
+// libraries
+const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
-// REFACTOR FOR JWT
+const bcrypt = require('bcryptjs');
+
+// REFACTOR FOR PRIVATE ROUTES - authorise user match all fields with those in db
 const config = require('config');
 const jwt = require('jsonwebtoken');
 
-const User = require('../server-side-data/mongoose-models/userSchema.js');
+// files
+const User = require('../private-routes/authUsers');
 
-// @GET/route       '/users-api' PUBLIC
-// @desc            fetch & read info from dB
-// @methods         send test response - check in Postman
-
-// router.get('/', (req, res) => {
-// 	res.send('user route working');
-// });
-
-router.get('/', async (req, res) => {
-	try {
-		const users = await User.find();
-		if (!users) throw Error('No users exist');
-		res.json(users);
-	} catch (e) {
-		res.status(400).json({ msg: e.message });
-	}
-});
-
-// @POST/route      /users-api'
-// @desc            VALIDATE ENCRYPT & CREATE
-// @methods         findOne() Mongoose/ BCRYPTJS: genSalt()/ hash()
+// @POST/route      /login/users-api'
+// @desc            login: CHECK USER DATA MATCHES THEN AUTHORISE
+// @methods         MONGOOSE: findOne()
+//                  BCRYPTJS: genSalt()/ hash() - compare()
 
 router.post('/', (req, res) => {
-	let { username, email, password, image, userType } = req.body;
-
-	// VALIDATE MANDATORY FIELDS - error 400 bad request in header
-	if (!username || !password || !email) {
-		return res.status(400).json({ msg: 'Please enter all fields' });
+	let { email, password } = req.body;
+	if (!password || !email) {
+		return res.status(400).json({ msg: 'Login needs both your email and password' });
 	}
 
-	// VALIDATE UNIQUE USER
-	User.findOne({ email }).then((existingUser) => {
-		if (existingUser) {
-			return res.status(400).json({ msg: 'This email address is taken, please check your details' });
+	// Check user match from user saved in db (savedUser object)
+	User.findOne({ email }).then((savedUser) => {
+		if (!savedUser) {
+			return res.status(400).json({ msg: 'Login details do not match' });
 		}
+		// check password match
+		bcrypt.compare(password, savedUser.password).then((passwordMatch) => {
+			if (!passwordMatch) return res.status(400).json({ msg: 'Login not valid please try again' });
 
-		const newUserPayload = new User({
-			username,
-			email,
-			password,
-			image,
-			userType
-		});
-
-		// ENCRYPT PASSWORD WITH BCRYPT
-		bcrypt.genSalt(10, (err, salt) => {
-			bcrypt.hash(newUserPayload.password, salt, (err, hash) => {
+			// check jwt token match
+			jwt.sign({ id: savedUser.id }, config.get('jwtSecret'), { expiresIn: 36000 }, (err, bearerToken) => {
 				if (err) throw err;
-				newUserPayload.password = hash;
-				// SAVE PAYLOAD WITH HASHED PASSWORD
-				newUserPayload.save().then((savedUser) =>
-					// ensure no password here
-					// REFACTOR FOR JWT - SIGN TOKEN WITH USER ID
-					jwt.sign({ id: savedUser.id }, config.get('jwtSecret'), { expiresIn: 36000 }, (err, token) => {
-						if (err) throw err;
-						// JREFACTOR FOR JWT - DROP TOKEN IN RESPONSE
-						res.json({
-							token,
-							savedUser: {
-								id: savedUser.id,
-								username: savedUser.username,
-								email: savedUser.email,
-								image: savedUser.image,
-								userType: savedUser.userType
-							}
-						});
-					})
-				);
+				res.json({
+					bearerToken,
+					savedUser: {
+						id: savedUser.id,
+						username: savedUser.username,
+						email: savedUser.email
+					}
+				});
 			});
 		});
 	});
 });
 
-// @PUT/route       '/users-api/:id'
-// @desc            get user by id and update partially filled form
-
+// @PUT/route       '/login/users-api'/:id'
+// @desc             authorised/authenticated users can update details
 router.put('/:id', (req, res, next) => {});
 
-// @DELETE/route    '/users-api/:id'
-// @desc            get user by id and delete permanantly
+// @DELETE/route    '/login/users-api':id'
+// @desc             authorised/authenticated users can delete details
 
 router.delete('/:id', (req, res, next) => {});
 

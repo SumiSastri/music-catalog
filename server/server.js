@@ -13,6 +13,7 @@ const rateLimit = require('express-rate-limit');
 // import routes from controllers
 const musicInventoryRoute = require('../server/api-route-controllers/musicInventoryRoute');
 const usersRoute = require('../server/api-route-controllers/usersRoute');
+const authUserRoutes = require('../server/api-route-controllers/private-routes/authUsers');
 
 // middleware
 app.use(helmet());
@@ -27,6 +28,7 @@ const rateLimter = new rateLimit({
 
 app.use('/music-inventory-api', musicInventoryRoute);
 app.use('/users-api', usersRoute);
+app.use('/login/users-api', authUserRoutes);
 
 app.use(
 	bodyParser.urlencoded({
@@ -39,7 +41,6 @@ app.get('/', (req, res) => {
 });
 
 const db = config.get('mongoURI');
-// const db = 'process.env.mongoURI';
 
 mongoose.connect(
 	db,
