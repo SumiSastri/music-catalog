@@ -7,8 +7,23 @@ const jwt = require('jsonwebtoken');
 
 // files - get schema
 const User = require('../../server-side-data/mongoose-models/userSchema');
+// import authorisation middle ware
+const auth = require('../../auth-middleware/auth');
 
 // REFACTOR FOR PRIVATE ROUTES
+// @GET/route       '/users-api' PUBLIC
+// @desc            authorised admin can fetch savedUsers in dB
+// @methods         EXPRESS-ROUTER router.get()
+
+router.get('/', async (req, res) => {
+	try {
+		const savedUsers = await User.find();
+		if (!savedUsers) throw Error('No users exist');
+		res.json(savedUsers);
+	} catch (e) {
+		res.status(400).json({ msg: e.message });
+	}
+});
 
 // @POST/route      /login/users-api'
 // @desc            login: CHECK USER DATA MATCHES THEN AUTHORISE
@@ -56,7 +71,12 @@ router.put('/:id', (req, res, next) => {});
 // @DELETE/route    '/login/users-api':id'
 // @desc             authorised/authenticated users can delete details
 
-router.delete('/:id', (req, res, next) => {});
-
+router.delete('/:id', auth, (req, res, next) => {
+	User.findByIdAndRemove({ _id: req.params.id }, { useFindAndModify: false })
+		.then(function(userFound) {
+			res.send(userFound);
+		})
+		.catch((err) => res.status(422).json({ message: err }));
+});
 module.exports = router;
 // in es6 export default router

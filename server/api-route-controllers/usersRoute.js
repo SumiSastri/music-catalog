@@ -7,15 +7,16 @@ const config = require('config');
 const jwt = require('jsonwebtoken');
 
 const User = require('../server-side-data/mongoose-models/userSchema');
-
 // @GET/route       '/users-api' PUBLIC
 // @desc            fetch savedUsers in dB
 // @methods         EXPRESS-ROUTER router.get()
 
+// TEST ROUTE WORKING - configuration
 // router.get('/', (req, res) => {
 // 	res.send('user route working');
-// }); TEST ROUTE WORKING
+// });
 
+// TEST get users - can move to auth route
 router.get('/', async (req, res) => {
 	try {
 		const savedUsers = await User.find();
@@ -31,6 +32,7 @@ router.get('/', async (req, res) => {
 // @methods         MONGOOSE: findOne()
 //                  BCRYPTJS: genSalt()/ hash()
 
+// ONLY PUBLIC ROUTE FOR USERS
 router.post('/', (req, res) => {
 	let { username, email, password, image, userType } = req.body;
 
@@ -80,6 +82,28 @@ router.post('/', (req, res) => {
 			});
 		});
 	});
+});
+
+// Test route before moving to auth route
+router.delete('/:id', (req, res, next) => {
+	User.findByIdAndRemove({ _id: req.params.id }, { useFindAndModify: false })
+		.then(function(userFound) {
+			res.send(userFound);
+		})
+		.catch((err) => res.status(422).json({ message: err }));
+});
+// Testupdate before moving to auth route
+
+router.put('/:id', (req, res, next) => {
+	User.findByIdAndUpdate({ _id: req.params.id }, req.body, {
+		new: true,
+		useFindAndModify: false
+	})
+		.then(function(userFound) {
+			res.send(userFound);
+		})
+		.catch((err) => res.status(404).json({ message: err }));
+	// res.end();
 });
 
 module.exports = router;
