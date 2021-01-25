@@ -12,14 +12,11 @@ export class BlogsHome extends Component {
 	componentDidMount() {
 		this.props.getBlogPosts();
 		console.log(`logs componentDidMount props`, this.props);
-		// STEP 6 DEBUG THIS POINT OF FAILURE
 	}
 	render() {
-		// TWO DIFFERENT PROPS - ONE FROM REACT-REDUX STATE OBJECT AND ONE FROM REACT-ROUTER HISTORY OBJECT
-		const { blogPosts } = this.props;
+		const { blogPosts } = this.props.blogPosts;
 		const { routerHistory } = this.props.history;
-		// console.log(`logs blogs router history`, this.props.history);
-		console.log(`logs props of imported blogPosts from reducer`, this.props);
+		//DEBUG THIS POINT OF FAILURE
 		return !blogPosts.length ? (
 			<div>
 				<Container
@@ -30,7 +27,6 @@ export class BlogsHome extends Component {
 					<Link to="/">
 						<h4 color="secondary">Back to Home</h4>
 					</Link>
-
 					<Spinner color="danger" style={{ width: '3rem', height: '3rem' }} type="grow" />
 					<p>Unable to find blogs, please try again later</p>
 				</Container>
@@ -48,6 +44,7 @@ export class BlogsHome extends Component {
 				</Container>
 				<Container style={{ padding: '.5rem' }}>
 					<ErrorBoundary>
+						{/* Posts not rendering */}
 						<BlogList blogPosts={blogPosts} routerHistory={routerHistory} />
 					</ErrorBoundary>
 				</Container>
@@ -55,28 +52,13 @@ export class BlogsHome extends Component {
 		);
 	}
 }
-
 BlogsHome.propTypes = {
 	getBlogPosts: PropTypes.func.isRequired,
 	blogPosts: PropTypes.object.isRequired
 };
-
-// we are mapping state.state.props
-// the key of the state tree is blogposts.blogposts
-// or state.state
-// so this sets blogPosts.blogPosts (state.state) to the props of the state tree
-// blogPosts = blogPosts:state.blogPosts
-// the name is repeated 3 times
 const mapStateToProps = (state) => {
 	return {
-		// replaces set-state
 		blogPosts: state.blogPosts
 	};
 };
-
-// moved to action-creators - this has to follow the mapStatetoProps
-// const mapDispatchToProps = (dispatch) => { // dispatch an action payload}
-
 export default connect(mapStateToProps, { getBlogPosts })(BlogsHome);
-// export default connect(BlogHome);
-// export default BlogsHome;

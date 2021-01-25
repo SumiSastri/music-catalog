@@ -2,8 +2,6 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 import BlogCard from './BlogCard';
-// STEP 5: Check where state is used - as the name has changed - change it down the prop tree
-
 const BlogList = ({ blogPosts, routerHistory }) => {
 	const displayBlogList = blogPosts.map((eachBlogPost, i) => {
 		return (
