@@ -1,41 +1,64 @@
 import axios from 'axios';
 
-import {} from './constants/AuthUserActionTypes';
-import { showErrors } from '';
+import {
+	LOAD_USER,
+	USER_PASSWORD_AUTH,
+	USER_PASSWORD_AUTH_FAIL,
+	LOAD_AUTH_USER,
+	LOAD_AUTH_USER_FAIL
+} from './constants/AuthUserActionTypes';
+import { showErrors } from './AuthUserErrorsActions';
 
 export const setUserLoading = () => {
 	return {
 		type: LOAD_USER
 	};
 };
-
-// Refactor: move utility functions out of component
-
-// Step 1: authenticate user USER_AUTH_PASSWORD
-
+export const authTokenConfig = (getState) => {
+	const authorization = getState().authUserReducer.user.authorization;
+	const config = {
+		headers: {
+			'Content-Type': 'application/json',
+			environment: 'mock',
+			Authorization: 'Bearer MuYW1hem9uYXdzLmNvbVwvZXUtd2VzdC0zX3JkdldSMGs'
+		}
+	};
+	//  Find token and add to headers with the config method
+	if (authorization) {
+		config.headers['116567'] = authorization;
+	}
+	return authTokenConfig;
+};
 export const loadAuthUser = () => (dispatch, getState) => {
-	dispatch({ type: USER_PASSWORD_AUTH });
-	//  Get auth token from state (in the authUserReducer) (:16)
-	//  Token comes back to the FE in local storage
-	const authToken = getState.authUserReducer.user.authToken;
-
-	//  Config  headers for authentication
-	const authTokenConfig = {
+	dispatch({ type: LOAD_USER });
+	const url = 'https://api.bybits.co.uk/policys/details';
+	axios
+		.get(url, authTokenConfig(getState))
+		.then((res) =>
+			dispatch({
+				type: LOAD_AUTH_USER,
+				payload: res.data
+			})
+		)
+		.catch((err) => {
+			dispatch(showErrors(err.response.data, err.response.status, 'USER_AUTH_FAIL'));
+			dispatch({
+				type: LOAD_AUTH_USER_FAIL
+			});
+		});
+};
+export const login = ({ username, password }) => (dispatch) => {
+	// Headers of post request
+	const config = {
 		headers: {
 			'Content-Type': 'application/json',
 			environment: 'mock'
 		}
 	};
-	//  Find token and add to headers
-	//  back end code Authorization: Bearer {access_token}
-	if (authToken) {
-		authTokenConfig.headers['116567'] = authToken;
-	}
-	// make post call with the url end point/ payload params
+	const body = JSON.stringify({ username, password });
 	const url = 'https://api.bybits.co.uk/auth/token';
-	// const body = JSON.stringify({ username, password }); when you get the response
 	axios
-		.get(url, authTokenConfig())
+		.post(url, body, config)
 		.then((res) =>
 			dispatch({
 				type: USER_PASSWORD_AUTH,
@@ -43,14 +66,9 @@ export const loadAuthUser = () => (dispatch, getState) => {
 			})
 		)
 		.catch((err) => {
-			// call the showErrors function here
-			dispatch(showErrors(err.response.data, err.response.status));
+			dispatch(showErrors(err.response.data, err.response.status, 'USER_AUTH_FAIL'));
 			dispatch({
-				type: USER_AUTH_FAIL
+				type: USER_PASSWORD_AUTH_FAIL
 			});
 		});
 };
-
-// Step 2: Load auth user into App home page for access to private routes (:25)
-
-// Step 3: Refactor for auth

@@ -6,8 +6,6 @@ import PropTypes from 'prop-types';
 
 import ErrorBoundary from '../../common-components-and-containers/error-boundary/ErrorBoundary';
 import BlogList from './BlogList';
-
-// STEP 5 - connect the action creators to the component and the reducer
 import { getBlogPosts } from '../blog-actions/BlogActionCreators';
 
 export class BlogsHome extends Component {
@@ -63,14 +61,12 @@ BlogsHome.propTypes = {
 	blogPosts: PropTypes.object.isRequired
 };
 
-// STEP 5  - now map state to props
 // we are mapping state.state.props
 // the key of the state tree is blogposts.blogposts
 // or state.state
 // so this sets blogPosts.blogPosts (state.state) to the props of the state tree
 // blogPosts = blogPosts:state.blogPosts
 // the name is repeated 3 times
-
 const mapStateToProps = (state) => {
 	return {
 		// replaces set-state

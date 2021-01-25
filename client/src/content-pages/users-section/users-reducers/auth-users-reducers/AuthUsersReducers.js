@@ -1,13 +1,16 @@
-// lift state out of component to reducer
-import {} from '';
+import {
+	LOAD_USER,
+	LOAD_AUTH_USER,
+	USER_PASSWORD_AUTH,
+	USER_PASSWORD_AUTH_FAIL
+} from '../auth-user-actions/constants/AuthUserActionTypes';
 
-// Authorization: Bearer {access_token}
 const initialState = {
 	users: {
 		username: null,
 		isAuthenticated: false,
 		loading: false,
-		authToken: localStorage.getItem('authToken')
+		access_token: localStorage.getItem('access_token')
 	}
 };
 
@@ -19,23 +22,32 @@ export default function(state = initialState, action) {
 				...state,
 				loading: true
 			};
-		case USER_PASSWORD_AUTH:
+		// this runs continuously validating auth login
+		case LOAD_AUTH_USER:
 			return {
 				...state,
-				user: action.payload,
+				loading: false,
 				isAuthenticated: true,
-				loading: false
-			};
-		case USER_AUTH_FAIL:
-			localStorage.removeItem('authToken');
-			return {
-				...state,
-				authToken: null,
-				user: null,
-				isAuthenticated: false,
-				loading: false
+				user: action.payload
 			};
 
+		case USER_PASSWORD_AUTH:
+			localStorage.setItem('authToken', action.payload.token);
+			return {
+				...state,
+				loading: false,
+				isAuthenticated: true,
+				user: action.payload
+			};
+		case USER_PASSWORD_AUTH_FAIL:
+			localStorage.removeItem('access_token');
+			return {
+				...state,
+				loading: false,
+				isAuthenticated: false,
+				access_token: null,
+				user: null
+			};
 		default:
 			return state;
 	}
