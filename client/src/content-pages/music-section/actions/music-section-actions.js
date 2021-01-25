@@ -7,8 +7,6 @@ import {
 	LOAD_MUSIC_ITEMS
 } from './music-section-action-type-constants';
 
-// get the data from the api then send the data to the page
-// local storage does not work? fires a blank?
 export const getMusicItems = () => (dispatch) => {
 	dispatch(setMusicItemsLoading());
 	axios.get('/music-inventory-api').then((res) =>
@@ -18,7 +16,6 @@ export const getMusicItems = () => (dispatch) => {
 		})
 	);
 };
-// dispatch delete action to store & api-endpoint get response back from db to store
 export const deleteMusicItem = (id) => (dispatch) => {
 	axios.delete(`/music-inventory-api/${id}`).then((res) =>
 		dispatch({
@@ -27,9 +24,6 @@ export const deleteMusicItem = (id) => (dispatch) => {
 		})
 	);
 };
-
-// add music item - get the new music item created by the submit payload
-// post this payload
 export const addMusicItem = (newMusicItem) => (dispatch) => {
 	axios.post('/music-inventory-api', newMusicItem).then((res) => {
 		dispatch({
@@ -38,8 +32,6 @@ export const addMusicItem = (newMusicItem) => (dispatch) => {
 		});
 	});
 };
-
-// sends state of items loading to store
 export const setMusicItemsLoading = () => {
 	return {
 		type: LOAD_MUSIC_ITEMS

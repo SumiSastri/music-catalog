@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, NavItem, Jumbotron } from 'reactstrap';
 import logo from '../../../assets/logo.png';
-import AddNewUserModal from '../../users-section/users-components/user-registration/AddNewUserModal';
-import LoginAuthUsersModal from '../../users-section/users-components/authenticated-users/LoginAuthUsersModal';
-
+import AddNewUserModal from '../../users-section/users-components/reg-users/AddNewUserModal';
+import LoginAuthUsersModal from '../../users-section/users-components/auth-users/LoginAuthUsersModal';
 class AppNavBar extends Component {
 	state = {
 		isOpen: false

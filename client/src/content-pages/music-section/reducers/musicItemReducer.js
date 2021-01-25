@@ -16,14 +16,8 @@ const initialState = {
 	],
 	loading: false
 };
-
-// action creators abstracted out of components and  imported back in to components
-// data passed from components that import action creators to reducers via map state to store
-// reducer defines initial state that is sent to store and update state via the action payload
-// a copy of initial state is made and only those changes requested passed to reducer
 export default function(state = initialState, action) {
 	switch (action.type) {
-		// this is the musicItems array not the state tree which is musicItem spread as state with musicItems and loading
 		case GET_MUSIC_ITEMS:
 			return {
 				...state,
@@ -38,14 +32,13 @@ export default function(state = initialState, action) {
 		case ADD_MUSIC_ITEM:
 			return {
 				...state,
-				musicItems: [ action.payload, ...state.musicItems ]
+				musicItems: [ ...state.musicItems, action.payload ]
 			};
 		case LOAD_MUSIC_ITEMS:
 			return {
 				...state,
 				loading: true
 			};
-
 		default:
 			return state;
 	}
