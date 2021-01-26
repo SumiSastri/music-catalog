@@ -5,19 +5,19 @@ export const todosReducer = (state = [], action) => {
 	// console.log('todosReducer', action);
 	switch (type) {
 		case CREATE_TODO: {
-			// return the text property in payload
-			const { item } = payload;
-			const newToDoItem = {
-				item,
+			// return the text property in the action payload
+			const { todoItem } = payload;
+			const addtodoItem = {
+				todoItem,
 				isCompleted: false
 			};
 			// concat does not mutate state
-			return state.concat(newToDoItem);
+			return [ ...state, state.concat(addtodoItem) ];
 		}
 		case DELETE_TODO: {
-			const { item } = payload;
+			const { todoItem } = payload;
 			// find the exact match in the array and remove from payload going to the store
-			return state.filter((todo) => todo.item !== item);
+			return [ ...state, state.filter((toDos) => toDos.todoItem !== todoItem) ];
 		}
 		default:
 			return state;
