@@ -1,26 +1,24 @@
-import constants from './constants';
-console.log('show constants', constants);
+import { CREATE_TODO, DELETE_TODO } from '../toDos-actions/constants/ToDoActionTypes';
 
-const initialState = {
-	text: '',
-	toDoItems: []
-};
-
-const reducer = (state = initialState, action) => {
-	console.log('reducer', action);
-	switch (action.type) {
-		case constants.CHANGE_INPUT_TEXT:
-			return Object.assign({}, state, { text: action.text });
-		case constants.ADD_LIST_ITEM:
-			return Object.assign({}, state, {
-				toDoItems: state.items.concat(state.text),
-				text: ''
-			});
-		case constants.DELETE_LIST_ITEM:
-			// console.log('delete reducer working');
-			const copyOfItems = state.toDoItems.slice();
-			copyOfItems.splice(action.index, 1);
-			return Object.assign({}, state, { toDoItems: copyOfItems });
+export const todosReducer = (state = [], action) => {
+	const { type, payload } = action;
+	// console.log('todosReducer', action);
+	switch (type) {
+		case CREATE_TODO: {
+			// return the text property in payload
+			const { item } = payload;
+			const newToDoItem = {
+				item,
+				isCompleted: false
+			};
+			// concat does not mutate state
+			return state.concat(newToDoItem);
+		}
+		case DELETE_TODO: {
+			const { item } = payload;
+			// find the exact match in the array and remove from payload going to the store
+			return state.filter((todo) => todo.item !== item);
+		}
 		default:
 			return state;
 	}

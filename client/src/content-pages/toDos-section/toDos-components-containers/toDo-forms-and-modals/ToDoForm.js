@@ -1,68 +1,63 @@
-import React from 'react';
-import { Button, Form, FormGroup } from 'reactstrap';
+import React, { Component } from 'react';
+import { Button } from 'reactstrap';
+import uuid from 'uuid';
 
-import '../../toDos-styles/toDoFormStyles.css';
 import { FormInputField } from '../../../common-components-and-containers/forms/FormInputField';
+// HOOKS REFACTOR
+class CreateToDoForm extends Component {
+	state = {
+		id: uuid(),
+		title: '',
+		completed: false
+	};
+	// first render - used in clear form to clear inputs
+	initialState = this.state;
 
-const CreateToDoForm = ({ toDoItem, handleToDoInputChanges, handleNewToDoSubmit }) => {
-	return (
-		<div className="new-todo-form">
-			{/* change events called here - data added here */}
-			<Form onSubmit={handleNewToDoSubmit}>
-				<FormGroup>
-					<div id={toDoItem.id}>
-						<Button className="new-todo-button" color="warning" onSubmit={handleNewToDoSubmit}>
-							Create & Submit
-						</Button>
-						<h5>The next things on the list are...</h5>
-						<FormInputField
-							label="What I need to do next:"
-							className="new-todo-input"
-							datatestid="inpt-create-to-do"
-							name="inpt-create-to-do"
-							onChange={handleToDoInputChanges}
-							placeholder="Add items here"
-							type="text-area"
-							title={toDoItem.title}
-							value={toDoItem.title}
-						/>
-					</div>
-				</FormGroup>
-			</Form>
-		</div>
-	);
-};
+	// refactor - ensure name attributes to match key of state object
+	handleChange = (event) => {
+		this.setState({
+			[event.target.name]: event.target.value
+		});
+	};
+
+	handleSubmit = (event) => {
+		event.preventDefault();
+		// do not remove - debugs and checks payload is correct
+		// console.log(`submit payload:, ${this.state.id}, ${this.state.title}, ${this.state.completed}`);
+		this.props.addToDoItem(this.state);
+		this.clearFormInputs();
+	};
+
+	clearFormInputs = () => {
+		this.setState(this.initialState);
+	};
+
+	render() {
+		// second render after change handler
+		const { id, title, completed } = this.state;
+		return (
+			<div name="id" id={id}>
+				<form onSubmit={this.handleSubmit}>
+					<FormInputField
+						label="What I need to do next:"
+						className="inpt-b1m"
+						datatestid="inpt-create-to-do"
+						name="title"
+						onChange={this.handleChange}
+						placeholder="Add items here"
+						type="text-area"
+						value={title}
+					/>
+					<span name="title">{title}</span>
+					<span name="completed">{completed}</span>
+					<br />
+					<Button color="info" onSubmit={this.handleSubmit}>
+						Create & Submit
+					</Button>
+				</form>
+			</div>
+		);
+	}
+}
 
 export default CreateToDoForm;
-
-// TEMP MOVED HERE - FROM UTILITY FUNCTIONS SECTION
-
-// the state of the toDoItem in the form needs to be captured by event listner
-// handleToDoInputChanges = (event) => {
-// 	this.setState({ toDoItem: event.target.value });
-// };
-// once captured, the data captured - which is the new updated state
-// pass this updated state object as a param to the utility function written to add and push state to the array
-// call the create utility function - needs to be bound to state with this.state
-// handleNewToDoSubmit = (event) => {
-// 	event.preventDefault();
-// 	// attach the updated form values to submit
-// 	const createToDoItem = {
-// 		toDoItem: this.state
-// 	};
-// 	this.state.addToDoItem(createToDoItem);
-// };
-
-// TEMP MOVED HERE - FROM RENDER METHOD
-
-// {
-/* <div>
-						<ToDoForm
-							// pass state of required to create form inputs
-							toDoItem={toDoItem}
-							// capture the input change and submit - pass change handlers
-							onChange={this.handleToDoInputChanges}
-							onSubmit={this.handleNewToDoSubmit}
-						/>
-					</div> */
-// }

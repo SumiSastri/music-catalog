@@ -1,6 +1,7 @@
 import axios from 'axios';
+// async action creators for http-calls
 
-import { GET_TODOS, CREATE_TODOS, UPDATE_TODO, DELETE_TODO, LOAD_TODOS } from './ToDoConstants';
+import { CREATE_TODOS, UPDATE_TODO, DELETE_TODO, LOAD_TODOS } from './constants/ToDoActionTypes';
 
 export const getToDos = () => (dispatch) => {
 	// dispatch(setItemsLoading());
