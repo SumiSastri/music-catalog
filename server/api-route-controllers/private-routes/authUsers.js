@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
 		bcrypt.compare(password, savedUser.password).then((passwordMatch) => {
 			if (!passwordMatch) return res.status(400).json({ msg: 'Login details not correct, try again' });
 
-			// check jwt token match
+			// check jwt token match instead of sending password
 			jwt.sign({ id: savedUser.id }, config.get('jwtSecret'), { expiresIn: 36000 }, (err, bearerToken) => {
 				if (err) throw err;
 				res.json({

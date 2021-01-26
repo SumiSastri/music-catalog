@@ -1,9 +1,6 @@
 import React from 'react';
 import { Button, Container } from 'reactstrap';
 
-// deleteToDoMethod passed from Home as a prop to List
-// List passes this prop to Card in the card imported
-// Consumed and fired as an onClick handler here - demo's prop drilling
 const ToDosCard = ({ id, title, completed, deleteToDoItem }) => {
 	return (
 		<div key={id}>
@@ -16,6 +13,9 @@ const ToDosCard = ({ id, title, completed, deleteToDoItem }) => {
 					{title}
 					<span>
 						{completed}
+						<Button style={{ margin: '.5rem' }} color="warning">
+							Done
+						</Button>
 						<Button
 							style={{ margin: '.5rem' }}
 							color="danger"

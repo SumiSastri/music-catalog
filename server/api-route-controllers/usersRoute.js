@@ -13,16 +13,16 @@ const User = require('../server-side-data/mongoose-models/userSchema');
 // @methods         MONGOOSE: findOne()
 //                  BCRYPTJS: genSalt()/ hash()
 
-// ONLY PUBLIC ROUTE FOR USERS
+// Register route
 router.post('/', (req, res) => {
 	let { username, email, password, image, userType } = req.body;
 
-	// VALIDATE MANDATORY FIELDS - error 400 bad request in header
+	// Validate mandatory fiels or send 400 bad request in header
 	if (!username || !password || !email) {
 		return res.status(400).json({ msg: 'Please enter all fields' });
 	}
 
-	// VALIDATE UNIQUE USER
+	// Validate unique user
 	User.findOne({ email }).then((savedUser) => {
 		if (savedUser) {
 			return res.status(400).json({ msg: 'This email address is taken, please check your details' });

@@ -1,6 +1,10 @@
-__Actions__
-3. Add action-type-constants - what do you want your user to be able to interact with on the page?
-4. Set up the action functions based on the ui-design of your components and the actions you want the user to take
+This section is an experimental section working with to-dos to understand how the moving parts work.
+
+It follows several tutorials to get a good fundamental knowledge of how actions, reducers, components work together.
+
+LI Learning - Sean Wassell
+
+- Css styling may be adapted from this tutorial to experiment with separation of concerns
 
 
 Net Ninjas: Add item forms

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // images and videos can be stored as a buffer type
 // how?
-const BlogItemSchema = new mongoose.Schema({
+const BlogPostSchema = new mongoose.Schema({
 	blogEntryDate: {
 		type: Date,
 		default: Date.now
@@ -41,5 +41,5 @@ const BlogItemSchema = new mongoose.Schema({
 	}
 });
 
-module.exports = mongoose.model('blogItem', BlogItemSchema);
+module.exports = mongoose.model('blogPost', BlogPostSchema);
 // OR module.exports = BlogItem = mongoose.model('blogItem', blogItemSchema);

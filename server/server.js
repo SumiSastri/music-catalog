@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 const db = config.get('mongoURI');
 
 mongoose.connect(
-	'db',
+	db,
 	{
 		useNewUrlParser: true,
 		useCreateIndex: true,
