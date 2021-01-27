@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
-import uuid from 'uuid';
+
+// Redux refactor
+import { connect } from 'react-redux';
+import { createTodoItem } from '../../toDos-actions/async-toDo-action-creators';
 
 import { FormInputField } from '../../../../common-components-and-containers/forms/FormInputField';
 
 class CreateToDoForm extends Component {
 	state = {
-		id: uuid(),
-		title: '',
-		completed: false
+		completed: false,
+		title: ''
 	};
-	// first render - used in clear form to clear inputs
-	initialState = this.state;
 
 	// refactor - ensure name attributes to match key of state object
 	handleChange = (event) => {
@@ -24,7 +24,7 @@ class CreateToDoForm extends Component {
 		event.preventDefault();
 		// do not remove - debugs and checks payload is correct
 		// console.log(`submit payload:, ${this.state.id}, ${this.state.title}, ${this.state.completed}`);
-		this.props.addToDoItem(this.state);
+		this.props.createTodoItem(this.state);
 		this.clearFormInputs();
 	};
 
@@ -33,10 +33,8 @@ class CreateToDoForm extends Component {
 	};
 
 	render() {
-		// second render after change handler
-		const { id, title, completed } = this.state;
 		return (
-			<div name="id" id={id}>
+			<div name="id" id={this.props.id}>
 				<form onSubmit={this.handleSubmit}>
 					<FormInputField
 						label="What I need to do next:"
@@ -46,10 +44,10 @@ class CreateToDoForm extends Component {
 						onChange={this.handleChange}
 						placeholder="Add items here"
 						type="text-area"
-						value={title}
+						value={this.props.title}
 					/>
-					<span name="title">{title}</span>
-					<span name="completed">{completed}</span>
+					<span name="title">{this.props.title}</span>
+					<span name="completed">Completed: {this.props.completed}</span>
 					<br />
 					<Button color="info" onSubmit={this.handleSubmit}>
 						Create & Submit
@@ -59,5 +57,9 @@ class CreateToDoForm extends Component {
 		);
 	}
 }
+// represents the whole state-tree, abstract what is needed by this component
+const mapStateToProps = (state) => ({
+	todosArray: state.todosArray
+});
 
-export default CreateToDoForm;
+export default connect(mapStateToProps, { createTodoItem })(CreateToDoForm);

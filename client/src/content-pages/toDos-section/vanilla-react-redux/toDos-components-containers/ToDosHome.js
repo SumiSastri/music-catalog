@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+
 import { Container, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
+// Redux refactor - import connect and action creators
+import { connect } from 'react-redux';
+import { deleteToDoItem, getToDos, createTodoItem } from '../toDos-actions/async-toDo-action-creators';
 
 import ToDosList from './ToDosList';
 import CreateToDoForm from './toDo-forms-and-modals/CreateToDoForm';
@@ -11,50 +14,22 @@ export class ToDosHome extends Component {
 		super(props);
 		// console.log(`logs todoshome props`, this.props);
 		this.state = {
-			toDosArray: [],
+			todosArray: [],
 			isFormDisplayed: false
 		};
 	}
-	initialState = this.state;
 
 	componentDidMount() {
-		this.getToDos();
+		this.props.getToDos();
 	}
-
-	getToDos = () => {
-		return axios
-			.get(`http://jsonplaceholder.typicode.com/todos`)
-			.then((response) => {
-				console.log(response);
-				this.setState({ toDosArray: response.data.slice(0, 2) });
-				// this.setState({});
-				// do not remove - uncomment to check else block (loading/ not-found/ completed)
-			})
-			.catch((err) => this.setState({ errors: err.response.data.errors }));
-	};
-
-	addToDoItem = (newToDoItem) => {
-		// do not remove - uncomment and check payload correctly received
-		// console.log(`submit payload received:`, newToDoItem);
-		let displayNewToDoItem = [ ...this.state.toDosArray, newToDoItem ];
-		this.setState({ toDosArray: displayNewToDoItem });
-	};
 
 	handleFormDisplay = () => {
 		this.setState({ isFormDisplayed: true });
 	};
 
-	deleteToDoItem = (id) => {
-		// console.log(id); do not remove - checks id captured for debugging
-		const removeToDo = this.state.toDosArray.filter((eachToDo) => {
-			return eachToDo.id !== id;
-		});
-		this.setState({ toDosArray: removeToDo });
-	};
-
 	render() {
-		const { toDosArray, isFormDisplayed } = this.state;
-		const { handleChange, handleSubmit } = this.props;
+		const { isFormDisplayed } = this.state;
+		const { todosArray, handleChange, handleSubmit } = this.props;
 
 		return (
 			<div>
@@ -69,7 +44,7 @@ export class ToDosHome extends Component {
 								<Button onClick={this.handleFormDisplay}>Add Stuff</Button>
 							) : (
 								<CreateToDoForm
-									addToDoItem={this.addToDoItem}
+									createTodoItem={createTodoItem}
 									handleChange={handleChange}
 									handleSubmit={handleSubmit}
 								/>
@@ -77,10 +52,14 @@ export class ToDosHome extends Component {
 						</Container>
 					</div>
 
-					<ToDosList toDosArray={toDosArray} deleteToDoItem={this.deleteToDoItem} />
+					<ToDosList todosArray={todosArray} deleteToDoItem={this.deleteToDoItem} />
 				</Container>
 			</div>
 		);
 	}
 }
-export default ToDosHome;
+const mapStateToProps = (state) => ({
+	todosArray: state.todosArray
+});
+
+export default connect(mapStateToProps, { getToDos, createTodoItem, deleteToDoItem })(ToDosHome);

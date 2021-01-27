@@ -1,20 +1,23 @@
 import React from 'react';
 import { Container } from 'reactstrap';
+// Redux refactor
+import { connect } from 'react-redux';
+import { deleteToDoItem } from '../toDos-actions/async-toDo-action-creators';
 
 import '../../toDos-styles/toDoListStyles.css';
 import ToDosCard from './ToDosCard';
 import ToDosCompleted from './ToDosCompleted';
 
-const ToDosList = ({ toDosArray, deleteToDoItem }) => {
-	const displayToDos = toDosArray.length ? (
-		toDosArray.map((eachtoDoItem, i) => {
+const ToDosList = ({ todosArray = [], deleteToDoItem }) => {
+	const displayToDos = todosArray.length ? (
+		todosArray.map((toDoItem, i) => {
 			return (
-				<div className="list-wrapper" key={toDosArray[i].id}>
+				<div className="list-wrapper" key={todosArray[i].id}>
 					<ToDosCard
 						deleteToDoItem={deleteToDoItem}
-						id={toDosArray[i].id}
-						title={toDosArray[i].title}
-						completed={toDosArray[i].completed}
+						id={todosArray[i].id}
+						title={todosArray[i].title}
+						completed={todosArray[i].completed}
 					/>
 				</div>
 			);
@@ -32,4 +35,8 @@ const ToDosList = ({ toDosArray, deleteToDoItem }) => {
 	);
 };
 
-export default ToDosList;
+const mapStateToProps = (state) => ({
+	todosArray: state.todosArray
+});
+
+export default connect(mapStateToProps, { deleteToDoItem })(ToDosList);

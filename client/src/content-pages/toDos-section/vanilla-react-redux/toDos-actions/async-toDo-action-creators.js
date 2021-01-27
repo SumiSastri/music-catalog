@@ -1,22 +1,16 @@
 import axios from 'axios';
 // async action creators for http-calls
 
-import { CREATE_TODOS, UPDATE_TODO, DELETE_TODO, LOAD_TODOS } from './constants/ToDoActionTypes';
+import { GET_TODOS, CREATE_TODO, DELETE_TODO, LOAD_TODOS } from './constants/ToDoActionTypes';
 
 export const getToDos = () => (dispatch) => {
-	// dispatch(setItemsLoading());
-	dispatch(getToDosFromAPI());
-	axios
-		.get('https://jsonplaceholder.typicode.com/todos')
-		.then((response) => {
-			// just get the id less expensive than getting all the api-data
-			const toDoItems = response.data.slice(0, 5).map((toDoItem) => toDoItem.id);
-			dispatch(successGetToDoIds(toDoItems));
-			console.log(toDoItems);
+	dispatch(loadToDos());
+	axios.get('https://jsonplaceholder.typicode.com/todos').then((res) =>
+		dispatch({
+			type: GET_TODOS,
+			payload: res.data.slice(0, 10)
 		})
-		.catch((error) => {
-			dispatch(failedToGetToDoIds(`Error getting response data check url`, error.message));
-		});
+	);
 };
 
 // sends state of items loading to store
@@ -27,26 +21,17 @@ export const loadToDos = () => {
 };
 
 // Create
-export const createToDo = (item) => (dispatch) => {
-	axios.post('https://jsonplaceholder.typicode.com/todos', item).then((res) => {
+export const createTodoItem = (todoItem) => (dispatch) => {
+	axios.post('https://jsonplaceholder.typicode.com/todos', todoItem).then((res) => {
 		dispatch({
-			type: CREATE_TODOS,
+			type: CREATE_TODO,
 			payload: res.data
 		});
 	});
 };
 
-export const updateToDo = (item) => (dispatch) => {
-	axios.post(`https://jsonplaceholder.typicode.com/todos/${id}`, item).then((res) => {
-		dispatch({
-			type: UPDATE_TODO,
-			payload: id
-		});
-	});
-};
-
 // Delete
-export const deleteToDo = (id) => (dispatch) => {
+export const deleteToDoItem = (id) => (dispatch) => {
 	axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`).then((res) =>
 		dispatch({
 			type: DELETE_TODO,
