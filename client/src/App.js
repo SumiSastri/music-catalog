@@ -9,8 +9,8 @@ import store from '../src/client-side-data/redux-store/store';
 import AppNavBar from './content-pages/common-components-and-containers/navs/AppNavBar';
 import MusicPlayListHome from '../src/content-pages/music-section/music-components-and-containers/MusicPlayListHome';
 import MusicPlayListIndexPage from '../src/content-pages/music-section/music-components-and-containers/MusicPlayListIndexPage';
-import ToDoIndexPage from '../src/content-pages/toDos-section/toDos-components-containers/ToDoIndexPage';
-import ToDosHome from '../src/content-pages/toDos-section/toDos-components-containers/ToDosHome';
+import ToDosIndexPage from './content-pages/toDos-section/vanilla-react-redux/toDos-components-containers/ToDosIndexPage';
+import ToDosHome from './content-pages/toDos-section/vanilla-react-redux/toDos-components-containers/ToDosHome';
 import BlogsIndexPage from '../src/content-pages/blogs-section/blog-containers-components/BlogsIndexPage';
 import BlogsHome from './content-pages/blogs-section/blog-containers-components/BlogsHome';
 import BlogCard from './content-pages/blogs-section/blog-containers-components/BlogCard';
@@ -35,7 +35,7 @@ class App extends Component {
 								<BlogsIndexPage />
 								<Route path="/hip-hop-blogs" component={BlogsHome} />
 								<Route path="/hip-hop-blogs/:blog_id" component={BlogCard} />
-								<ToDoIndexPage />
+								<ToDosIndexPage />
 								<Route path="/hip-hop-organiser" component={ToDosHome} />
 								<MusicPlayListIndexPage />
 								<Route path="/hip-hop-playlist" component={MusicPlayListHome} />

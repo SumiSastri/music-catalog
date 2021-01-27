@@ -1,16 +1,15 @@
 import React from 'react';
 import { Container } from 'reactstrap';
+import '../../toDos-styles/toDoListStyles.css';
+import ToDosCardHooks from './ToDosCardHooks';
+import ToDosCompleted from '../../vanilla-react-redux/toDos-components-containers/ToDosCompleted';
 
-import ToDosCard from './ToDosCard';
-import ToDosCompleted from './ToDosCompleted';
-import '../toDos-styles/toDoListStyles.css';
-
-const ToDosList = ({ toDosArray, deleteToDoItem }) => {
+const ToDosList = ({ toDosArray = [], deleteToDoItem }) => {
 	const displayToDos = toDosArray.length ? (
 		toDosArray.map((eachtoDoItem, i) => {
 			return (
 				<div className="list-wrapper" key={toDosArray[i].id}>
-					<ToDosCard
+					<ToDosCardHooks
 						deleteToDoItem={deleteToDoItem}
 						id={toDosArray[i].id}
 						title={toDosArray[i].title}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Container } from 'reactstrap';
-// no changes required
+
+// Hooks - no changes
 const ToDosCardHooks = ({ id, title, completed, deleteToDoItem }) => {
 	return (
 		<div key={id}>

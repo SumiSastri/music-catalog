@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import uuid from 'uuid';
 
-import { FormInputField } from '../../../common-components-and-containers/forms/FormInputField';
+import { FormInputField } from '../../../../common-components-and-containers/forms/FormInputField';
 
 class CreateToDoForm extends Component {
 	state = {

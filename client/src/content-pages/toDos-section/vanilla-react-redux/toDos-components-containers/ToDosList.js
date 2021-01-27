@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container } from 'reactstrap';
 
-import '../toDos-styles/toDoListStyles.css';
+import '../../toDos-styles/toDoListStyles.css';
 import ToDosCard from './ToDosCard';
 import ToDosCompleted from './ToDosCompleted';
 
-const ToDosList = ({ toDosArray }) => {
+const ToDosList = ({ toDosArray, deleteToDoItem }) => {
 	const displayToDos = toDosArray.length ? (
 		toDosArray.map((eachtoDoItem, i) => {
 			return (

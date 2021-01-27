@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 // REDUX REFACTOR
 import { connect } from 'react-redux';
 // action creator
-import { createToDoItem } from '../../toDos-actions/sync-toDo-action-creators';
+import { createToDoItem } from '../../vanilla-react-redux/toDos-actions/sync-toDo-action-creators';
 
 // props now destructured and used as state.props here
 // mapped dispatch function used as props
