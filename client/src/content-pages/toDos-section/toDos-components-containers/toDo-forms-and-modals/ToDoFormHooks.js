@@ -8,7 +8,7 @@ import { createToDoItem } from '../../toDos-actions/sync-toDo-action-creators';
 
 // props now destructured and used as state.props here
 // mapped dispatch function used as props
-const ToDoFormHooks = ({ toDos, handleSubmit }) => {
+const ToDoFormHooks = ({ todosArray, handleSubmit }) => {
 	initialState = '';
 	[ formInputs, setFormInputs ] = useState(initialState);
 	handleChange = (event) => {
@@ -18,7 +18,7 @@ const ToDoFormHooks = ({ toDos, handleSubmit }) => {
 	[ submitForm, setSubmitForm ] = useState(() => {});
 	handleSubmit = (event) => {
 		event.prevent.default();
-		const isDuplicate = toDos.some((todoItem) => todoItem.todo === todo);
+		const isDuplicate = todosArray.some((todoItem) => todoItem.todo === todo);
 		if (!isDuplicate) {
 			setSubmitForm(() => createToDoItem(todo));
 			setFormInputs(initialState);
@@ -50,7 +50,7 @@ const ToDoFormHooks = ({ toDos, handleSubmit }) => {
 	);
 };
 // the array of todos is state.state.props
-const mapStateToProps = (state = { toDos: state.toDos });
+const mapStateToProps = (state = { todosArray: state.todosArray });
 // local state mapped - here it is the handle submit function
 // sent back to the component as props
 const mapDispatchToProps = dispatch({ handleSubmit });
