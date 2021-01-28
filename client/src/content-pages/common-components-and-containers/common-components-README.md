@@ -1,0 +1,2 @@
+- nav-bar is a stateful component because it it holds an open and closed state for the hamburger menu
+- code the nav-bar with toggle in state
