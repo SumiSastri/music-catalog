@@ -5,7 +5,7 @@ import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import { createTodoItem } from '../../toDos-actions/async-toDo-action-creators';
 
-import { FormInputField } from '../../../../common-components-and-containers/forms/FormInputField';
+import { FormInputField } from '../../../../../common/forms/FormInputField';
 
 class CreateToDoForm extends Component {
 	state = {

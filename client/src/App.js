@@ -6,7 +6,7 @@ import { Container } from 'reactstrap';
 import { Provider } from 'react-redux';
 import store from '../src/client-side-data/redux-store/store';
 
-import AppNavBar from './content-pages/common-components-and-containers/navs/AppNavBar';
+import AppNavBar from './common/navs/AppNavBar';
 import MusicPlayListHome from '../src/content-pages/music-section/music-components-and-containers/MusicPlayListHome';
 import MusicPlayListIndexPage from '../src/content-pages/music-section/music-components-and-containers/MusicPlayListIndexPage';
 import ToDosIndexPage from './content-pages/toDos-section/vanilla-react-redux/toDos-components-containers/ToDosIndexPage';

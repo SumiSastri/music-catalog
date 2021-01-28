@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { getMusicItems, deleteMusicItem } from '../actions/music-section-actions';
-import ErrorBoundary from '../../common-components-and-containers/error-boundary/ErrorBoundary';
+import ErrorBoundary from '../../../common/error-boundary/ErrorBoundary';
 
 class MusicPlayList extends Component {
 	componentDidMount() {

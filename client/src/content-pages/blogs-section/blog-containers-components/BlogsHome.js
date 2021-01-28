@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import ErrorBoundary from '../../common-components-and-containers/error-boundary/ErrorBoundary';
+import ErrorBoundary from '../../../common/error-boundary/ErrorBoundary';
 import BlogList from './BlogList';
 import { getBlogPosts } from '../blog-actions/BlogActionCreators';
 
