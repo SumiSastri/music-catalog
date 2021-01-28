@@ -10,38 +10,45 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
-// import routes from controllers
-const musicInventoryRoute = require('../server/api-route-controllers/musicInventoryRoute');
-const usersRoute = require('../server/api-route-controllers/usersRoute');
-const authUserRoutes = require('../server/api-route-controllers/private-routes/authUsers');
+// user routes
+const authRegRoute = require('../server/api-route-controllers/auth-user-routes/reg-users/authRegUser');
+const authLoginRoute = require('../server/api-route-controllers/auth-user-routes/logged-in-users/authLoginUser');
+// content routes
+const musicApiRoute = require('../server/api-route-controllers/musicApiRoute');
+const blogsApiRoute = require('../server/api-route-controllers/blogsApiRoute');
 
 // middleware
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
-
-const rateLimter = new rateLimit({
+const rateLimiter = new rateLimit({
 	windowsMs: 15 * 60 * 1000,
 	max: 100,
 	delayMs: 0
 });
-
-app.use('/music-inventory-api', musicInventoryRoute);
-app.use('/users-api', usersRoute);
-app.use('/login/users-api', authUserRoutes);
-
+app.use('/registration-api', authRegRoute);
+app.use('/login-api', authLoginRoute);
+app.use('/music-api', musicApiRoute);
+app.use('/blogs-api', blogsApiRoute);
 app.use(
 	bodyParser.urlencoded({
 		extended: true
 	})
 );
+// Serve static assets if in production
+if (process.env.NODE_ENV === 'production') {
+	// Set static folder
+	app.use(express.static('client/build'));
+
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+	});
+}
 
 app.get('/', (req, res) => {
 	res.send('app home route working');
 });
-
 const db = config.get('mongoURI');
-
 mongoose.connect(
 	db,
 	{

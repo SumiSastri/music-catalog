@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MusicItemSchema = new mongoose.Schema({
+const MusicPlayListSchema = new mongoose.Schema({
 	entryDate: {
 		type: Date,
 		default: Date.now
@@ -32,5 +32,5 @@ const MusicItemSchema = new mongoose.Schema({
 	}
 });
 
-module.exports = mongoose.model('MusicItem', MusicItemSchema);
+module.exports = mongoose.model('MusicPlayList', MusicPlayListSchema);
 // OR module.exports = MusicItem = mongoose.model('musicItem', MusicItemSchema);

@@ -1,24 +1,24 @@
-const config = require('config');
+const config = require('../config/default.json');
 const jwt = require('jsonwebtoken');
 
-// use this 'x-auth-token' in Postman with JWT token to get user
-function auth(req, res, next) {
-	const bearerToken = req.header('x-auth-token');
+// use this 'auth-token-verified' in Postman with JWT token to get user
+export const authorizeUser = (req, res, next) => {
+	const authToken = req.header('auth-token-verified');
 
-	// check for bearer token - 401 unauthorised
-	if (!bearerToken) res.status(401).json({ msg: 'Authorisation token required' });
+	// check for authorisation token - 401 unauthorised
+	if (!authToken)
+		return res.status(401).json({ msg: 'Auth token required, user is not authorised to access this information' });
 
 	try {
 		// try to match token and verify or catch errors
-		const decodeBearerToken = jwt.verify(bearerToken, config.get('jwtSecret'));
+		const decodedAuthToken = jwt.verify(authToken, config.get('jwtSecret'));
 
 		// Add user identified by id in payload ensure decoded token matches
-		req.user = decodedBearer.Token;
+		req.user = decodedAuthToken;
 		next();
-	} catch (err) {
+	} catch (error) {
 		res.status(400).json({ msg: 'Bad request, token not valid' });
 	}
-}
+};
 
-module.exports = auth;
 // export this module and use as second param to authorise in routes

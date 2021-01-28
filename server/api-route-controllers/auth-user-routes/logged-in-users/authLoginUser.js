@@ -1,15 +1,15 @@
+// libraries
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const config = require('config');
-const jwt = require('jsonwebtoken');
 
-// FILES
-// schema
-const User = require('../../server-side-data/mongoose-models/userSchema');
-// auth middle ware
-const auth = require('../../auth-middleware/auth');
+// data and token validation
+import config from '../../../config/default.json';
+const { JWT_SECRET } = config;
+const User = require('../../../server-side-data/mongoose-models/UserSchema');
+const authorizeUser = require('../../../auth-middleware/auth');
 
 // REFACTOR - AUTH ADDED @POST/route      /login/users-api'
 // @desc            login: CHECK USER DATA MATCHES THEN AUTHORISE
@@ -52,14 +52,14 @@ router.post('/', (req, res) => {
 
 // AUTH ADDED @GET (:40) get all users
 // @desc             authorised/authenticated users can update details
-router.get('/user-api', auth, (req, res) => {
+router.get('/login-api', authorizeUser, (req, res) => {
 	User.findById(req.savedUser.id).select('-savedUser.password').then((savedUser) => res.json(savedUser));
 });
 
 // AUTH ADDED @PUT      '/login/users-api'/:id'
 // @desc             authorised/authenticated users can update details
 
-router.put('/:id', auth, (req, res, next) => {
+router.put('/login-api/:id', authorizeUser, (req, res, next) => {
 	User.findByIdAndUpdate({ _id: req.params.id }, req.body, {
 		new: true,
 		useFindAndModify: false
@@ -72,12 +72,12 @@ router.put('/:id', auth, (req, res, next) => {
 });
 
 // AUTH ADDED @DELETE/route    '/login/users-api':id'
-router.delete('/:id', auth, (req, res, next) => {
+router.delete('/login-api/:id', authorizeUser, (req, res, next) => {
 	User.findByIdAndRemove({ _id: req.params.id }, { useFindAndModify: false })
 		.then(function(userFound) {
 			res.send(userFound);
 		})
 		.catch((err) => res.status(422).json({ message: err }));
 });
+
 module.exports = router;
-// in es6 export default router
