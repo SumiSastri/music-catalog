@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, NavLink } from 'reactstrap';
-import uuid from 'uuid';
+// import uuid from 'uuid';
 
 class AddNewUserModal extends Component {
 	state = {
-		userUUID: uuid(),
+		// userUUID: uuid(),
 		userName: null,
 		email: null,
 		password: null,

@@ -1,4 +1,4 @@
-import uuid from 'uuid';
+// import uuid from 'uuid';
 
 import {
 	GET_MUSIC_ITEMS,
@@ -10,13 +10,13 @@ import {
 // static data removed and loading added
 const initialState = {
 	musicItems: [
-		{ id: uuid(), name: 'Maitre Gims' },
-		{ id: uuid(), name: 'Yousoupha' },
-		{ id: uuid(), name: 'DJ Khalid' }
+		// { id: uuid(), name: 'Maitre Gims' },
+		// { id: uuid(), name: 'Yousoupha' },
+		// { id: uuid(), name: 'DJ Khalid' }
 	],
 	loading: false
 };
-export default function(state = initialState, action) {
+export const musicItemReducers = (state = initialState, action) => {
 	switch (action.type) {
 		case GET_MUSIC_ITEMS:
 			return {
@@ -42,4 +42,4 @@ export default function(state = initialState, action) {
 		default:
 			return state;
 	}
-}
+};
